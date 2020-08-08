@@ -1,10 +1,10 @@
 # Users
 puts "Cleaning database"
-User.destroy_all
-Match.destroy_all
-Offer.destroy_all
 Tag.destroy_all
 OfferTag.destroy_all
+Match.destroy_all
+Offer.destroy_all
+User.destroy_all
 puts "Create new users"
 5.times do
   new_user = User.new(
