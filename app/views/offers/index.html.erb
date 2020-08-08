@@ -1,0 +1,13 @@
+<% @offers.each do |offer| %>
+  <% if user_signed_in? %>
+    <%= simple_form_for @match, remote: true do |f| %>
+      <%= f.input :offer_id, as: :hidden, input_html: { offer_id: offer.id } %>
+      <%= f.button :submit, "Save offer", class: "" %>
+      <!-- TODO: add a flash message -->
+      <!-- TODO: prevent multiple clicks-->
+    <% end %>
+  <% else %
+    <%= link_to "Save offer", new_user_session, class: ""  %>
+  <% end %>
+<% end %>
+
