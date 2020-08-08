@@ -1,15 +1,13 @@
 class OffersController < ApplicationController
   def index
     @offers = Offer.all
-    # search algorithm
-    # @selected_offers = where
+    # TODO: add match.new instance variable
+    @match = Match.new()
   end
 
   def show
     @offer = Offer.find(params[:id])
   end
-
-  private
 
   # def new
   # end
@@ -34,7 +32,7 @@ class OffersController < ApplicationController
 
   def update
     # @offer = Offer.find(params[:id])
-    # scrapping/API info goes here
-    # @offer.active = ____
+    # @offer.active = # scrapping/API info goes here_
+    # if offer is not found within new results will be marked as inactive
   end
 end

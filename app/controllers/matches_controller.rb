@@ -3,8 +3,6 @@ class MatchesController < ApplicationController
     @matches = Match.where(user: current_user)
   end
 
-  private
-
   def create
     # @match = Match.new()
     # @match.user = current_user
