@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'matches/index'
+  get 'matches/new'
   get 'offers/index'
   get 'offers/show'
   get 'users/show'
