@@ -1,6 +1,5 @@
 class MatchesController < ApplicationController
   def index
-    # @matches = Match.where(user: current_user)
     @offers = []
     Offer.all.each do |offer|
       if offer.user == current_user { @offers << offer }
