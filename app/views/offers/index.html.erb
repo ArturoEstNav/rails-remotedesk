@@ -1,4 +1,33 @@
 <div class="container p-5">
+  <div class="p-5 m-5 border border-danger">
+    <h1 class="text-danger"> test div</h1>
+    <%  require 'open-uri'
+        require 'nokogiri'
+        # This is the search coming from the
+        # desired_language = "python"
+        # url = "https://www.indeed.com.mx/trabajo?q=#{desired_language}&remotejob=032b3046-06a3-4876-8dfd-474eb5e7ed11"
+        # html_content = open(url).read
+        # doc = Nokogiri::HTML(html_content)
+        # doc.search('.jobtitle .company').each_with_index do |element, index|
+
+
+        html_content = open('https://www.prsguitars.com/products/se').read
+        doc = Nokogiri::HTML(html_content)
+
+        doc.search('.model').each_with_index do |element, index|
+
+
+      %>
+      <div class="border border-info text-secondary">
+        <%= "#{index + 1}. #{element}" %>
+      </div>
+    <% end %>
+
+
+
+
+
+  </div>
   <div class="d-flex">
     <div class="w-25 border border-primary mr-4">
       <p>filters</p>

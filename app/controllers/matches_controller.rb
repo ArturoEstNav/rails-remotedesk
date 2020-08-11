@@ -1,9 +1,6 @@
 class MatchesController < ApplicationController
   def index
-    @offers = []
-    Offer.all.each do |offer|
-      if offer.user == current_user { @offers << offer }
-    end
+    @offers = Offer.where(user: current_user)
   end
 
   def create
