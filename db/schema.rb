@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_170632) do
+ActiveRecord::Schema.define(version: 2020_08_11_175027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,9 +44,11 @@ ActiveRecord::Schema.define(version: 2020_08_08_170632) do
     t.string "position"
     t.datetime "posting_date"
     t.string "listing_url"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "external_id"
+    t.string "source"
   end
 
   create_table "tags", force: :cascade do |t|

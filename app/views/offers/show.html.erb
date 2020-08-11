@@ -1,2 +1,32 @@
-<h1>Offers#show</h1>
-<p>Find me in app/views/offers/show.html.erb</p>
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <% if user_signed_in? %>
+      <%= link_to "<< Back to you job matches", user_matches(current_user) %>
+    <% else %>
+      <%= link_to "<< Back to all jobs", root_path %>
+    <% end %>
+    <%= link_to "More #{@offer.category} jobs >>", root_path %>
+  </div>
+  <br>
+  <div class="row justify-content-between">
+    <div class="col-9" id="offer-frame">
+      <p><strong><%= "POSTED #{@offer.posting_date.strftime('%^b %d, %Y')}" %></strong></p>
+      <h3><%= @offer.title %></h3>
+      <div class="row justify-content-left">
+        <% @offer.tags.each do |tag| %>
+          <div class="m-1">
+            <%= link_to tag.name, "#", class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+      </div>
+      <br>
+      <%= @offer.description %>
+    </div>
+    <div class="card col-3 sticky-top p-3" style="height: 10rem;" id="offer-summary">
+      <h3><%= @offer.company %></h3>
+      <h5><%= @offer.title %></h5>
+      <p><%= @offer.salary %></p>
+      <%= link_to "Apply to this job", @offer.listing_url, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
