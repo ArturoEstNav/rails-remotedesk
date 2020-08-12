@@ -1,0 +1,16 @@
+$big-mobile: 769px;
+$custom-lg: 1188px;
+$custom-md: 881px;
+$custom-sm: 530px;
+
+
+.custom-offers-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 16px;
+
+  @media screen and (max-width: $big-mobile) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

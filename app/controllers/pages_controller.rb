@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [:home]
 
   def home
+    @tags = Tag.pluck(:name).sort
+    if params[:q].present?
+      @offers = Offer.joins(:tags).where("tags.name = ?", params[:query])
+    end
   end
 end
