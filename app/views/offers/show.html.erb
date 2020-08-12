@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="d-flex justify-content-between">
+<div class="container" style="padding-top: 66px;">
+  <div class="d-flex justify-content-between mt-3">
     <% if user_signed_in? %>
       <%= link_to "<< Back to you job matches", user_matches(current_user) %>
     <% else %>
@@ -12,17 +12,20 @@
     <div class="col-9" id="offer-frame">
       <p><strong><%= "POSTED #{@offer.posting_date.strftime('%^b %d, %Y')}" %></strong></p>
       <h3><%= @offer.title %></h3>
-      <div class="row justify-content-left">
+      <h5><%= "#{@offer.company} | #{@offer.location}" %></h5>
+      <div class="row justify-content-left pl-2">
         <% @offer.tags.each do |tag| %>
           <div class="m-1">
             <%= link_to tag.name, "#", class: "btn btn-secondary" %>
           </div>
         <% end %>
       </div>
-      <br>
-      <%= @offer.description %>
+      <hr>
+      <div class="pr-4">
+        <%= raw(@offer.description) %>
+      </div>
     </div>
-    <div class="card col-3 sticky-top p-3" style="height: 10rem;" id="offer-summary">
+    <div class="card col-3 sticky-top p-3" style="height: 12rem; top: 78px;" id="offer-summary">
       <h3><%= @offer.company %></h3>
       <h5><%= @offer.title %></h5>
       <p><%= @offer.salary %></p>

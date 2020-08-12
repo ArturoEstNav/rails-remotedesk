@@ -18,7 +18,7 @@ class OffersController < ApplicationController
   end
 
   def update
-    update_remotive_offers
+    update_remotive_offer_active_status
   end
 
   private
@@ -33,7 +33,7 @@ class OffersController < ApplicationController
 
   # feeds information found in Remotive API to Offer Model
   def copy_offer_variables(new_offer, remotive_offer)
-    new_offer.external_id = remotive_offer['id']
+    new_offer.external_id = remotive_offer['id'].to_s
     new_offer.company = remotive_offer['company_name']
     new_offer.title = remotive_offer['title']
     new_offer.description = remotive_offer['description']
@@ -50,7 +50,7 @@ class OffersController < ApplicationController
   def create_remotive_offers
     remotive_offers = remotive_api_scrape
     remotive_offers.each do |offer|
-      new_offer = Offer.where(external_id: offer['id'], source: 'remotive').first_or_initialize
+      new_offer = Offer.where(external_id: offer['id'].to_s, source: 'remotive').first_or_initialize
       copy_offer_variables(new_offer, offer)
       offer['tags'].each do |tag|
         new_offer.tags << Tag.where(name: tag).first_or_create
@@ -63,7 +63,7 @@ class OffersController < ApplicationController
     remotive_offers = remotive_api_scrape
     db_remotive_offers = Offer.where(source: 'remotive')
     db_remotive_offers.each do |db_offer|
-      if remotive_offers.detect { |rm_offer| rm_offer['id'] == db_offer.external_id }.nil?
+      if remotive_offers.detect { |rm_offer| rm_offer['id'].to_s == db_offer.external_id }.nil?
         db_offer.active = false
       end
       db_offer.save!
