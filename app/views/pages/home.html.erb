@@ -1,2 +1,37 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="jumbotron jumbotron-fluid banner-jumbotron">
+  <div class="container custom-eigth-container">
+    <div class="banner-hero" >
+      <h1 class="display-4 text-white">Find your dream job</h1>
+      <div class="card p-3 custom-card-static custom-padding">
+      <div id="search-data" class= "form-search search-data" data-skills="<%= @tags.to_json %>">
+        <%= form_tag root_path, method: :get do %>
+        <%= text_field_tag :q, nil, autocomplete: :off,
+          class: "form-control search-input",
+          placeholder: "Search by programming language..."
+        %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+        </div>
+        <p class="description">Remotedesk simplify the process of finding remote & work-from-home jobs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%if @offers and not @offers.empty? %>
+  <div class="container custom-landing-spacing">
+    <h2>Found positions</h2>
+    <% @offers.each do |offer| %>
+      <p><%= offer.title %></p>
+      <ol>
+        <% offer.tags.each do |tag| %>
+          <li><%= tag.name %></li>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
+<%end%>
+
+<div class="container custom-landing-spacing">
+  <h2>Trending positions</h2>
+</div>
