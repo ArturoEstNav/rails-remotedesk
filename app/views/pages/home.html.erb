@@ -24,13 +24,15 @@
     <% @offers.each do |offer| %>
       <div class="offer-card">
       <br>
-      <h4><%= offer.title %></h4>
+      <h4><%= offer.title  %></h4>
       <div class="row">
         <% offer.tags.each do |tag| %>
           <%= link_to tag.name, "#", class: "btn btn-secondary mr-1" %>
         <% end %>
+        <!-- Provisional -->
       </div>
       <br>
+      <p><%= offer.source %></p>
       <%= link_to "Check offer", offer_path(offer), class: "btn btn-primary" %>
       </div>
       <hr>
