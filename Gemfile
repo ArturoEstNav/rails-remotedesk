@@ -35,6 +35,10 @@ gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'nokogiri'
 gem 'json'
 
+# Use to create job syncs with heroku app
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+
 gem 'devise'
 
 gem 'autoprefixer-rails'
