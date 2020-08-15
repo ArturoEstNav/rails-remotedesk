@@ -1,34 +1,38 @@
 require 'open-uri'
 require 'nokogiri'
 require 'json'
-domain = 'https://www.indeed.com.mx/'
+
 
 def indeed_offers_scrape
-  tags = Tag.all
-  # All search results that might lead to non-programmer jobs
-  non_technology_tags = ['leadership', 'remote']
-  non_technology_tags.each do |tag|
-    tags.delete(tag)
-  end
-  tags.each do |tag|
-    tag.gsub!(/\W/, ' ') if tag.include?(/\W/)
-  end
+  # tags = Tag.all
+  # Tis list eliminates all search results that might lead to non-programmer jobs
+  # non_technology_tags = ['leadership', 'remote']
+  # non_technology_tags.each do |tag|
+  #   tags.delete(tag)
+  # end
+  # tags.each do |tag|
+  #   tag.gsub!(/\W/, ' ') if tag.include?(/\W/)
+  # end
   # Scrape all relevant tags in Indeed
   indeed_offers = Array.new
-  tags.each do |tag|
-    pull_offers(tag, indeed_offers)
-  end
+  pull_offers("ruby", indeed_offers)
+
+  # tags.each do |tag|
+  #   pull_offers(tag, indeed_offers)
+  # end
+
   indeed_offers
 end
 
 # Pulls all the offers given a keyword
 def pull_offers(keyword, indeed_offers)
+  domain = 'https://www.indeed.com.mx/'
   url = "trabajo?q=#{keyword}&remotejob=032b3046-06a3-4876-8dfd-474eb5e7ed11"
   html_content = open(domain + url).read
   doc = Nokogiri::HTML(html_content)
   # This var verifies if there are multiple pages of results
   next_page_button = doc.search('path')
-  next_page_button = next_page_button.search('*[d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"]')
+  next_page_button = next_page_button.search('*[d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"]').text
   if next_page_button.presence?
     # If there are multiple pages it will iterate though all of the result pages
     gather_offers_per_page(doc, indeed_offers)
@@ -61,12 +65,12 @@ def gather_offers_per_page(doc, indeed_offers)
       job_type: "",
       tags: [],
       location: job_card.search('.location').text,
-      listing_url: job_card.search('a').attribute('href'),
+      listing_url: job_card.search('a').attribute('href')[0] = '',
       candidate_required_location: "Mexico",
       source: 'indeed'
     }
     collect_salary(job_card, new_offer_hash)
-    scrape_individual_offer(new_offer_hash, new_offer_hash['listing_url'])
+    scrape_individual_offer(new_offer_hash, new_offer_hash[:listing_url])
     # Save each job with complete information into a list of all the offers from indeed
     indeed_offers << new_offer_hash
   end
@@ -74,6 +78,7 @@ end
 
 # Get posting details from individual pages
 def scrape_individual_offer(offer_object, url)
+  domain = 'https://www.indeed.com.mx/'
   html_content = open(domain + url).read
   doc = Nokogiri::HTML(html_content)
   description = doc.search('.jobsearch-jobDescriptionText p')
@@ -105,7 +110,9 @@ end
 
 # Gets the posting date from each offer description
 def collect_posting_date(doc, offer_object)
-  js = doc.at('script[type="application/ld+json"]').text
+  head = doc.search("head")
+  js = head.at('script[type="application/ld+json"]').text
+  # TODO captured data is returning nil -> not capturing the right script file
   meta = JSON[js]['datePosted']
   offer_object[:posting_date] = meta.to_datetime
 end
@@ -142,3 +149,7 @@ def update_indeed_offer_active_status
     db_offer.save!
   end
 end
+
+indeed_offers_scrape
+
+p indeed_offers

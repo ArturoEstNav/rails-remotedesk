@@ -1,4 +1,6 @@
 require 'open-uri'
+require 'nokogiri'
+require 'json'
 
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!
