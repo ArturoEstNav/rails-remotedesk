@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   def index
-    @matches = Match.where(user: current_user)
+    @offers = Offer.where(user: current_user)
   end
 
   def create
