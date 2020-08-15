@@ -22,12 +22,18 @@
   <div class="container custom-landing-spacing">
     <h2>Found positions</h2>
     <% @offers.each do |offer| %>
-      <p><%= offer.title %></p>
-      <ol>
+      <div class="offer-card">
+      <br>
+      <h4><%= offer.title %></h4>
+      <div class="row">
         <% offer.tags.each do |tag| %>
-          <li><%= tag.name %></li>
+          <%= link_to tag.name, "#", class: "btn btn-secondary mr-1" %>
         <% end %>
-      </ol>
+      </div>
+      <br>
+      <%= link_to "Check offer", offer_path(offer), class: "btn btn-primary" %>
+      </div>
+      <hr>
     <% end %>
   </div>
 <%end%>
