@@ -11,20 +11,22 @@ class ScraperIndeed
   end
 
   def indeed_offers_scrape
-    tags = Tag.all
-    # This list eliminates all search results that might lead to non-programmer jobs
-    non_technology_tags = ['leadership', 'remote', 'mexico', 'USA']
-    non_technology_tags.each do |tag|
-      tags.delete(tag)
-    end
-    tags.each do |tag|
-      tag.name.gsub!(/\W/, '+') if tag.name.match?(/\W/)
-    end
-    # Scrape all relevant tags in Indeed
+    # tags = Tag.all
+    # # This list eliminates all search results that might lead to non-programmer jobs
+    # non_technology_tags = ['leadership', 'remote', 'mexico', 'USA']
+    # non_technology_tags.each do |tag|
+    #   tags.delete(tag)
+    # end
+    # tags.each do |tag|
+    #   tag.name.gsub!(/\W/, '+') if tag.name.match?(/\W/)
+    # end
+    # # Scrape all relevant tags in Indeed
 
-    tags.each do |tag|
-      pull_offers(tag.name, indeed_offers)
-    end
+    # tags.each do |tag|
+    #   pull_offers(tag.name, indeed_offers)
+    # end
+
+    pull_offers("javascript", indeed_offers)
   end
 
   # Pulls all the offers given a keyword
@@ -142,6 +144,7 @@ class ScraperIndeed
   end
 
   def create_indeed_offers
+    self.indeed_offers_scrape
     indeed_offers = @indeed_offers
     indeed_offers.each do |offer|
       new_offer = Offer.where(external_id: offer['id'].to_s, source: 'indeed').first_or_initialize
