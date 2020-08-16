@@ -1,7 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
 require 'json'
-require 'pry-byebug'
 
 class ScraperIndeed
   attr_reader :indeed_offers
@@ -150,7 +149,6 @@ class ScraperIndeed
       new_offer = Offer.where(external_id: offer['id'].to_s, source: 'indeed').first_or_initialize
       copy_offer_variables(new_offer, offer)
       new_offer.source = 'indeed'
-      # binding.pry
       offer[:tags].each do |tag_name|
         new_offer.tags << Tag.find_by(name: tag_name)
       end
