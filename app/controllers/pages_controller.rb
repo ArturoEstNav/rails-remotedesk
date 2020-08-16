@@ -6,5 +6,6 @@ class PagesController < ApplicationController
     if params[:q].present?
       @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
     end
+    @params = params[:q]
   end
 end
