@@ -43,10 +43,10 @@ puts 'Create API offers'
 new_api_offer = ApiOffer.new
 new_api_offer.create_remotive_offers
 
-puts 'Create offers scraped from Indeed'
+# puts 'Create offers scraped from Indeed'
 
-indeed_offers = ScraperIndeed.new
-indeed_offers.create_indeed_offers
+# indeed_offers = ScraperIndeed.new
+# indeed_offers.create_indeed_offers
 
 puts 'Create new matches'
 User.all.each do |user|
