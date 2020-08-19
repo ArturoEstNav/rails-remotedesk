@@ -6,7 +6,7 @@ $custom-sm: 530px;
 
 .custom-offers-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 16px 16px;
   background-color: #fff;
   color: black;
@@ -16,3 +16,4 @@ $custom-sm: 530px;
     gap: 16px;
   }
 }
+

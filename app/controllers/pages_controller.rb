@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @tags = Tag.pluck(:name).sort
+    @new_offers = Offer.last(6)
     if params[:q].present?
       @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
     end

@@ -6,12 +6,14 @@ h1, h2, h3 h4, h5, h6 {
   font-family: 'Quicksand', sans-serif;
   font-size: 18pt;
   font-weight: 300;
+  color: $blue;
 }
 
 .logo_thick {
   font-family: 'Quicksand', sans-serif;
   font-size: 18pt;
   font-weight: 700;
+  color: $blue;
 }
 
 // Font is inherited from the body so I don't feel too bad
