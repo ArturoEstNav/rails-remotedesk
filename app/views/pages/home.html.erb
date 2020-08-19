@@ -3,39 +3,54 @@
     <div class="banner-hero" >
       <h1 class="display-4 text-white">Find your dream job</h1>
       <div class="card p-3 custom-card-static custom-padding">
-      <div id="search-data" class= "form-search search-data" data-skills="<%= @tags.to_json %>">
-        <%= form_tag root_path, method: :get do %>
-        <%= text_field_tag :q, nil, autocomplete: :off,
-          class: "form-control search-input",
-          placeholder: "Search by programming language..."
-        %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
-        <% end %>
+        <div id="search-data" class= "form-search search-data" data-skills="<%= @tags.to_json %>">
+          <%= form_tag root_path, method: :get do %>
+          <%= text_field_tag :q, nil, autocomplete: :off,
+            class: "form-control search-input",
+            placeholder: "Search by programming language..."
+          %>
+            <%= submit_tag "Search", class: "btn btn-primary" %>
+          <% end %>
+          </div>
+          <p class="description">Remotedesk simplify the process of finding remote & work-from-home jobs.</p>
         </div>
-        <p class="description">Remotedesk simplify the process of finding remote & work-from-home jobs.</p>
-      </div>
     </div>
   </div>
 </div>
 
 <%if @offers and not @offers.empty? %>
   <div class="container custom-landing-spacing">
-    <h2>Found positions</h2>
+    <h2><%= "#{@params.capitalize} job offers" %></h2>
+    <br>
     <% @offers.each do |offer| %>
-      <div class="offer-card">
-      <br>
-      <h4><%= offer.title  %></h4>
-      <div class="row">
-        <% offer.tags.each do |tag| %>
-          <%= link_to tag.name, "#", class: "btn btn-secondary mr-1" %>
-        <% end %>
-        <!-- Provisional -->
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h3 class="card-title"><%= offer.title %></h3>
+            <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-primary" %>
+          </div>
+          <h5 class="card-text"><%= "Work at #{offer.company.capitalize}"  %></h5>
+          <p class="card-text"><%= "Found offer at #{offer.source.capitalize}" %></p>
+        </div>
+        <div class="card-body">
+          <% offer.tags.each do |tag| %>
+            <%= link_to tag.name, "#", class: "card-button btn btn-secondary mr-1" %>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <% if user_signed_in? %>
+            <%= simple_form_for @match, remote: true do |f| %>
+              <%= f.input :offer_id, as: :hidden, input_html: { offer_id: offer.id } %>
+              <%= f.button :submit, "Save offer", class: "btn btn-primary" %>
+              <!-- TODO: add a flash message -->
+              <!-- TODO: prevent multiple clicks-->
+            <% end %>
+          <% else %>
+            <%= link_to "Save offer", new_user_session_path, class: "btn btn-primary"  %>
+          <% end %>
+        </div>
       </div>
-      <br>
-      <p><%= offer.source %></p>
-      <%= link_to "Check offer", offer_path(offer), class: "btn btn-primary" %>
-      </div>
-      <hr>
+    <br>
     <% end %>
   </div>
 <%end%>
