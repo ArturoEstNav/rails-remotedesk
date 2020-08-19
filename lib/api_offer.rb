@@ -30,7 +30,9 @@ class ApiOffer
       # This property assignation was placed here to make the copy_offer_variables method more versatile
       new_offer.source = 'remotive'
       offer['tags'].each do |tag|
-        new_offer.tags << Tag.where(name: tag).first_or_create
+        if new_offer.tags.where(name: tag).nil?
+          new_offer.tags << Tag.where(name: tag).first_or_create
+        end
       end
       new_offer.save!
     end
