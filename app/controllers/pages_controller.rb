@@ -4,7 +4,8 @@ class PagesController < ApplicationController
   def home
     @tags = Tag.pluck(:name).sort
     if params[:q].present?
-      @offers = Offer.joins(:tags).where("tags.name = ?", params[:query])
+      @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
     end
+    @params = params[:q]
   end
 end
