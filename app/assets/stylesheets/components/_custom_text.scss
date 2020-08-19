@@ -1,0 +1,23 @@
+h1, h2, h3 h4, h5, h6 {
+  font-weight: 300;
+}
+
+.logo_thin {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18pt;
+  font-weight: 300;
+}
+
+.logo_thick {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18pt;
+  font-weight: 700;
+}
+
+// Font is inherited from the body so I don't feel too bad
+// just overriding the fonts, NOTHING ELSE should be overriden
+// from bootstrap directly ;)
+.btn {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
