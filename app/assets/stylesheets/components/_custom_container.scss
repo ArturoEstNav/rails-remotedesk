@@ -8,6 +8,8 @@ $custom-sm: 530px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px 16px;
+  background-color: #fff;
+  color: black;
 
   @media screen and (max-width: $big-mobile) {
     grid-template-columns: 1fr;
