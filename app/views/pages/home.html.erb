@@ -1,7 +1,7 @@
 <div class="jumbotron jumbotron-fluid banner-jumbotron">
   <div class="container custom-eigth-container">
     <div class="banner-hero" >
-      <h1 class="display-4 text-white">Find your dream job</h1>
+      <h1 class="display-4 text-primary mb-3" style="font-weight: 700;" >find your dream job</h1>
       <div class="card p-3 custom-card-static custom-padding">
         <div id="search-data" class= "form-search search-data" data-skills="<%= @tags.to_json %>">
           <%= form_tag root_path, method: :get do %>
@@ -68,7 +68,8 @@
               <span class="btn btn-secondary m-1"> <%= tag.name %> </span>
             <% end %>
           </p>
-          <a href="#" class="btn btn-primary">View full offer</a>
+          <%= link_to 'View full offer', offer_path(offer.id), class: "btn btn-primary" %>
+
         </div>
       </div>
 
