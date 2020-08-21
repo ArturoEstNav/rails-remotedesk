@@ -32,6 +32,6 @@ import { autocompleteSearch } from '../plugins/autocomplete';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   autocompleteSearch();
-  // initSelect2();
+  //initSelect2();
 });
 

@@ -39,7 +39,7 @@
         </div>
         <div class="card-body">
           <% if user_signed_in? %>
-            <%= simple_form_for @match, remote: true do |f| %>
+            <%= simple_form_for current_user, remote: true do |f| %>
               <%= f.input :offer_id, as: :hidden, input_html: { offer_id: offer.id } %>
               <%= f.button :submit, "Save offer", class: "btn btn-primary" %>
               <!-- TODO: add a flash message -->
