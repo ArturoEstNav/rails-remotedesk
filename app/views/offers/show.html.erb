@@ -1,7 +1,7 @@
 <div class="container" style="padding-top: 66px;">
   <div class="d-flex justify-content-between mt-3">
     <% if user_signed_in? %>
-      <%= link_to "<< Back to you job matches", user_matches(current_user) %>
+      <%= link_to "<< Back to you job matches", user_path(current_user) %>
     <% else %>
       <%= link_to "<< Back to all jobs", root_path %>
     <% end %>
@@ -16,7 +16,7 @@
       <div class="row justify-content-left pl-2">
         <% @offer.tags.each do |tag| %>
           <div class="m-1">
-            <%= link_to tag.name, "#", class: "btn btn-secondary" %>
+            <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary mr-1" %>
           </div>
         <% end %>
       </div>
@@ -25,12 +25,19 @@
         <%= raw(@offer.description) %>
       </div>
     </div>
-    <div class="card col-3 sticky-top p-3" style="height: 12rem; top: 78px;" id="offer-summary">
+    <div class="card col-3 sticky-top p-3" style="height: 16rem; top: 78px;" id="offer-summary">
       <h3><%= @offer.company %></h3>
       <h5><%= @offer.title %></h5>
       <p><%= @offer.salary %></p>
       <%= link_to "Apply to this job", @offer.listing_url, class: "btn btn-primary" %>
-    </div>
+      <% if user_signed_in? %>
+        <%= simple_form_for current_user, remote: true do |f| %>
+          <%= f.input :offers, as: :hidden, input_html: { offer: @offer } %>
+          <%= f.button :submit, "Save offer", class: "btn btn-primary" %>
+        <% end %>
+      <% else %>
+        <%= link_to "Save offer", new_user_session_path, class: "btn btn-primary"  %>
+      <% end %>
   </div>
 </div>
 

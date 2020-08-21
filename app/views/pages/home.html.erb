@@ -34,16 +34,14 @@
         </div>
         <div class="card-body">
           <% offer.tags.each do |tag| %>
-            <%= link_to tag.name, "#", class: "card-button btn btn-secondary mr-1" %>
+            <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary mr-1" %>
           <% end %>
         </div>
         <div class="card-body">
           <% if user_signed_in? %>
             <%= simple_form_for current_user, remote: true do |f| %>
-              <%= f.input :offer_id, as: :hidden, input_html: { offer_id: offer.id } %>
+              <%= f.input :offers, as: :hidden, input_html: { offer: offer } %>
               <%= f.button :submit, "Save offer", class: "btn btn-primary" %>
-              <!-- TODO: add a flash message -->
-              <!-- TODO: prevent multiple clicks-->
             <% end %>
           <% else %>
             <%= link_to "Save offer", new_user_session_path, class: "btn btn-primary"  %>

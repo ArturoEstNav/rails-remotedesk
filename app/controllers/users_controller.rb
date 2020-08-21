@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def show
-    @matches = Match.where(user: current_user)
   end
 
   def edit
@@ -9,6 +8,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
+      flash.now[:notice] = 'You profile has been updated.'
       redirect_to user_path(current_user)
     else
       render :edit
