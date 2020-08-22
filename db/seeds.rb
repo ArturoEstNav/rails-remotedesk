@@ -43,7 +43,7 @@ puts 'Create API offers'
 new_api_offer = ApiOffer.new
 new_api_offer.create_remotive_offers
 
-Tagputs 'Create offers scraped from Indeed'
+puts 'Create offers scraped from Indeed'
 
 indeed_offers = ScraperIndeed.new
 indeed_offers.create_indeed_offers
