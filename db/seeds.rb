@@ -38,10 +38,10 @@ end
 #   puts "Created offer #{new_offer.id}"
 # end
 
-puts 'Create API offers'
+# puts 'Create API offers'
 
-new_api_offer = ApiOffer.new
-new_api_offer.create_remotive_offers
+# new_api_offer = ApiOffer.new
+# new_api_offer.create_remotive_offers
 
 puts 'Create offers scraped from Indeed'
 
