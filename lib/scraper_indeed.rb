@@ -2,6 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'json'
 
+
 class ScraperIndeed
   attr_reader :indeed_offers
 
@@ -22,15 +23,15 @@ class ScraperIndeed
     # # Scrape all relevant tags in Indeed
 
     # tags.each do |tag|
-    #   pull_offers(tag.name, indeed_offers)
+    #   pull_offers(tag.name, @indeed_offers)
     # end
 
-    pull_offers("javascript", indeed_offers)
+    pull_offers("javascript", @indeed_offers)
   end
 
   # Pulls all the offers given a keyword
   def pull_offers(keyword, indeed_offers)
-    puts "pulling offers from site"
+    puts "Pulling result cards from the \"#{keyword}\" search"
     domain = 'https://www.indeed.com.mx/'
     url = "trabajo?q=#{keyword}&remotejob=032b3046-06a3-4876-8dfd-474eb5e7ed11"
     html_content = open(domain + url).read
@@ -60,8 +61,9 @@ class ScraperIndeed
   # Retrieves an array of the offer results per page
   def gather_offers_per_page(doc, indeed_offers)
     # Gathers all the cards on the page and collects info from each owne of them
-    puts "pulling offers per page"
+    puts "Pulling information from each card offer per page"
     doc.search('.jobsearch-SerpJobCard').each do |job_card|
+      puts "Getting information from offer #{job_card['data-jk']}"
       new_offer_hash = {
         external_id: job_card['data-jk'],
         company: job_card.search('.company').text,
@@ -86,7 +88,7 @@ class ScraperIndeed
 
   # Get posting details from individual pages
   def scrape_individual_offer(offer_object, url)
-    puts "pulling details from posting"
+    puts "Pulling details from posting #{url}"
     domain = 'https://www.indeed.com.mx/'
     html_content = open(domain + url).read
     doc = Nokogiri::HTML(html_content)
@@ -95,12 +97,12 @@ class ScraperIndeed
     collect_posting_date(doc, offer_object)
     collect_job_type(description.text.downcase, offer_object)
     collect_tags_indeed(description.text.downcase, offer_object)
-    sleep 0.5
+    sleep 1
   end
 
   # Gets the tags from each offer description
   def collect_tags_indeed(text_to_scan, offer_object)
-    puts " Mining tags from description "
+    puts "Mining tags from description"
     tags = Tag.all.map(&:name)
     tags.each do |tag|
       offer_object[:tags] << tag if text_to_scan.include?(tag)
@@ -109,11 +111,15 @@ class ScraperIndeed
 
   # Gets the job type from each offer description
   def collect_job_type(text_to_scan, offer_object)
+    text_to_scan = text_to_scan.gsub('-', ' ')
     puts "Mining tags from description "
-
-    if text_to_scan.include?('full time' || 'full-time' || 'tiempo completo')
+    if text_to_scan.include? 'full time'
       offer_object[:job_type] = 'full-time'
-    elsif text_to_scan.include?(' time' || 'part-time' || 'medio tiempo')
+    elsif text_to_scan.include? 'tiempo completo'
+      offer_object[:job_type] = 'full-time'
+    elsif text_to_scan.include? 'part time'
+      offer_object[:job_type] = 'part-time'
+    elsif text_to_scan.include? 'medio tiempo'
       offer_object[:job_type] = 'part-time'
     else
       offer_object[:job_type] = ''
@@ -136,9 +142,9 @@ class ScraperIndeed
     raw_salary = text_to_scan.search('.salaryText').text
     # salary = raw_salary.match(/(\d+)/).captures[0].to_i
     if raw_salary.empty?
-      offer_object[:salary] = raw_salary
-    else
       offer_object[:salary] = ''
+    else
+      offer_object[:salary] = raw_salary
     end
   end
 
