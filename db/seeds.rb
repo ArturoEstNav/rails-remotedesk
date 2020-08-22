@@ -20,33 +20,33 @@ puts 'Create new users'
   puts "Created user #{new_user.id}"
 end
 
-puts 'Create new offers'
-20.times do
-  new_offer = Offer.new()
-  new_offer.title = Faker::Job.title
-  new_offer.company = Faker::Company.name
-  new_offer.description = (Faker::Job.field + ' ' +
-  Faker::Job.seniority + ' ' +
-  Faker::Job.position + ' ' +
-  Faker::Job.key_skill)
-  new_offer.job_type = Faker::Job.employment_type
-  new_offer.posting_date = Faker::Time.between(from: DateTime.now - 90, to: DateTime.now)
-  new_offer.listing_url = Faker::Internet.url
-  new_offer.source = ['remotive','indeed','linkedin'].sample
-  new_offer.save
+# puts 'Create new offers'
+# 20.times do
+#   new_offer = Offer.new()
+#   new_offer.title = Faker::Job.title
+#   new_offer.company = Faker::Company.name
+#   new_offer.description = (Faker::Job.field + ' ' +
+#   Faker::Job.seniority + ' ' +
+#   Faker::Job.position + ' ' +
+#   Faker::Job.key_skill)
+#   new_offer.job_type = Faker::Job.employment_type
+#   new_offer.posting_date = Faker::Time.between(from: DateTime.now - 90, to: DateTime.now)
+#   new_offer.listing_url = Faker::Internet.url
+#   new_offer.source = ['remotive','indeed','linkedin'].sample
+#   new_offer.save
 
-  puts "Created offer #{new_offer.id}"
-end
+#   puts "Created offer #{new_offer.id}"
+# end
 
 puts 'Create API offers'
 
 new_api_offer = ApiOffer.new
 new_api_offer.create_remotive_offers
 
-# puts 'Create offers scraped from Indeed'
+Tagputs 'Create offers scraped from Indeed'
 
-# indeed_offers = ScraperIndeed.new
-# indeed_offers.create_indeed_offers
+indeed_offers = ScraperIndeed.new
+indeed_offers.create_indeed_offers
 
 puts 'Create new matches'
 User.all.each do |user|
