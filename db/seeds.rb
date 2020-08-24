@@ -38,7 +38,7 @@ end
 #   puts "Created offer #{new_offer.id}"
 # end
 
-# puts 'Create API offers'
+puts 'Create API offers'
 
 # new_api_offer = ApiOffer.new
 # new_api_offer.create_remotive_offers
@@ -61,21 +61,21 @@ end
 
 puts 'Create new tags'
 tags = [
-  'ruby',
-  'ruby-on-rails',
-  'vue',
-  'react',
-  'mongodb',
-  'python',
-  'javascript',
-  'java',
-  'c++',
-  'mexico',
-  'USA',
-  'full-time',
-  'contractor',
-  'part-time',
-  'UK'
+  'ruby'#,
+  # 'ruby-on-rails',
+  # 'vue',
+  # 'react',
+  # 'mongodb',
+  # 'python',
+  # 'javascript',
+  # 'java',
+  # 'c++',
+  # 'mexico',
+  # 'USA',
+  # 'full-time',
+  # 'contractor',
+  # 'part-time',
+  # 'UK'
 ]
 
 tags.each do |tag|

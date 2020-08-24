@@ -2,7 +2,6 @@ require 'open-uri'
 require 'nokogiri'
 require 'json'
 
-
 class ScraperIndeed
   attr_reader :indeed_offers
 
@@ -11,22 +10,31 @@ class ScraperIndeed
   end
 
   def indeed_offers_scrape
-    # tags = Tag.all
+    # tags = Tag.all.map {|t| t.name}
     # # This list eliminates all search results that might lead to non-programmer jobs
-    # non_technology_tags = ['leadership', 'remote', 'mexico', 'USA']
+    # non_technology_tags = ["security", "okta", "online payments", "infrastructure", "database", "marketing", "QA", "data science",
+    #                         "cybersecurity", "testing", "product analysis", "games", "customer support", "databases", "video", "zendesk",
+    #                         "autonomous driving", "motion control algorithms", "catalyst", "data visualization", "web tech", "B2B", "consul",
+    #                         "adobe suite""hardware", "education", "gaming", "support", "Secret clearance", "consulting", "Site Reliability",
+    #                         "Support Engineering", "information security", "CISSP", "machine learning",  "AWS", "product development", "management",
+    #                         "B2B/SaaS", "engineering management", "test automation", "Selenium WebDriver", "software development", "leadership",
+    #                         "WebRTC", "SRE", "android", "AWS Inspector", "microservices", "saas", "startup", "fintech", "cloud", "amazon",
+    #                         "development", "software", "business intelligence", "design", "salesforce", "go", "remote", "ecommerce", "apollo",
+    #                         "Engineering", "seo", "web applications", "data", "operations", "open source", "webinars"]
+
     # non_technology_tags.each do |tag|
     #   tags.delete(tag)
     # end
+
     # tags.each do |tag|
     #   tag.name.gsub!(/\W/, '+') if tag.name.match?(/\W/)
     # end
-    # # Scrape all relevant tags in Indeed
 
     # tags.each do |tag|
-    #   pull_offers(tag.name, @indeed_offers)
+    #   pull_offers(tag, @indeed_offers)
     # end
 
-    pull_offers("javascript", @indeed_offers)
+    pull_offers("ruby", @indeed_offers)
   end
 
   # Pulls all the offers given a keyword
@@ -81,7 +89,21 @@ class ScraperIndeed
       collect_salary(job_card, new_offer_hash)
       scrape_individual_offer(new_offer_hash, new_offer_hash[:listing_url])
       # Save each job with complete information into a list of all the offers from indeed
-      @indeed_offers << new_offer_hash
+
+      puts 'create a new offer test'
+
+      new_offer = Offer.where(external_id: new_offer_hash['id'].to_s, source: 'indeed').first_or_initialize
+      copy_offer_variables(new_offer, new_offer_hash)
+      new_offer.source = 'indeed'
+      new_offer_hash[:tags].each do |tag_name|
+        new_offer.tags << Tag.find_by(name: tag_name)
+      end
+      new_offer.save!
+
+
+
+
+      # @indeed_offers << new_offer_hash
       puts "new offer #{job_card.search('h2').text} added to indeed offers"
     end
   end
@@ -97,7 +119,7 @@ class ScraperIndeed
     collect_posting_date(doc, offer_object)
     collect_job_type(description.text.downcase, offer_object)
     collect_tags_indeed(description.text.downcase, offer_object)
-    sleep 1
+    sleep 0.7
   end
 
   # Gets the tags from each offer description
@@ -149,9 +171,15 @@ class ScraperIndeed
   end
 
   def create_indeed_offers
-    self.indeed_offers_scrape
+
+    # This uses the old way of gathering all offers on memory
+
+    # self.indeed_offers_scrape
     indeed_offers = @indeed_offers
     indeed_offers.each do |offer|
+
+      # verify if already exists
+
       new_offer = Offer.where(external_id: offer['id'].to_s, source: 'indeed').first_or_initialize
       copy_offer_variables(new_offer, offer)
       new_offer.source = 'indeed'
@@ -159,6 +187,8 @@ class ScraperIndeed
         new_offer.tags << Tag.find_by(name: tag_name)
       end
       new_offer.save!
+
+
     end
   end
 
