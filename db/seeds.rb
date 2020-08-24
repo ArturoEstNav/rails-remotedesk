@@ -40,49 +40,49 @@ end
 
 puts 'Create API offers'
 
-# new_api_offer = ApiOffer.new
-# new_api_offer.create_remotive_offers
+new_api_offer = ApiOffer.new
+new_api_offer.create_remotive_offers
 
 puts 'Create offers scraped from Indeed'
 
 indeed_offers = ScraperIndeed.new
 indeed_offers.indeed_offers_scrape
 
-# puts 'Create new matches'
-# User.all.each do |user|
-#   5.times do
-#     match = Match.new
-#     match.user = user
-#     match.offer = Offer.all.sample
-#     match.save
-#     puts "Created match #{match.offer.title} for #{match.user.first_name}"
-#   end
-# end
-
-puts 'Create new tags'
-tags = [
-  'ruby',
-  # 'ruby-on-rails',
-  # 'vue',
-  # 'react',
-  # 'mongodb',
-  # 'python',
-  # 'javascript',
-  # 'java',
-  # 'c++',
-  # 'mexico',
-  # 'USA',
-  'full-time',
-  # 'contractor',
-  'part-time',
-  'UK'
-]
-
-tags.each do |tag|
-  new_tag = Tag.new(name: tag)
-  new_tag.save
-  puts "Created tag #{tag}"
+puts 'Create new matches'
+User.all.each do |user|
+  5.times do
+    match = Match.new
+    match.user = user
+    match.offer = Offer.all.sample
+    match.save
+    puts "Created match #{match.offer.title} for #{match.user.first_name}"
+  end
 end
+
+# puts 'Create new tags'
+# tags = [
+#   'ruby',
+#   # 'ruby-on-rails',
+#   # 'vue',
+#   # 'react',
+#   # 'mongodb',
+#   # 'python',
+#   # 'javascript',
+#   # 'java',
+#   # 'c++',
+#   # 'mexico',
+#   # 'USA',
+#   'full-time',
+#   # 'contractor',
+#   'part-time',
+#   'UK'
+# ]
+
+# tags.each do |tag|
+#   new_tag = Tag.new(name: tag)
+#   new_tag.save
+#   puts "Created tag #{tag}"
+# end
 
 puts 'Create new offer tags'
 Offer.all.each do |offer|

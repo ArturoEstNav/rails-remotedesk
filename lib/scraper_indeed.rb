@@ -10,7 +10,7 @@ class ScraperIndeed
   end
 
   def indeed_offers_scrape
-    tags = Tag.all.map {|t| t.name}
+    tags = Tag.all.map { |t| t.name }
     # This list eliminates all search results that might lead to non-programmer jobs
     non_technology_tags = ["security", "okta", "online payments", "infrastructure", "database", "marketing", "QA", "data science",
                             "cybersecurity", "testing", "product analysis", "games", "customer support", "databases", "video", "zendesk",
