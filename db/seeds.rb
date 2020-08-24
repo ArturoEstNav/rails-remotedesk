@@ -46,7 +46,7 @@ puts 'Create API offers'
 puts 'Create offers scraped from Indeed'
 
 indeed_offers = ScraperIndeed.new
-indeed_offers.create_indeed_offers
+indeed_offers.indeed_offers_scrape
 
 puts 'Create new matches'
 User.all.each do |user|
@@ -61,7 +61,7 @@ end
 
 puts 'Create new tags'
 tags = [
-  'ruby'#,
+  'ruby',
   # 'ruby-on-rails',
   # 'vue',
   # 'react',
@@ -72,10 +72,10 @@ tags = [
   # 'c++',
   # 'mexico',
   # 'USA',
-  # 'full-time',
+  'full-time',
   # 'contractor',
-  # 'part-time',
-  # 'UK'
+  'part-time',
+  'UK'
 ]
 
 tags.each do |tag|

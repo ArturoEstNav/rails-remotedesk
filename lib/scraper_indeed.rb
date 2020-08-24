@@ -170,27 +170,27 @@ class ScraperIndeed
     end
   end
 
-  def create_indeed_offers
+  # def create_indeed_offers
 
-    # This uses the old way of gathering all offers on memory
+  #   # This uses the old way of gathering all offers on memory
 
-    # self.indeed_offers_scrape
-    indeed_offers = @indeed_offers
-    indeed_offers.each do |offer|
+  #   # self.indeed_offers_scrape
+  #   indeed_offers = @indeed_offers
+  #   indeed_offers.each do |offer|
 
-      # verify if already exists
+  #     # verify if already exists
 
-      new_offer = Offer.where(external_id: offer['id'].to_s, source: 'indeed').first_or_initialize
-      copy_offer_variables(new_offer, offer)
-      new_offer.source = 'indeed'
-      offer[:tags].each do |tag_name|
-        new_offer.tags << Tag.find_by(name: tag_name)
-      end
-      new_offer.save!
+  #     new_offer = Offer.where(external_id: offer['id'].to_s, source: 'indeed').first_or_initialize
+  #     copy_offer_variables(new_offer, offer)
+  #     new_offer.source = 'indeed'
+  #     offer[:tags].each do |tag_name|
+  #       new_offer.tags << Tag.find_by(name: tag_name)
+  #     end
+  #     new_offer.save!
 
 
-    end
-  end
+  #   end
+  # end
 
   def copy_offer_variables(new_offer, external_offer)
     new_offer.external_id = external_offer[:external_id].to_s
