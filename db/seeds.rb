@@ -38,15 +38,15 @@ end
 #   puts "Created offer #{new_offer.id}"
 # end
 
-# puts 'Create API offers'
+puts 'Create API offers'
 
-# new_api_offer = ApiOffer.new
-# new_api_offer.create_remotive_offers
+new_api_offer = ApiOffer.new
+new_api_offer.create_remotive_offers
 
 puts 'Create offers scraped from Indeed'
 
 indeed_offers = ScraperIndeed.new
-indeed_offers.create_indeed_offers
+indeed_offers.indeed_offers_scrape
 
 puts 'Create new matches'
 User.all.each do |user|
@@ -59,30 +59,30 @@ User.all.each do |user|
   end
 end
 
-puts 'Create new tags'
-tags = [
-  'ruby',
-  'ruby-on-rails',
-  'vue',
-  'react',
-  'mongodb',
-  'python',
-  'javascript',
-  'java',
-  'c++',
-  'mexico',
-  'USA',
-  'full-time',
-  'contractor',
-  'part-time',
-  'UK'
-]
+# puts 'Create new tags'
+# tags = [
+#   'ruby',
+#   # 'ruby-on-rails',
+#   # 'vue',
+#   # 'react',
+#   # 'mongodb',
+#   # 'python',
+#   # 'javascript',
+#   # 'java',
+#   # 'c++',
+#   # 'mexico',
+#   # 'USA',
+#   'full-time',
+#   # 'contractor',
+#   'part-time',
+#   'UK'
+# ]
 
-tags.each do |tag|
-  new_tag = Tag.new(name: tag)
-  new_tag.save
-  puts "Created tag #{tag}"
-end
+# tags.each do |tag|
+#   new_tag = Tag.new(name: tag)
+#   new_tag.save
+#   puts "Created tag #{tag}"
+# end
 
 puts 'Create new offer tags'
 Offer.all.each do |offer|

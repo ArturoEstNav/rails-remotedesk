@@ -2,7 +2,6 @@ require 'open-uri'
 require 'nokogiri'
 require 'json'
 
-
 class ScraperIndeed
   attr_reader :indeed_offers
 
@@ -11,22 +10,29 @@ class ScraperIndeed
   end
 
   def indeed_offers_scrape
-    # tags = Tag.all
-    # # This list eliminates all search results that might lead to non-programmer jobs
-    # non_technology_tags = ['leadership', 'remote', 'mexico', 'USA']
-    # non_technology_tags.each do |tag|
-    #   tags.delete(tag)
-    # end
-    # tags.each do |tag|
-    #   tag.name.gsub!(/\W/, '+') if tag.name.match?(/\W/)
-    # end
-    # # Scrape all relevant tags in Indeed
+    tags = Tag.all.map { |t| t.name }
+    # This list eliminates all search results that might lead to non-programmer jobs
+    non_technology_tags = ["security", "okta", "online payments", "infrastructure", "database", "marketing", "QA", "data science",
+                            "cybersecurity", "testing", "product analysis", "games", "customer support", "databases", "video", "zendesk",
+                            "autonomous driving", "motion control algorithms", "catalyst", "data visualization", "web tech", "B2B", "consul",
+                            "adobe suite""hardware", "education", "gaming", "support", "Secret clearance", "consulting", "Site Reliability",
+                            "Support Engineering", "information security", "CISSP", "machine learning",  "AWS", "product development", "management",
+                            "B2B/SaaS", "engineering management", "test automation", "Selenium WebDriver", "software development", "leadership",
+                            "WebRTC", "SRE", "android", "AWS Inspector", "microservices", "saas", "startup", "fintech", "cloud", "amazon",
+                            "development", "software", "business intelligence", "design", "salesforce", "go", "remote", "ecommerce", "apollo",
+                            "Engineering", "seo", "web applications", "data", "operations", "open source", "webinars"]
 
-    # tags.each do |tag|
-    #   pull_offers(tag.name, @indeed_offers)
-    # end
+    non_technology_tags.each do |tag|
+      tags.delete(tag)
+    end
 
-    pull_offers("javascript", @indeed_offers)
+    tags.each do |tag|
+      tag.name.gsub!(/\W/, '+') if tag.name.match?(/\W/)
+    end
+
+    tags.each do |tag|
+      pull_offers(tag, @indeed_offers)
+    end
   end
 
   # Pulls all the offers given a keyword
@@ -63,26 +69,38 @@ class ScraperIndeed
     # Gathers all the cards on the page and collects info from each owne of them
     puts "Pulling information from each card offer per page"
     doc.search('.jobsearch-SerpJobCard').each do |job_card|
-      puts "Getting information from offer #{job_card['data-jk']}"
-      new_offer_hash = {
-        external_id: job_card['data-jk'],
-        company: job_card.search('.company').text,
-        title: job_card.search('h2').text,
-        salary: "", # unrefined text, not suited for ranges yet
-        category: "Software Development",
-        position: '',
-        job_type: "",
-        tags: [],
-        location: job_card.search('.location').text,
-        listing_url: "ver-empleo?jk=#{job_card['data-jk']}",
-        candidate_required_location: "Mexico",
-        source: 'indeed'
-      }
-      collect_salary(job_card, new_offer_hash)
-      scrape_individual_offer(new_offer_hash, new_offer_hash[:listing_url])
-      # Save each job with complete information into a list of all the offers from indeed
-      @indeed_offers << new_offer_hash
-      puts "new offer #{job_card.search('h2').text} added to indeed offers"
+      # If offer already exists none will be created
+      unless Offer.where(external_id: job_card['data-jk']).present?
+
+        puts "Getting information from offer #{job_card['data-jk']}"
+        new_offer_hash = {
+          external_id: job_card['data-jk'],
+          company: job_card.search('.company').text,
+          title: job_card.search('h2').text,
+          salary: "", # unrefined text, not suited for ranges yet
+          category: "Software Development",
+          position: '',
+          job_type: "",
+          tags: [],
+          location: job_card.search('.location').text,
+          listing_url: "ver-empleo?jk=#{job_card['data-jk']}",
+          candidate_required_location: "Mexico",
+          source: 'indeed'
+        }
+        collect_salary(job_card, new_offer_hash)
+        scrape_individual_offer(new_offer_hash, new_offer_hash[:listing_url])
+        # Save each job with complete information into a list of all the offers from indeed
+
+        puts 'create a new offer test'
+
+        new_offer = Offer.where(external_id: new_offer_hash['id'].to_s, source: 'indeed').first_or_initialize
+        copy_offer_variables(new_offer, new_offer_hash)
+        new_offer.source = 'indeed'
+        new_offer_hash[:tags].each do |tag_name|
+          new_offer.tags << Tag.find_by(name: tag_name)
+        end
+        new_offer.save!
+      end
     end
   end
 
@@ -97,7 +115,7 @@ class ScraperIndeed
     collect_posting_date(doc, offer_object)
     collect_job_type(description.text.downcase, offer_object)
     collect_tags_indeed(description.text.downcase, offer_object)
-    sleep 1
+    sleep 0.7
   end
 
   # Gets the tags from each offer description
@@ -140,25 +158,10 @@ class ScraperIndeed
   def collect_salary(text_to_scan, offer_object)
     puts "Mining salary from each card"
     raw_salary = text_to_scan.search('.salaryText').text
-    # salary = raw_salary.match(/(\d+)/).captures[0].to_i
     if raw_salary.empty?
       offer_object[:salary] = ''
     else
       offer_object[:salary] = raw_salary
-    end
-  end
-
-  def create_indeed_offers
-    self.indeed_offers_scrape
-    indeed_offers = @indeed_offers
-    indeed_offers.each do |offer|
-      new_offer = Offer.where(external_id: offer['id'].to_s, source: 'indeed').first_or_initialize
-      copy_offer_variables(new_offer, offer)
-      new_offer.source = 'indeed'
-      offer[:tags].each do |tag_name|
-        new_offer.tags << Tag.find_by(name: tag_name)
-      end
-      new_offer.save!
     end
   end
 
