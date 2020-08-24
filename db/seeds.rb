@@ -48,16 +48,16 @@ puts 'Create offers scraped from Indeed'
 indeed_offers = ScraperIndeed.new
 indeed_offers.indeed_offers_scrape
 
-puts 'Create new matches'
-User.all.each do |user|
-  5.times do
-    match = Match.new
-    match.user = user
-    match.offer = Offer.all.sample
-    match.save
-    puts "Created match #{match.offer.title} for #{match.user.first_name}"
-  end
-end
+# puts 'Create new matches'
+# User.all.each do |user|
+#   5.times do
+#     match = Match.new
+#     match.user = user
+#     match.offer = Offer.all.sample
+#     match.save
+#     puts "Created match #{match.offer.title} for #{match.user.first_name}"
+#   end
+# end
 
 puts 'Create new tags'
 tags = [
