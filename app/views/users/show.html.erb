@@ -10,7 +10,7 @@
      
       <div class="panel panel-default">
         <ul class="list-group">
-          <li class="list-group-item text-muted">Skills</li>
+          <li class="list-group-item text-muted">Skills <strong><%= link_to "+", edit_user_path(current_user) %></strong></li>
           <li class="list-group-item">
             <% current_user.tags.each do |tag| %>
               <div class="m-1">

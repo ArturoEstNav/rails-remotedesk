@@ -1,5 +1,3 @@
-<%= javascript_pack_tag 'select_tag' %>
-
 <div class="container" style="padding-top: 66px;">
   <h1>Edit your information</h1>
   
@@ -9,7 +7,7 @@
     <%= f.input :gender, label: 'Gender', as: :select, collection: ['Female', 'Male', 'Non-binary'] %>
     <%= f.input :residence_country, label: 'Country of residence' %>
     <%= f.input :postal_code, label: 'Zip Code' %>
-    <%= f.input :tags, label: 'Save your search preferences', collection: @tags, input_html: { multiple: true }%>
+    <%= f.input :tags, label: 'Input skills', collection: @tags, input_html: { multiple: true }%>
     <%= f.button :submit %>
   <% end %>
 </div>

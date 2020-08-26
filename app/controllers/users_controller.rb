@@ -22,8 +22,7 @@ class UsersController < ApplicationController
       params[:user][:tags].shift
       tag_ids = params[:user][:tags]
       tag_ids.each do |tag_id|
-        if current_user.tags.include?(Tag.find(tag_id))
-        else
+        unless current_user.tags.include?(Tag.find(tag_id))
           current_user.tags << Tag.find(tag_id)
         end
       end

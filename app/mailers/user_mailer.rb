@@ -1,5 +1,6 @@
-class UserMailer < ApplicationMailer
+include Rails.application.routes.url_helpers
 
+class UserMailer < ApplicationMailer
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
