@@ -26,22 +26,38 @@ class ApiOffer
     # new_offer.source = 'remotive'
   end
 
+  # def create_remotive_offers
+  #   remotive_offers = remotive_api_scrape
+  #   remotive_offers.each do |offer|
+  #     new_offer = Offer.where(external_id: offer['id'].to_s, source: 'remotive').first_or_initialize
+  #     copy_offer_variables(new_offer, offer)
+  #     # This property assignation was placed here to make the copy_offer_variables method more versatile
+  #     new_offer.source = 'remotive'
+  #     offer['tags'].each do |tag|
+  #       if new_offer.tags.where(name: tag).nil?
+  #         new_offer.tags << Tag.where(name: tag).first_or_create
+  #       end
+  #     end
+  #     new_offer.save!
+  #   end
+  # end
+
   def create_remotive_offers
-    remotive_offers = remotive_api_scrape
-    remotive_offers.each do |offer|
-      new_offer = Offer.where(external_id: offer['id'].to_s, source: 'remotive').first_or_initialize
-      copy_offer_variables(new_offer, offer)
-      # This property assignation was placed here to make the copy_offer_variables method more versatile
-      new_offer.source = 'remotive'
-      new_offer.save!
-      offer['tags'].each do |tag|
-        if new_offer.tags.where(name: tag).empty?
-          new_offer.tags << Tag.where(name: tag).first_or_initialize
-          new_offer.save!
+      remotive_offers = remotive_api_scrape
+      remotive_offers.each do |offer|
+        new_offer = Offer.where(external_id: offer['id'].to_s, source: 'remotive').first_or_initialize
+        copy_offer_variables(new_offer, offer)
+        # This property assignation was placed here to make the copy_offer_variables method more versatile
+        new_offer.source = 'remotive'
+        new_offer.save!
+        offer['tags'].each do |tag|
+          if new_offer.tags.where(name: tag).empty?
+            new_offer.tags << Tag.where(name: tag).first_or_initialize
+            new_offer.save!
+          end
         end
       end
     end
-  end
 
   def update_offers_active_status(array_offer_hashes, source)
     source_offers = array_offer_hashes
