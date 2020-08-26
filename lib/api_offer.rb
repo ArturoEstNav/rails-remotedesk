@@ -14,7 +14,7 @@ class ApiOffer
     new_offer.description = external_offer['description']
     new_offer.salary = external_offer['salary']
     new_offer.category = external_offer['category']
-    new_offer.job_type = external_offer['job_type']
+    new_offer.job_type = filter_jobtype external_offer['job_type']
     new_offer.location = external_offer['candidate_required_location']
     new_offer.posting_date = external_offer['publication_date']
     new_offer.listing_url = external_offer['url']
@@ -44,6 +44,21 @@ class ApiOffer
         db_offer.active = false
       end
       db_offer.save!
+    end
+  end
+
+  private
+
+  def filter_jobtype(type)
+    case type
+    when "Temporary", "Comission", "Internship"
+      return "Part-time"
+
+    when "Contract"
+      return "Full-time"
+
+    else
+      return "Full-time"
     end
   end
 end
