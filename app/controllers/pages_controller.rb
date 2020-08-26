@@ -14,5 +14,6 @@ class PagesController < ApplicationController
       @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
     end
     @params = params[:q]
+    @match = Match.new
   end
 end

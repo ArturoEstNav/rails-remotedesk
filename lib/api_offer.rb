@@ -1,3 +1,7 @@
+require 'open-uri'
+require 'nokogiri'
+require 'json'
+
 class ApiOffer
   def remotive_api_scrape
     remotive_api_url = 'https://remotive.io/api/remote-jobs?category=software-dev'

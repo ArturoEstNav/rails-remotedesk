@@ -1,7 +1,8 @@
 # Users
 puts 'Cleaning database'
-Tag.destroy_all
+UserTag.destroy_all
 OfferTag.destroy_all
+Tag.destroy_all
 Match.destroy_all
 Offer.destroy_all
 User.destroy_all

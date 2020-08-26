@@ -44,19 +44,17 @@
         </div>
         <div class="card-body">
           <% offer.tags.each do |tag| %>
-            <%= link_to tag.name, "#", class: "card-button btn btn-secondary mr-1" %>
+            <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary mr-1" %>
           <% end %>
         </div>
         <div class="card-body">
           <% if user_signed_in? %>
-            <%= simple_form_for @match, remote: true do |f| %>
-              <%= f.input :offer_id, as: :hidden, input_html: { offer_id: offer.id } %>
-              <%= f.button :submit, "Save offer", class: "btn btn-primary" %>
-              <!-- TODO: add a flash message -->
-              <!-- TODO: prevent multiple clicks-->
+            <%= simple_form_for @match do |f| %>
+              <%= f.input :offer_id, as: :hidden, input_html: { value: offer.id } %>
+              <%= f.button :submit, "Save job offer", disabled: offer.users.include?(current_user), class: "btn btn-primary" %>
             <% end %>
           <% else %>
-            <%= link_to "Save offer", new_user_session_path, class: "btn btn-primary"  %>
+            <%= link_to "Save job offer", new_user_session_path, class: "btn btn-primary"  %>
           <% end %>
         </div>
       </div>
