@@ -10,6 +10,7 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
+    @match = Match.new
   end
 
   def create

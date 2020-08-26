@@ -1,0 +1,9 @@
+<h1><%= "Hey #{@user.first_name}!" %></h1>
+
+<h2>Check this job offers, we believe you are a great match for these positions</h2>
+
+<div class="d-flex justify-content-left" >
+  <% @suggested.each do |offer| %>
+    <%= link_to "Work at #{offer.company}", offer_path(offer), class: "btn btn-primary mr-2" %>
+  <% end %>  
+</div>

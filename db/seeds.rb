@@ -1,7 +1,8 @@
 # Users
 puts 'Cleaning database'
-Tag.destroy_all
+UserTag.destroy_all
 OfferTag.destroy_all
+Tag.destroy_all
 Match.destroy_all
 Offer.destroy_all
 User.destroy_all
@@ -20,7 +21,7 @@ puts 'Create new users'
   puts "Created user #{new_user.id}"
 end
 
-puts 'Create new offers'
+puts 'Created organic new offers'
 20.times do
   new_offer = Offer.new()
   new_offer.title = Faker::Job.title

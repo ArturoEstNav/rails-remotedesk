@@ -8,8 +8,8 @@
     <%= f.input :last_name, label: 'Last name' %>
     <%= f.input :gender, label: 'Gender', as: :select, collection: ['Female', 'Male', 'Non-binary'] %>
     <%= f.input :residence_country, label: 'Country of residence' %>
-    <%= f.input :postal_code, label: 'Zip/Postal Code' %>
-    <%= f.input :tags, label: 'Which', multiple: 'multiple', collection: @tags%>
+    <%= f.input :postal_code, label: 'Zip Code' %>
+    <%= f.input :tags, label: 'Save your search preferences', collection: @tags, input_html: { multiple: true }%>
     <%= f.button :submit %>
   <% end %>
 </div>

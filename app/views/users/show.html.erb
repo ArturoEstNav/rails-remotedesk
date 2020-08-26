@@ -1,6 +1,131 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container" style="padding-top: 70px;">
+  <br>
+  <div class="row">
+    <div class="col-sm-3"> <!--left col-->
+      <div class="col-sm-10"><h2><%= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></h2></div>
+      <div class="text-center">
+        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        <input type="file" class="text-center center-block file-upload">
+      </div><br>
+     
+      <div class="panel panel-default">
+        <ul class="list-group">
+          <li class="list-group-item text-muted">Skills</li>
+          <li class="list-group-item">
+            <% current_user.tags.each do |tag| %>
+              <div class="m-1">
+                <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "btn btn-secondary mr-1" %>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+      </div><br>
+      
+      <ul class="list-group">
+        <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+        <li class="list-group-item text-left"><span class="pull-left"><strong>Saved Job Offers</strong></span> <%= current_user.offers.count %> </li>
+      </ul><br>
+    </div>
 
-<% current_user.offers.each do |offer| %>
-  <%= offer.title %>
-<% end %>
+    <div class="col-9 d-flex flex-column align-items-center p-3 user-offers ">
+      <div id="carouselSavedOffersControls" class="carousel slide mt-3" data-ride="carousel">
+        <h4>Saved Job Offers</h4>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="col-md-12" style="float:left">
+              <div class="d-flex justify-content-between">
+                <% @saved.first.each do |offer|  %>
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title"><%= offer.title %></h4>
+                      <p class="card-text"><%= offer.company %></p>
+                      <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-primary" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <% @saved.last(@saved.size-1).each do |triplet| %>
+            <div class="carousel-item">
+              <div class="col-md-12" style="float:left">
+                <div class="d-flex justify-content-between">
+                  <% triplet.each do |offer| %>
+                    <div class="card mb-2">
+                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title"><%= offer.title %></h4>
+                        <p class="card-text"><%= offer.company %></p>
+                        <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-primary" %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselSavedOffersControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselSavedOffersControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      
+      <div id="carouselSuggestedOffersControls" class="carousel slide mt-3" data-ride="carousel">
+        <h4>Suggested Job Offers</h4>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="col-md-12" style="float:left">
+              <div class="d-flex justify-content-between">
+                <% @suggested.first.each do |offer|  %>
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h4 class="card-title"><%= offer.title %></h4>
+                      <p class="card-text"><%= offer.company %></p>
+                      <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-primary" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <% @suggested.last(@suggested.size-1).each do |triplet| %>
+            <div class="carousel-item">
+              <div class="col-md-12" style="float:left">
+                <div class="d-flex justify-content-between">
+                  <% triplet.each do |offer| %>
+                    <div class="card mb-2">
+                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title"><%= offer.title %></h4>
+                        <p class="card-text"><%= offer.company %></p>
+                        <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-primary" %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselSuggestedOffersControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselSuggestedOffersControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

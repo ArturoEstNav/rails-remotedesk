@@ -1,3 +1,7 @@
+require 'open-uri'
+require 'nokogiri'
+require 'json'
+
 class ApiOffer
   def remotive_api_scrape
     remotive_api_url = 'https://remotive.io/api/remote-jobs?category=software-dev'
@@ -29,12 +33,13 @@ class ApiOffer
       copy_offer_variables(new_offer, offer)
       # This property assignation was placed here to make the copy_offer_variables method more versatile
       new_offer.source = 'remotive'
+      new_offer.save!
       offer['tags'].each do |tag|
-        if new_offer.tags.where(name: tag).nil?
-          new_offer.tags << Tag.where(name: tag).first_or_create
+        if new_offer.tags.where(name: tag).empty?
+          new_offer.tags << Tag.where(name: tag).first_or_initialize
+          new_offer.save!
         end
       end
-      new_offer.save!
     end
   end
 
