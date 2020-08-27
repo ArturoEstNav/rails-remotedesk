@@ -15,7 +15,7 @@ class ScraperIndeed
     non_technology_tags = ["security", "okta", "online payments", "infrastructure", "database", "marketing", "QA", "data science",
                             "cybersecurity", "testing", "product analysis", "games", "customer support", "databases", "video", "zendesk",
                             "autonomous driving", "motion control algorithms", "catalyst", "data visualization", "web tech", "B2B", "consul",
-                            "adobe suite""hardware", "education", "gaming", "support", "Secret clearance", "consulting", "Site Reliability",
+                            "adobe suite", "hardware", "education", "gaming", "support", "Secret clearance", "consulting", "Site Reliability",
                             "Support Engineering", "information security", "CISSP", "machine learning",  "AWS", "product development", "management",
                             "B2B/SaaS", "engineering management", "test automation", "Selenium WebDriver", "software development", "leadership",
                             "WebRTC", "SRE", "android", "AWS Inspector", "microservices", "saas", "startup", "fintech", "cloud", "amazon",
@@ -27,7 +27,7 @@ class ScraperIndeed
     end
 
     tags.each do |tag|
-      tag.name.gsub!(/\W/, '+') if tag.name.match?(/\W/)
+      tag.gsub!(/\W/, '+') if tag.match?(/\W/)
     end
 
     tags.each do |tag|
