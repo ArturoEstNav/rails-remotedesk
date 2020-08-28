@@ -5,3 +5,13 @@
   transition: 250ms ease-in-out;
   margin-bottom: 30px;
 }
+
+
+.card {
+  background-color: $light-gray;
+  box-shadow: 4px 4px 6px rgba(60, 69, 65, .4);
+
+  &::hover {
+    box-shadow: 4px 4px 6px rgba(60, 69, 65, .6);
+  }
+}

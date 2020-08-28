@@ -1,17 +1,25 @@
+body {
+  color: $black;
+}
+
 h1, h2, h3 h4, h5, h6 {
   font-weight: 300;
 }
 
 a {
-
   &:hover {
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 600;
   }
 }
 
-.logo_thin {
+.custom-text-boldest {
+  font-weight: 600;
+  font-size: 48pt;
+  margin-bottom: 0.5em;
+}
 
+.logo_thin {
   font-size: 18pt;
   font-weight: 300;
   color: $blue;
@@ -20,7 +28,7 @@ a {
 .logo_thick {
 
   font-size: 18pt;
-  font-weight: 700;
+  font-weight: 500;
   color: $blue;
 }
 
@@ -28,6 +36,6 @@ a {
 // just overriding the fonts, NOTHING ELSE should be overriden
 // from bootstrap directly ;)
 .btn {
-  font-weight: 700;
+  font-weight: 500;
 }
 

@@ -3,7 +3,6 @@ $custom-lg: 1188px;
 $custom-md: 881px;
 $custom-sm: 530px;
 
-
 .custom-offers-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -16,4 +15,20 @@ $custom-sm: 530px;
     gap: 16px;
   }
 }
+.custom-page-container {
+  margin-top: 80px;
+}
 
+.custom-container-landing {
+  height: 80vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 64px;
+}
+
+
+.custom-container-about {
+  flex-basis: 40%;
+
+}
