@@ -1,37 +1,116 @@
-<div class="jumbotron jumbotron-fluid banner-jumbotron">
-  <div class="container custom-eigth-container">
-    <div class="banner-hero" >
-      <h1 class="display-4 text-white">Find your dream job</h1>
-      <div class="card p-3 custom-card-static custom-padding">
-      <div id="search-data" class= "form-search search-data" data-skills="<%= @tags.to_json %>">
-        <%= form_tag root_path, method: :get do %>
-        <%= text_field_tag :q, nil, autocomplete: :off,
-          class: "form-control search-input",
-          placeholder: "Search by programming language..."
-        %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
-        <% end %>
+<div class="custom-container-page">
+  <div class="custom-container-landing">
+    <div class="custom-container-about">
+      <div class="custom-container-section">
+        <h1 class="custom-text-boldest">Stop browsing<br> and find your<br> dream job<span class="text-success">.</span></h1>
+        <p class="description" style="font-size">Remotedesk simplify the process of finding remote & work-from-home jobs.</p>
+        <br>
+        <div id="search-data" class= "form-search search-data custom-container-section" data-skills="<%= @tags.to_json %>">
+          <%= form_tag root_path, method: :get do %>
+          <%= text_field_tag :q, nil, autocomplete: :off,
+            class: "form-control search-input",
+             placeholder: "Search by programming language..." %>
+            <!--
+            <div class="filter-buttons" style="color: black"; style="display: inline-block";>
+            <%= radio_button_tag(:job_type, "Full-time") %>
+            <%= label_tag(:job_type, "Full-time") %>
+            <%= radio_button_tag(:job_type, "Part-time") %>
+            <%= label_tag(:job_type, "Part-time") %>
+            <%= radio_button_tag(:location_type, "Remote") %>
+            <%= label_tag(:location_type, "Remote") %>
+            <%= radio_button_tag(:location_type, "Work from home") %>
+            <%= label_tag(:location_type, "Work from home") %>
+            <br> -->
+            <%= submit_tag "Search", class: "btn btn-primary" %>
+          <% end %>
         </div>
-        <p class="description">Remotedesk simplify the process of finding remote & work-from-home jobs.</p>
       </div>
+
+
+      </div>
+    </div>
+  </div>
+  <!--
+  <div id="search-data" class= "form-search search-data custom-container-section" data-skills="<%= @tags.to_json %>">
+    <%= form_tag root_path, method: :get do %>
+    <%= text_field_tag :q, nil, autocomplete: :off,
+      class: "form-control search-input",
+       placeholder: "Search by programming language..."
+    %>
+
+      <div class="filter-buttons" style="color: black"; style="display: inline-block";>
+       <%= radio_button_tag(:job_type, "Full-time") %>
+       <%= label_tag(:job_type, "Full-time") %>
+       <%= radio_button_tag(:job_type, "Part-time") %>
+        <%= label_tag(:job_type, "Part-time") %>
+        <%= radio_button_tag(:location_type, "Remote") %>
+        <%= label_tag(:location_type, "Remote") %>
+        <%= radio_button_tag(:location_type, "Work from home") %>
+        <%= label_tag(:location_type, "Work from home") %> <br>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+  </div>
+
+  </div>
+   -->
+
+  <%if @offers and not @offers.empty? %>
+    <div class="custom-container-section">
+      <h2><%= "#{@params.capitalize} job offers" %></h2>
+      <br>
+      <% @offers.each do |offer| %>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h3 class="card-title"><%= offer.title %></h3>
+              <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-primary" %>
+            </div>
+            <h5 class="card-text"><%= "Work at #{offer.company.capitalize}"  %></h5>
+            <p class="card-text"><%= "Found offer at #{offer.source.capitalize}" %></p>
+          </div>
+          <div class="card-body">
+            <% offer.tags.each do |tag| %>
+              <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary mr-1" %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <% if user_signed_in? %>
+              <%= simple_form_for @match do |f| %>
+                <%= f.input :offer_id, as: :hidden, input_html: { value: offer.id } %>
+                <%= f.button :submit, "Save job offer", disabled: offer.users.include?(current_user), class: "btn btn-primary" %>
+              <% end %>
+            <% else %>
+              <%= link_to "Save job offer", new_user_session_path, class: "btn btn-primary"  %>
+            <% end %>
+          </div>
+        </div>
+      <br>
+      <% end %>
+    </div>
+  <%end%>
+
+  <div class="custom-container-section">
+    <h2 class="">Newest job offers</h2>
+    <div class="custom-offers-container">
+      <% @new_offers.each do |offer| %>
+        <div class="card custom-card">
+          <div class="card-body">
+            <h5 class="card-title"><%= offer.title %></h5>
+            <p> <%= offer.company %></p>
+            <p class="card-text">
+              <% offer.tags.first(5).each do |tag|%>
+                <span class="btn btn-secondary m-1">
+                <%= link_to "#{tag.name}", "/?q=#{tag.name}&commit=Search" %>
+                 </span>
+              <% end %>
+            </p>
+            <%= link_to 'View full offer', offer_path(offer.id), class: "btn btn-primary" %>
+
+          </div>
+        </div>
+
+      <% end %>
     </div>
   </div>
 </div>
 
-<%if @offers and not @offers.empty? %>
-  <div class="container custom-landing-spacing">
-    <h2>Found positions</h2>
-    <% @offers.each do |offer| %>
-      <p><%= offer.title %></p>
-      <ol>
-        <% offer.tags.each do |tag| %>
-          <li><%= tag.name %></li>
-        <% end %>
-      </ol>
-    <% end %>
-  </div>
-<%end%>
-
-<div class="container custom-landing-spacing">
-  <h2>Trending positions</h2>
-</div>

@@ -1,5 +1,5 @@
 class Offer < ApplicationRecord
-  has_many :matches
+  has_many :matches, dependent: :destroy
   has_many :users, through: :matches
   has_many :offer_tags
   has_many :tags, through: :offer_tags

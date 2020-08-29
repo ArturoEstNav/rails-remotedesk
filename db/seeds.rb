@@ -1,10 +1,13 @@
 # Users
 puts 'Cleaning database'
-Tag.destroy_all
+UserTag.destroy_all
 OfferTag.destroy_all
+Tag.destroy_all
 Match.destroy_all
 Offer.destroy_all
 User.destroy_all
+
+#Tag.create(name: "python")
 puts 'Create new users'
 5.times do
   new_user = User.new(
@@ -20,23 +23,71 @@ puts 'Create new users'
   puts "Created user #{new_user.id}"
 end
 
-puts 'Create new offers'
-20.times do
-  new_offer = Offer.new()
-  new_offer.title = Faker::Job.title
-  new_offer.company = Faker::Company.name
-  new_offer.description = (Faker::Job.field + ' ' +
-  Faker::Job.seniority + ' ' +
-  Faker::Job.position + ' ' +
-  Faker::Job.key_skill)
-  new_offer.job_type = Faker::Job.employment_type
-  new_offer.posting_date = Faker::Time.between(from: DateTime.now - 90, to: DateTime.now)
-  new_offer.listing_url = Faker::Internet.url
-  new_offer.source = ['remotive','indeed','linkedin'].sample
-  new_offer.save
 
-  puts "Created offer #{new_offer.id}"
-end
+
+# puts 'Create new offers'
+# 5.times do
+#   new_offer = Offer.new()
+#   new_offer.title = Faker::Job.title
+#   new_offer.company = Faker::Company.name
+#   new_offer.description = (Faker::Job.field + ' ' +
+#   Faker::Job.seniority + ' ' +
+#   Faker::Job.position + ' ' +
+#   Faker::Job.key_skill)
+#   new_offer.job_type = "Part-time"
+#   new_offer.posting_date = Faker::Time.between(from: DateTime.now - 90, to: DateTime.now)
+#   new_offer.listing_url = Faker::Internet.url
+#   new_offer.source = ['remotive','indeed','linkedin'].sample
+#   new_offer.save
+#   OfferTag.create(tag: Tag.first, offer:new_offer)
+# puts "Created offer #{new_offer.id}"
+# end
+
+# puts 'Create new offers'
+# 5.times do
+#   new_offer = Offer.new()
+#   new_offer.title = Faker::Job.title
+#   new_offer.company = Faker::Company.name
+#   new_offer.description = (Faker::Job.field + ' ' +
+#   Faker::Job.seniority + ' ' +
+#   Faker::Job.position + ' ' +
+#   Faker::Job.key_skill)
+#   new_offer.job_type = "Remote"
+#   new_offer.posting_date = Faker::Time.between(from: DateTime.now - 90, to: DateTime.now)
+#   new_offer.listing_url = Faker::Internet.url
+#   new_offer.source = ['remotive','indeed','linkedin'].sample
+#   new_offer.save
+#   OfferTag.create(tag: Tag.first, offer:new_offer)
+# puts "Created offer #{new_offer.id}"
+# end
+
+# puts 'Create new offers'
+# 5.times do
+#   new_offer = Offer.new()
+#   new_offer.title = Faker::Job.title
+#   new_offer.company = Faker::Company.name
+#   new_offer.description = (Faker::Job.field + ' ' +
+#   Faker::Job.seniority + ' ' +
+#   Faker::Job.position + ' ' +
+#   Faker::Job.key_skill)
+#   new_offer.job_type = "Work from home"
+#   new_offer.posting_date = Faker::Time.between(from: DateTime.now - 90, to: DateTime.now)
+#   new_offer.listing_url = Faker::Internet.url
+#   new_offer.source = ['remotive','indeed','linkedin'].sample
+#   new_offer.save
+#   OfferTag.create(tag: Tag.first, offer:new_offer)
+# puts "Created offer #{new_offer.id}"
+# end
+
+puts 'Create API offers'
+
+new_api_offer = ApiOffer.new
+new_api_offer.create_remotive_offers
+
+puts 'Create offers scraped from Indeed'
+
+indeed_offers = ScraperIndeed.new
+indeed_offers.indeed_offers_scrape
 
 puts 'Create new matches'
 User.all.each do |user|
@@ -49,30 +100,30 @@ User.all.each do |user|
   end
 end
 
-puts 'Create new tags'
-tags = [
-  'ruby',
-  'ruby-on-rails',
-  'vue',
-  'react',
-  'mongodb',
-  'python',
-  'javascript',
-  'java',
-  'c++',
-  'mexico',
-  'USA',
-  'full-time',
-  'contractor',
-  'part-time',
-  'UK'
-]
+# puts 'Create new tags'
+# tags = [
+#   'ruby',
+#   # 'ruby-on-rails',
+#   # 'vue',
+#   # 'react',
+#   # 'mongodb',
+#   # 'python',
+#   # 'javascript',
+#   # 'java',
+#   # 'c++',
+#   # 'mexico',
+#   # 'USA',
+#   'full-time',
+#   # 'contractor',
+#   'part-time',
+#   'UK'
+# ]
 
-tags.each do |tag|
-  new_tag = Tag.new(name: tag)
-  new_tag.save
-  puts "Created tag #{tag}"
-end
+# tags.each do |tag|
+#   new_tag = Tag.new(name: tag)
+#   new_tag.save
+#   puts "Created tag #{tag}"
+# end
 
 puts 'Create new offer tags'
 Offer.all.each do |offer|

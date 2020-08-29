@@ -1,8 +1,13 @@
-.custom-card, .custom-card-static {
-  border-radius: 8px;
-  border: none;
-  box-shadow: 6px 6px 6px;
+.custom-card {
+  background-color: $light-gray;
   transition: 250ms ease-in-out;
   margin-bottom: 30px;
+  box-shadow: 4px 4px 4px rgba(60, 69, 65, .15);
+  border-color: $black;
+  padding: 16px;
+
+  &:hover {
+    box-shadow: 4px 4px 4px rgba(60, 69, 65, .3);
+  }
 }
 

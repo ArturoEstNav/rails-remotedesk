@@ -3,14 +3,35 @@ $custom-lg: 1188px;
 $custom-md: 881px;
 $custom-sm: 530px;
 
+.custom-container-page{
+  margin-top: 96px;
+}
+
+.custom-container-section {
+  margin-bottom: 56px;
+}
 
 .custom-offers-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 16px 16px;
+  background-color: #fff;
+  color: black;
 
   @media screen and (max-width: $big-mobile) {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+}
+
+.custom-container-landing {
+  // height: 80vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.custom-container-about {
+  flex-basis: 60%;
+  text-align: right;
 }
