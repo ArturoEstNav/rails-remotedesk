@@ -1,4 +1,10 @@
 // Import your components CSS files here.
+// min sizes
+$big-mobile: 769px;
+$custom-lg: 1188px;
+$custom-md: 881px;
+$custom-sm: 530px;
+
 @import "alert";
 @import "avatar";
 @import "navbar";

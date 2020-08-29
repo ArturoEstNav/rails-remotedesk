@@ -1,17 +1,12 @@
-.custom-card, .custom-card-static {
-  border-radius: 0px;
-  border: none;
-  box-shadow: 6px 6px 6px #A6A5A4;
+.custom-card {
+  background-color: $light-gray;
   transition: 250ms ease-in-out;
   margin-bottom: 30px;
-}
+  box-shadow: 4px 4px 4px rgba(60, 69, 65, .15);
+  border-color: $black;
+  padding: 16px;
 
-
-.card {
-  background-color: $light-gray;
-  box-shadow: 4px 4px 6px rgba(60, 69, 65, .4);
-
-  &::hover {
-    box-shadow: 4px 4px 6px rgba(60, 69, 65, .6);
+  &:hover {
+    box-shadow: 4px 4px 4px rgba(60, 69, 65, .3);
   }
 }

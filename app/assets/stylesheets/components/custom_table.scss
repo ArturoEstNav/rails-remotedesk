@@ -1,12 +1,12 @@
 ul {
   list-style: none;
+  padding: 0;
 }
 
 .custom_table_row {
   padding: 16px;
   display: flex;
   background-color: transparent;
-
 
   .custom_key{
     flex-basis: 20%;
