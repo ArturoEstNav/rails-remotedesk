@@ -14,11 +14,14 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Find Job Offers", root_path, class: "nav-link" %>
-        </li>
         <li class="nav-item">
           <%= link_to "Dashboard", user_path(current_user), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Find a Job", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Post a Job", new_offer_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <%= image_tag "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters_opt/p-silicon-valley-martin-starr.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -28,6 +31,12 @@
           </div>
         </li>
       <% else %>
+        <li class="nav-item">
+          <%= link_to "About Us", about_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Post a Job", new_offer_path, class: "nav-link" %>
+        </li>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
         </li>

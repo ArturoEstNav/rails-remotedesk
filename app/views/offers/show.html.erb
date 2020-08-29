@@ -86,12 +86,16 @@
       <p><%= @offer.salary %></p>
       <%= link_to "Apply to this job", @offer.listing_url, class: "btn btn-primary" %>
       <% if user_signed_in? %>
-        <%= simple_form_for @match do |f| %>
-        <%= f.input :offer_id, as: :hidden, input_html: { value: @offer.id } %>
-        <%= f.button :submit, "Save job offer", disabled: @offer.users.include?(current_user), class: "btn btn-primary" %>
+        <% if @offer.users.include?(current_user) %>
+          <%= link_to "Remove from favorites".html_safe, match_path(@offer.matches.select { |match| match.user == current_user }), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-primary mt-3" %>
+        <% else %>
+          <%= simple_form_for @match do |f| %>
+            <%= f.input :offer_id, as: :hidden, input_html: { value: @offer.id } %>
+            <%= f.button :submit, "Add to favorites", class: "btn btn-primary" %>
+          <% end %>
         <% end %>
       <% else %>
-        <%= link_to "Save job offer", new_user_session_path, class: "btn btn-primary"  %>
+        <%= link_to ('<i class="fas fa-heart"></i>').html_safe, new_user_session_path %>
       <% end %>
   </div>
 </div>

@@ -1,0 +1,16 @@
+<div class="container custom-page-container">
+  <h1>Post a Job</h1>
+
+  <%= simple_form_for @offer do |f| %>
+    <%= f.input :company, label: 'Company Name' %>
+    <%= f.input :title, label: 'Posting Title' %>
+    <%= f.input :description, label: 'Job Offer Description' %>
+    <%= f.input :salary, label: 'Salary (exact or range)' %>
+    <%= f.input :category, label: 'Job Category' %>
+    <%= f.input :job_type, label: 'Job Type', as: :radio_buttons, collection: ['Full-time', 'Part-time'] %>
+    <%= f.input :location, label: 'Required Location' %>
+    <%= f.input :location_type, label: 'Remote Type', as: :radio_buttons, collection: [['Remote',true], ['Work from home',false]] %>
+    <%= f.input :tags, label: 'Skills Wanted', collection: @tags, input_html: { multiple: true }%>
+    <%= f.button :submit %>
+  <% end %>
+</div>
