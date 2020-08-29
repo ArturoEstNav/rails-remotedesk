@@ -1,0 +1,5 @@
+meta_product_name: "Remotedesk"
+meta_title: "Remote desk: Your dream jobs in one place"
+meta_description: "Remotedesk simplify the process of finding remote & work-from-home jobs."
+#meta_image: "" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
