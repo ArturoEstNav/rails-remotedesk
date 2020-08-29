@@ -1,3 +1,8 @@
+<% content_for :meta_title, "#{@offer.title} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @offer.description %>
+<% #content_for :meta_image, cl_image_path(@offer.photo.path) %>
+
+
 <div class="custom-container-page">
   <div class="d-flex justify-content-between">
     <% if user_signed_in? %>

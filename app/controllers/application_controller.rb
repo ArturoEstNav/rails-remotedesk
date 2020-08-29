@@ -12,3 +12,7 @@ class ApplicationController < ActionController::Base
   #   # return the path based on scope
   # end
 end
+
+def default_url_options
+  { host: ENV["DOMAIN"] || "localhost:3000" }
+end
