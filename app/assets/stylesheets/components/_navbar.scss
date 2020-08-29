@@ -1,3 +1,9 @@
+// $small-conta: 575px;
+$big-mobile: 576px;
+$custom-sm: 768px;
+$custom-md: 992px;
+$custom-lg: 1200px;
+
 .navbar-fixed{
  display: fixed;
 }
@@ -6,6 +12,7 @@
   justify-content: space-between;
   background: $light-gray;
   padding: 16px 64px;
+
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -13,5 +20,24 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  // width: 40px;
 }
+// .custom-navbar-size {
+//     border: 1px solid #000;
+//     @media screen and (min-width: $big-mobile) {
+//       width: 540px;
+//     }
+
+//     @media screen and (min-width: $custom-sm) {
+//      width: 720px;
+//     }
+
+//     @media screen and (min-width: $custom-md) {
+//       width: 960px;
+//     }
+
+//     @media screen and (min-width: $custom-lg) {
+//       width: 1140;
+//     }
+// }
+

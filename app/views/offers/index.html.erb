@@ -1,22 +1,19 @@
-<div class="container p-5">
+<div class="container">
   <div class="d-flex">
-    <div class="w-25 border border-primary mr-4">
+   <!--  <div class="w-25 border border-primary">
       <p>filters</p>
 
-    </div>
-    <div class="w-75">
+    </div> -->
+    <div>
       <!-- Right here will be some sorting  -->
       <!-- search options -->
       <!-- Offer list -->
         <% @offers.each do |offer| %>
-        <div class="border border-secondary p-3 m-3 d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
           <div>
             <h2><%= offer.title %></h2>
             <h4><%= offer.company %></h4>
-            <!-- TEMPORARY FOR BUG FIX -->
-            <p><strong><%= offer.source %></strong></p>
             <p> <%= raw(offer.description) %> </p>
-
           </div>
           <div>
             <% if user_signed_in? %>
