@@ -9,8 +9,8 @@
       <!-- search options -->
       <!-- Offer list -->
         <% @offers.each do |offer| %>
-        <div class="d-flex justify-content-between">
-          <div>
+        <div class="card custom-card d-flex justify-content-between">
+          <div >
             <h2><%= offer.title %></h2>
             <h4><%= offer.company %></h4>
             <p> <%= raw(offer.description) %> </p>

@@ -1,13 +1,21 @@
 .custom-card {
-  background-color: $light-gray;
+  background-color: transparent;
   transition: 250ms ease-in-out;
-  margin-bottom: 30px;
-  box-shadow: 4px 4px 4px rgba(60, 69, 65, .15);
-  border-color: $black;
+  border-color: $element-gray;
   padding: 16px;
 
   &:hover {
-    box-shadow: 4px 4px 4px rgba(60, 69, 65, .3);
+    box-shadow: 4px 4px 4px rgba(60, 69, 65, .25);
   }
 }
 
+.custom-offer-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .offer-buttons {
+    flex-basis: 150px;
+    display: flex;
+    flex-direction: column;
+  }
+}

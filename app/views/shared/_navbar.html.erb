@@ -4,7 +4,7 @@ require "cloudinary"
   <%= link_to root_path, class: "navbar-brand" do %>
     <span class="logo_thick text-success">[</span>
     <span class="logo_thin">remote </span>
-    <span class="logo_thick">desk</span>
+    <span class="logo_thick">scanner</span>
     <span class="logo_thick text-success">]</span>
     <% end %>
 
@@ -43,7 +43,7 @@ require "cloudinary"
           <%= link_to "Post a Job", new_offer_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-info custom-btn-info" %>
         </li>
       <% end %>
     </ul>

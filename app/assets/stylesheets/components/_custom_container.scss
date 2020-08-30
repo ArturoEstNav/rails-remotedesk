@@ -11,12 +11,15 @@ $custom-sm: 530px;
   margin-bottom: 56px;
 }
 
+.custom-container-offer {
+  margin: 28px 0;
+}
+
 .custom-offers-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px 16px;
-  background-color: #fff;
-  color: black;
+  color: $black;
 
   @media screen and (max-width: $big-mobile) {
     grid-template-columns: 1fr;
