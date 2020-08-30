@@ -5,27 +5,29 @@
 
 <div class="custom-container-page">
   <div class="d-flex justify-content-between">
-    <% if user_signed_in? %>
-      <%= link_to "<< Back to you job matches", user_path(current_user) %>
-    <% else %>
-      <%= link_to "<< Back to all jobs", root_path %>
-    <% end %>
-    <!--
-      <%= link_to "More #{@offer.category} jobs >>", root_path %>
-     -->
-  </div>
-  <br>
-  <div class="row justify-content-between">
+    <div class="">
+      <% if user_signed_in? %>
+        <%= link_to "<< Back to you job matches", user_path(current_user) %>
+      <% else %>
+        <%= link_to "<< Back to all jobs", root_path %>
+      <% end %>
+      <!--
+        <%= link_to "More #{@offer.category} jobs >>", root_path %>
+       -->
+      <div class="row justify-content-between">
+
     <div id="offer-frame">
-      <p><strong><%= "POSTED #{@offer.posting_date.strftime('%^b %d, %Y')}" %></strong></p>
-      <h3><%= @offer.title %></h3>
-      <h5><%= "#{@offer.company} | #{@offer.location}" %></h5>
-      <div class="row justify-content-left ">
-        <% @offer.tags.each do |tag| %>
-          <div>
-            <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary mr-1" %>
-          </div>
-        <% end %>
+      <div class="custom-container-offer">
+        <p><strong><%= "POSTED #{@offer.posting_date.strftime('%^b %d, %Y')}" %></strong></p>
+        <h3><%= @offer.title %></h3>
+        <h5><%= "#{@offer.company} | #{@offer.location}" %></h5>
+        <div class="row justify-content-left ">
+          <% @offer.tags.each do |tag| %>
+            <div>
+              <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
+            </div>
+          <% end %>
+        </div>
       </div>
    <!-- This is where the description starts -->
       <div>
@@ -44,12 +46,12 @@
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-            <div>
+            <div class="custom-container-offer">
               <%= raw(@offer.description) %>
             </div>
           </div>
           <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
-            <div>
+            <div class="custom-container-offer">
                 <h2>Job specifications</h2>
                 <ul>
                   <li class="custom_table_row ct1">
@@ -85,13 +87,13 @@
           </div>
         </div>
       </div>
+    </div>
 
     </div>
-    <div class="card sticky-top" style="height: 16rem; top: 78px;" id="offer-summary">
-      <h3><%= @offer.company %></h3>
-      <h5><%= @offer.title %></h5>
-      <p><%= @offer.salary %></p>
-      <%= link_to "Apply to this job", @offer.listing_url, class: "btn btn-primary" %>
+    <div class=" sticky-top" id="offer-summary">
+      <h5> This offer was found at </h5>
+      <h3><%= @offer.source.capitalize %></h3>
+      <%= link_to "Apply to this job", @offer.listing_url, class: "btn btn-success" %>
       <% if user_signed_in? %>
         <% if @offer.users.include?(current_user) %>
           <%= link_to "Remove from favorites".html_safe, match_path(@offer.matches.select { |match| match.user == current_user }), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-primary mt-3" %>
@@ -104,7 +106,8 @@
       <% else %>
         <%= link_to ('<i class="fas fa-heart"></i>').html_safe, new_user_session_path %>
       <% end %>
+    </div>
   </div>
-
+  <br>
 </div>
 

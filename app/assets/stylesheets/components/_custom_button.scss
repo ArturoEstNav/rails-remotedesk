@@ -1,0 +1,33 @@
+
+// Font is inherited from the body so I don't feel too bad
+// just overriding the fonts, NOTHING ELSE should be overriden
+// from bootstrap directly ;)
+.btn {
+  font-weight: 500;
+  margin: 4px;
+}
+
+.custom-btn-info {
+  // border: 1px solid $element-gray;
+
+  &:hover {
+    background-color: $green-transparent;
+    border: $green-transparent;
+  }
+}
+
+.custom-btn-info {
+  border: none;
+  &:hover {
+    background-color: $green-transparent;
+    border: none;
+  }
+}
+
+.custom-btn-secondary {
+  border: none;
+  color: $black;
+  &:hover {
+    color: $black;
+  }
+}
