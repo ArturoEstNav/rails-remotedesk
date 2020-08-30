@@ -130,15 +130,15 @@ class ScraperIndeed
   # Gets the job type from each offer description
   def collect_job_type(text_to_scan, offer_object)
     text_to_scan = text_to_scan.gsub('-', ' ')
-    puts "Mining tags from description "
+    puts "Mining tags from description"
     if text_to_scan.include? 'full time'
-      offer_object[:job_type] = 'full-time'
+      offer_object[:job_type] = 'Full-time'
     elsif text_to_scan.include? 'tiempo completo'
-      offer_object[:job_type] = 'full-time'
+      offer_object[:job_type] = 'Full-time'
     elsif text_to_scan.include? 'part time'
-      offer_object[:job_type] = 'part-time'
+      offer_object[:job_type] = 'Part-time'
     elsif text_to_scan.include? 'medio tiempo'
-      offer_object[:job_type] = 'part-time'
+      offer_object[:job_type] = 'Part-time'
     else
       offer_object[:job_type] = ''
     end

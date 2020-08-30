@@ -3,14 +3,10 @@ class UsersController < ApplicationController
     saved_enum = current_user.offers.each_slice(3)
     @saved = saved_enum.to_a
 
-    suggested_offers = []
-    current_user.tags.each do |tag|
-      suggested_offers << tag.offers
-    end
-    suggested_offers.flatten!
-    suggested_offers = suggested_offers.reject { |offer| current_user.offers.include?(offer) }
-    suggested_enum = suggested_offers.sample(12).each_slice(3)
-    @suggested = suggested_enum.to_a
+    @suggested = fetch_suggested_offers
+
+    posted_offers = Offer.where(source: current_user.id.to_s).each_slice(3)
+    @posted = posted_offers.to_a
   end
 
   def edit
@@ -30,6 +26,17 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def fetch_suggested_offers
+    suggested_offers = []
+    current_user.tags.each do |tag|
+      suggested_offers << tag.offers
+    end
+    suggested_offers.flatten!
+    suggested_offers = suggested_offers.reject { |offer| current_user.offers.include?(offer) }
+    suggested_enum = suggested_offers.sample(12).each_slice(3)
+    suggested_enum.to_a
   end
 
   private

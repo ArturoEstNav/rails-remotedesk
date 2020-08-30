@@ -12,15 +12,17 @@ require "cloudinary"
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Find Job Offers", root_path, class: "nav-link" %>
-        </li>
         <li class="nav-item">
           <%= link_to "Dashboard", user_path(current_user), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Find a Job", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Post a Job", new_offer_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
         <% if current_user.photo.attached? %>
@@ -35,7 +37,13 @@ require "cloudinary"
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+          <%= link_to "About Us", about_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Post a Job", new_offer_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
         </li>
       <% end %>
     </ul>

@@ -3,23 +3,67 @@ require 'nokogiri'
 require 'json'
 
 class OffersController < ApplicationController
-  skip_before_action :authenticate_user!
-
-  def index
-  end
+  skip_before_action :authenticate_user!, only: [:show]
+  before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
   def show
-    @offer = Offer.find(params[:id])
     @match = Match.new
   end
 
-  def create
-    new_api_offer = ApiOffer.new
-    new_api_offer.create_remotive_offers
+  def new
+    @offer = Offer.new
+    @tags = Tag.all
   end
 
+  def create
+    @offer = Offer.new(offer_params)
+    @offer.source = current_user.id.to_s
+    @offer.posting_date = DateTime.now()
+    if @offer.save
+      params[:offer][:tags].shift
+      tag_ids = params[:offer][:tags]
+      tag_ids.each do |tag_id|
+        unless @offer.tags.include?(Tag.find(tag_id))
+          @offer.tags << Tag.find(tag_id)
+        end
+      end
+      redirect_to user_path(current_user)
+    else
+      render :new
+    end
+  end
+
+  def edit; end
+
   def update
-    new_api_offer = ApiOffer.new
-    new_api_offer.update_offers_active_status(remotive_api_scrape, 'remotive')
+    if @offer.update(offer_params)
+      params[:offer][:tags].shift
+      tag_ids = params[:offer][:tags]
+      tag_ids.each do |tag_id|
+        unless @offer.tags.include?(Tag.find(tag_id))
+          @offer.tags << Tag.find(tag_id)
+        end
+      end
+      redirect_to user_path(current_user)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @offer.destroy
+    redirect_to user_path(current_user)
+  end
+
+  def set_offer
+    @offer = Offer.find(params[:id])
+  end
+
+  private
+
+  def offer_params
+    params.require(:offer).permit(:company, :title, :description, :position,
+                                  :salary, :category, :job_type, :location,
+                                  :posting_date, :source, :location_type)
   end
 end
