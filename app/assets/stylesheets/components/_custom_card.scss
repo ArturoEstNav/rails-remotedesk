@@ -1,8 +1,6 @@
 .custom-card {
   background-color: transparent;
   transition: 250ms ease-in-out;
-  margin-bottom: 30px;
-  // box-shadow: 4px 4px 4px rgba(60, 69, 65, .15);
   border-color: $element-gray;
   padding: 16px;
 
@@ -19,7 +17,5 @@
     flex-basis: 150px;
     display: flex;
     flex-direction: column;
-
-
   }
 }

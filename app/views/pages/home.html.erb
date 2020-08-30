@@ -11,20 +11,21 @@
             class: "form-control search-input",
              placeholder: "Search by programming language..." %>
 
-            <div class="filter-buttons" style="color: black"; style="display: inline-block";>
+          <div class="filter-buttons">
             <%= radio_button_tag(:job_type, "Full-time") %>
             <%= label_tag(:job_type, "Full-time") %>
             <%= radio_button_tag(:job_type, "Part-time") %>
             <%= label_tag(:job_type, "Part-time") %>
+            <!--
             <%= radio_button_tag(:location_type, "Remote") %>
             <%= label_tag(:location_type, "Remote") %>
             <%= radio_button_tag(:location_type, "Work from home") %>
             <%= label_tag(:location_type, "Work from home") %>
-            <br>
+            <br>  -->
             <%= submit_tag "Search", class: "btn btn-warning" %>
           <% end %>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
