@@ -12,7 +12,7 @@ class MatchesController < ApplicationController
   def destroy
     @match = Match.find(params[:id])
     @match.destroy
-    redirect_to users_path(current_user)
+    redirect_back(fallback_location: root_path)
   end
 
   private

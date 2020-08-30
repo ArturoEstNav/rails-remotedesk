@@ -5,5 +5,5 @@ class Offer < ApplicationRecord
   has_many :tags, through: :offer_tags
 
   validates :title, :company, :description,
-            :posting_date, :listing_url, presence: true
+            :posting_date, presence: true
 end
