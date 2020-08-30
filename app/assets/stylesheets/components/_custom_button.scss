@@ -4,7 +4,6 @@
 // from bootstrap directly ;)
 .btn {
   font-weight: 500;
-  margin: 4px;
 }
 
 .custom-btn-info {
@@ -26,8 +25,6 @@
 
 .custom-btn-secondary {
   border: none;
+  margin: 4px 8px 4px 0px;
   color: $black;
-  &:hover {
-    color: $black;
-  }
 }
