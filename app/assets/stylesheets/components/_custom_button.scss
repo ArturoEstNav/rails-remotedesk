@@ -27,4 +27,7 @@
   border: none;
   margin: 4px 8px 4px 0px;
   color: $black;
+  &:hover {
+    color: $black;
+  }
 }
