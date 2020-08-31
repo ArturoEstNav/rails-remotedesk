@@ -1,4 +1,4 @@
-<div class="container" style="padding-top: 70px;">
+<div class="container custom-container-page">
   <br>
   <div class="row">
     <div class="col-sm-3"> <!--left col-->
@@ -11,66 +11,56 @@
         <% else %>
           <%= image_tag "https://st2.depositphotos.com/4111759/12123/v/950/depositphotos_121232794-stock-illustration-male-default-placeholder-avatar-profile.jpg", class: "avatar-large" %>
         <% end %> <br>
+        <!-- put an edit button that hides the ugly form -->
         <%= simple_form_for(current_user, remote: true) do |f| %>
           <%= f.input :photo, as: :file, label: false %>
-          <%= f.button :submit, "Change Profile Pic", class: "btn btn-secondary"%>
+          <%= f.button :submit, "Change Profile Pic", class: "btn btn-primary"%>
         <% end %>
       </div><br>
-      <div class="panel panel-default">
+      <div class="card custom-card-skills">
         <ul class="list-group">
-          <li class="list-group-item text-muted">Skills <strong><%= link_to "+", edit_user_path(current_user) %></strong></li>
           <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <span>Skills</span>
+              <%= link_to "+", edit_user_path(current_user), class: "btn btn-info custom-btn-info" %>
+            </div>
+          </li>
+          <li class="list-group-item custom-list-item">
           <% if current_user.tags.empty? %>
             <%= link_to "Add Skills to your Profile", edit_user_path(current_user) %>
           <% else %>
             <% current_user.tags.each do |tag| %>
-              <div class="m-1">
-                <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "btn btn-secondary mr-1" %>
+              <div>
+                <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "btn btn-secondary custom-btn-secondary" %>
               </div>
             <% end %>
           <% end %>
           </li>
         </ul>
       </div><br>
-      
+
       <ul class="list-group">
-        <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-        <li class="list-group-item text-left"><span class="pull-left"><strong>Saved Job Offers</strong></span> <%= current_user.offers.count %> </li>
+        <li class="list-group-item custom-list-item">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+        <li class="list-group-item custom-list-item d-flex justify-content-between">
+          <span class="pull-left">Saved Job Offers</span>
+
+          <%= current_user.offers.count %>
+        </li>
       </ul><br>
     </div>
 
-    
-    <div class="col-9 d-flex flex-column align-items-center p-3 user-offers">
-      <%# Saved_offers/Matches section %>
-      <% unless @saved.empty? %>
-        <div id="carouselSavedOffersControls" class="carousel slide mt-3" data-ride="carousel">
-          <h4>Saved Job Offers</h4>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="col-md-12" style="float:left">
-                <div class="d-flex justify-content-between">
-                  <% @saved.first.each do |offer|  %>
-                    <div class="card mb-2">
-                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <h4 class="card-title"><%= offer.title %></h4>
-                        <p class="card-text"><%= offer.company %></p>
-                        <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-primary" %>
-                        <%= link_to ('<i class="fas fa-heart"></i>').html_safe, match_path(offer.matches.select { |match| match.user == current_user }), :confirm => 'Are you sure?', :method => :delete %>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
 
-            <% @saved.last(@saved.size-1).each do |triplet| %>
-              <div class="carousel-item">
+    <div class="col-9 d-flex flex-column align-items-center user-offers">
+      <%# Saved_offers/Matches section %>
+        <% unless @saved.empty? %>
+          <div id="carouselSavedOffersControls" class="carousel slide" data-ride="carousel">
+            <h4>Saved Job Offers</h4>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
                 <div class="col-md-12" style="float:left">
                   <div class="d-flex justify-content-between">
-                    <% triplet.each do |offer| %>
-                      <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+                    <% @saved.first.each do |offer|  %>
+                      <div class="card custom-card custom-card-profile">
                         <div class="card-body">
                           <h4 class="card-title"><%= offer.title %></h4>
                           <p class="card-text"><%= offer.company %></p>
@@ -82,30 +72,49 @@
                   </div>
                 </div>
               </div>
-            <% end %>
+
+              <% @saved.last(@saved.size-1).each do |triplet| %>
+                <div class="carousel-item">
+                  <div class="col-md-12" style="float:left">
+                    <div class="d-flex justify-content-between">
+                      <% triplet.each do |offer| %>
+                        <div class="card custom-card">
+                          <div class="card-body">
+                            <h4 class="card-title"><%= offer.title %></h4>
+                            <p class="card-text"><%= offer.company %></p>
+                            <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-primary" %>
+                            <%= link_to ('<i class="fas fa-heart"></i>').html_safe, match_path(offer.matches.select { |match| match.user == current_user }), :confirm => 'Are you sure?', :method => :delete %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <a class="carousel-control-prev" href="#carouselSavedOffersControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselSavedOffersControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-          <a class="carousel-control-prev" href="#carouselSavedOffersControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselSavedOffersControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      <% end %>
+        <% end %>
+
 
       <%# Suggested offers section %>
+      <div class="custom-container-section"></div>
       <% unless @suggested.empty? %>
-        <div id="carouselSuggestedOffersControls" class="carousel slide mt-3" data-ride="carousel">
-          <h4>Suggested Job Offers</h4>
+        <div id="carouselSuggestedOffersControls" class="carousel slide" data-ride="carousel">
+          <h3>Suggested Job Offers</h3>
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="col-md-12" style="float:left">
                 <div class="d-flex justify-content-between">
                   <% @suggested.first.each do |offer|  %>
-                    <div class="card mb-2">
-                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+                    <div class="card custom-card">
                       <div class="card-body">
                         <h4 class="card-title"><%= offer.title %></h4>
                         <p class="card-text"><%= offer.company %></p>
@@ -122,8 +131,7 @@
                 <div class="col-md-12" style="float:left">
                   <div class="d-flex justify-content-between">
                     <% triplet.each do |offer| %>
-                      <div class="card mb-2">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+                      <div class="card custom-card">
                         <div class="card-body">
                           <h4 class="card-title"><%= offer.title %></h4>
                           <p class="card-text"><%= offer.company %></p>
