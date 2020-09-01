@@ -45,3 +45,27 @@
    border: none;
   }
 }
+
+.custom-button-fix {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  opacity: 0.6;
+  position: relative;
+  bottom: 8px;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    border: none;
+    background-color: transparent;
+  }
+
+  &:focus {
+    background-color: transparent;
+    border: none;
+  }
+}
