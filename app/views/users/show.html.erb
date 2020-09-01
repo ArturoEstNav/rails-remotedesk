@@ -1,11 +1,11 @@
 <div class="container custom-container-page">
   <br>
   <div class="row">
-    <div class="col-sm-3"> <!--left col-->
-      <div class="d-flex">
-        <h2><%= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></h2>
+    <div class="col-sm-3 shadow p-3 bg-white rounded"> <!--left col-->
+      <div class="d-flex justify-content-center">
+        <h3><%= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></h3>
       </div>
-      <div class="d-flex flex-column align-items-center justify-content-center">
+      <div class="d-flex flex-column align-items-center justify-content-center mb-3">
         <% if current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar-large" %>
         <% else %>
@@ -13,10 +13,12 @@
         <% end %> <br>
         <!-- put an edit button that hides the ugly form -->
         <%= simple_form_for(current_user, remote: true) do |f| %>
-          <%= f.input :photo, as: :file, label: false %>
-          <%= f.button :submit, "Change Profile Pic", class: "btn btn-primary"%>
+          <div class="btn btn-success fileinput-button avatar" id="avatar_container">
+            <%= f.input :photo, as: :file, label: false %>
+            <%= f.button :submit, "Change Profile Pic", class: "btn btn-primary"%>
+          </div>
         <% end %>
-      </div><br>
+      </div>
       <div class="card custom-card-skills">
         <ul class="list-group">
           <li class="list-group-item">
