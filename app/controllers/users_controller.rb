@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
     posted_offers = Offer.where(source: current_user.id.to_s).each_slice(3)
     @posted = posted_offers.to_a
+
+    @match = Match.new
   end
 
   def edit
