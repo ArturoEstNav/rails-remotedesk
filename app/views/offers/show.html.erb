@@ -40,13 +40,13 @@
               <%= simple_form_for @match do |f| %>
                 <%= f.input :offer_id, as: :hidden, input_html: { value: @offer.id } %>
                 <button type="submit" class="btn custom-button-fix" title="Add to favorites">
-                    <i class="fas fa-heart"></i>
+                    <i class="far fa-heart"></i>
                 </button>
               <% end %>
             <% end %>
             </div>
           <% else %>
-            <%= link_to ('<i class="fas fa-heart"></i>').html_safe, new_user_session_path %>
+            <%= link_to ('<i class="far fa-heart"></i>').html_safe, new_user_session_path %>
           <% end %>
         </div>
       </div>
