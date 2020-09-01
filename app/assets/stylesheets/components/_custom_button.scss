@@ -4,30 +4,68 @@
 // from bootstrap directly ;)
 .btn {
   font-weight: 500;
-}
 
-.custom-btn-info {
-  // border: 1px solid $element-gray;
-
-  &:hover {
-    background-color: $green-transparent;
-    border: $green-transparent;
-  }
 }
 
 .custom-btn-info {
   border: none;
-  &:hover {
+  margin-left: 8px;
+
+  &.focus,
+  &:focus {
     background-color: $green-transparent;
     border: none;
   }
+    &:hover {
+    background-color: $green-transparent;
+    border: none;
+  }
+    &.active,
+    &:active {
+    background-color: $green-transparent;
+    border: none;
+  }
+
 }
 
 .custom-btn-secondary {
   border: none;
   margin: 4px 8px 4px 0px;
   color: $black;
+  border: none;
+
   &:hover {
     color: $black;
+    border: none;
+
+  }
+
+  &:active {
+   color: $black;
+   border: none;
+  }
+}
+
+.custom-button-fix {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  opacity: 0.6;
+  position: relative;
+  bottom: 8px;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    border: none;
+    background-color: transparent;
+  }
+
+  &:focus {
+    background-color: transparent;
+    border: none;
   }
 }
