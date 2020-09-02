@@ -34,6 +34,7 @@ gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 # Use for scrapping website data
 gem 'nokogiri'
 gem 'json'
+gem 'uri'
 
 # Protect passwords
 gem 'dotenv-rails', groups: [:development, :test]

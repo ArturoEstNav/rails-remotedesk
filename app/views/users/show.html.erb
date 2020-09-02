@@ -33,7 +33,7 @@
           <% else %>
             <% current_user.tags.each do |tag| %>
               <div>
-                <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "btn btn-secondary custom-btn-secondary" %>
+                <%= link_to tag.name, "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search", class: "btn btn-secondary custom-btn-secondary" %>
               </div>
             <% end %>
           <% end %>
