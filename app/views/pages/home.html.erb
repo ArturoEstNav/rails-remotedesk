@@ -5,26 +5,31 @@
         <h1 class="custom-text-boldest">Stop browsing<br> and find your<br> dream job<span class="text-success">.</span></h1>
         <p class="description" >Remotedesk simplify the process of finding remote & work-from-home jobs.</p>
         <br>
-        <div id="search-data" class= "form-search search-data custom-container-section" data-skills="<%= @tags.to_json %>">
-          <%= form_tag root_path, method: :get do %>
-          <%= text_field_tag :q, nil, autocomplete: :off,
-            class: "form-control search-input",
-             placeholder: "Search by programming language..." %>
+        <div id="search-data" class= "form-search search-data custom-container-section " data-skills="<%= @tags.to_json %>">
 
-          <div class="filter-buttons">
+          <%= form_tag root_path, method: :get do %>
+          <!--<div class="filter-buttons">
             <%= radio_button_tag(:job_type, "Full-time") %>
             <%= label_tag(:job_type, "Full-time") %>
             <%= radio_button_tag(:job_type, "Part-time") %>
             <%= label_tag(:job_type, "Part-time") %>
-            <!--
+              Origi
             <%= radio_button_tag(:location_type, "Remote") %>
             <%= label_tag(:location_type, "Remote") %>
             <%= radio_button_tag(:location_type, "Work from home") %>
             <%= label_tag(:location_type, "Work from home") %>
-            <br>  -->
-            <%= submit_tag "Search", class: "btn btn-warning" %>
+            <br>
+
           <% end %>
+          </div> -->
+          <div class="d-flex">
+
+            <%= text_field_tag :q, nil, autocomplete: :off,
+              class: "form-control search-input",
+               placeholder: "Search by programming language..." %>
+            <%= submit_tag "Search", class: "btn btn-warning mb-4" %>
           </div>
+
         </div>
       </div>
     </div>
