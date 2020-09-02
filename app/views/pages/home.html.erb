@@ -67,14 +67,14 @@
             <% end %>
           </div>
           <div class="offer-buttons">
-              <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-warning" %>
+              <%= link_to "Check job", offer_path(offer), class: "card-button btn btn-warning" %>
             <% if user_signed_in? %>
               <%= simple_form_for @match do |f| %>
                 <%= f.input :offer_id, as: :hidden, input_html: { value: offer.id } %>
-                <%= f.button :submit, "Save job offer", disabled: offer.users.include?(current_user), class: "btn btn-info custom-btn-info" %>
+                <%= f.button :submit, "Save Job", disabled: offer.users.include?(current_user), class: "btn btn-info custom-btn-info" %>
               <% end %>
             <% else %>
-              <%= link_to "Save job offer", new_user_session_path, class: "btn btn-info custom-btn-info" %>
+              <%= link_to ('Save Job <i class="far fa-heart"></i>').html_safe, new_user_session_path, class: "btn btn-info custom-btn-info" %>
             <% end %>
           </div>
         </div>
@@ -84,7 +84,7 @@
   <%end%>
 
   <div class="custom-container-section">
-    <h2 class="">Newest job offers</h2>
+    <h2 class="">Recently added jobs</h2>
     <div class="custom-offers-container">
       <% @new_offers.each do |offer| %>
         <div class="card custom-card">
