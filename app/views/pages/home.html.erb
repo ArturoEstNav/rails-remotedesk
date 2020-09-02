@@ -63,7 +63,7 @@
             <h5 class="card-text"><%= "Work at #{offer.company.capitalize}"  %></h5>
             <p class="card-text"><%= "Found offer at #{offer.source.capitalize}" %></p>
             <% offer.tags.each do |tag| %>
-              <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
+              <%= link_to tag.name, "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
             <% end %>
           </div>
           <div class="offer-buttons">
@@ -94,7 +94,7 @@
             <p class="card-text">
               <% offer.tags.first(5).each do |tag|%>
                 <span class="btn btn-secondary custom-btn-secondary">
-                <%= link_to "#{tag.name}", "/?q=#{tag.name}&commit=Search" %>
+                <%= link_to "#{tag.name}", "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search" %>
                  </span>
               <% end %>
             </p>
