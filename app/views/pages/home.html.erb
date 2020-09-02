@@ -3,28 +3,34 @@
     <div class="custom-container-about">
       <div class="custom-container-section">
         <h1 class="custom-text-boldest">Stop browsing<br> and find your<br> dream job<span class="text-success">.</span></h1>
-        <p class="description" >Remotedesk simplify the process of finding remote & work-from-home jobs.</p>
-        <br>
-        <div id="search-data" class= "form-search search-data custom-container-section" data-skills="<%= @tags.to_json %>">
-          <%= form_tag root_path, method: :get do %>
-          <%= text_field_tag :q, nil, autocomplete: :off,
-            class: "form-control search-input",
-             placeholder: "Search by programming language..." %>
+        <p class="description" style="font-size">Remotescanner simplify the process of finding remote & work-from-home jobs.</p>
 
-          <div class="filter-buttons">
+        <br>
+        <div id="search-data" class= "form-search search-data custom-container-section " data-skills="<%= @tags.to_json %>">
+
+          <%= form_tag root_path, method: :get do %>
+          <!--<div class="filter-buttons">
             <%= radio_button_tag(:job_type, "Full-time") %>
             <%= label_tag(:job_type, "Full-time") %>
             <%= radio_button_tag(:job_type, "Part-time") %>
             <%= label_tag(:job_type, "Part-time") %>
-            <!--
+              Origi
             <%= radio_button_tag(:location_type, "Remote") %>
             <%= label_tag(:location_type, "Remote") %>
             <%= radio_button_tag(:location_type, "Work from home") %>
             <%= label_tag(:location_type, "Work from home") %>
-            <br>  -->
-            <%= submit_tag "Search", class: "btn btn-warning" %>
+            <br>
+
           <% end %>
+          </div> -->
+          <div class="d-flex">
+
+            <%= text_field_tag :q, nil, autocomplete: :off,
+              class: "form-control search-input",
+               placeholder: "Search by programming language..." %>
+            <%= submit_tag "Search", class: "btn btn-warning mb-4" %>
           </div>
+
         </div>
       </div>
     </div>
@@ -63,7 +69,7 @@
             <h5 class="card-text"><%= "Work at #{offer.company.capitalize}"  %></h5>
             <p class="card-text"><%= "Found offer at #{offer.source.capitalize}" %></p>
             <% offer.tags.each do |tag| %>
-              <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
+              <%= link_to tag.name, "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
             <% end %>
           </div>
           <div class="offer-buttons">
@@ -94,7 +100,7 @@
             <p class="card-text">
               <% offer.tags.first(5).each do |tag|%>
                 <span class="btn btn-secondary custom-btn-secondary">
-                <%= link_to "#{tag.name}", "/?q=#{tag.name}&commit=Search" %>
+                <%= link_to "#{tag.name}", "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search" %>
                  </span>
               <% end %>
             </p>
