@@ -1,0 +1,10 @@
+.custom-carousel-container {
+  background-color: transparent;
+  transition: 250ms ease-in-out;
+  border-color: $element-gray;
+  padding: 24px;
+
+  &:hover {
+    box-shadow: 4px 4px 2.5px rgba(60, 69, 65, .1);
+  }
+}

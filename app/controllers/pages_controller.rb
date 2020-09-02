@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :authenticate_user!, only: [:home, :about]
 
   def home
     @tags = Tag.pluck(:name).sort
@@ -16,4 +16,6 @@ class PagesController < ApplicationController
     @params = params[:q]
     @match = Match.new
   end
+
+  def about; end
 end

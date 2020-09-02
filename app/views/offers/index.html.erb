@@ -9,8 +9,8 @@
       <!-- search options -->
       <!-- Offer list -->
         <% @offers.each do |offer| %>
-        <div class="d-flex justify-content-between">
-          <div>
+        <div class="card custom-card d-flex justify-content-between">
+          <div >
             <h2><%= offer.title %></h2>
             <h4><%= offer.company %></h4>
             <p> <%= raw(offer.description) %> </p>
@@ -33,3 +33,36 @@
     </div>
   </div>
 </div>
+
+<!-- HERE -->
+
+
+<!--   <%if @offers and not @offers.empty? %>
+    <div class="custom-container-section">
+      <h2><%= "#{@params.capitalize} job offers" %></h2>
+      <% @offers.each do |offer| %>
+        <div class="card custom-card custom-offer-result">
+          <div class=>
+            <h3 class="card-title"><%= offer.title %></h3>
+            <h5 class="card-text"><%= "Work at #{offer.company.capitalize}"  %></h5>
+            <p class="card-text"><%= "Found offer at #{offer.source.capitalize}" %></p>
+            <% offer.tags.each do |tag| %>
+              <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
+            <% end %>
+          </div>
+          <div class="offer-buttons">
+              <%= link_to "Check offer", offer_path(offer), class: "card-button btn btn-warning" %>
+            <% if user_signed_in? %>
+              <%= simple_form_for @match do |f| %>
+                <%= f.input :offer_id, as: :hidden, input_html: { value: offer.id } %>
+                <%= f.button :submit, "Save job offer", disabled: offer.users.include?(current_user), class: "btn btn-info custom-btn-info" %>
+              <% end %>
+            <% else %>
+              <%= link_to "Save job offer", new_user_session_path, class: "btn btn-info custom-btn-info" %>
+            <% end %>
+          </div>
+        </div>
+      <br>
+      <% end %>
+    </div>
+  <%end%> -->

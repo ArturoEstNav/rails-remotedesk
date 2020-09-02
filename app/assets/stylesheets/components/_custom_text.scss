@@ -2,8 +2,13 @@ body {
   color: $black;
 }
 
-h1, h2, h3 h4, h5, h6 {
+h1, h2, h3 {
   font-weight: 300;
+  margin-bottom: 32px;
+}
+
+h4, h5, h6 {
+  font-weight: 500;
 }
 
 a {
@@ -30,11 +35,3 @@ a {
   font-weight: 500;
   color: $blue;
 }
-
-// Font is inherited from the body so I don't feel too bad
-// just overriding the fonts, NOTHING ELSE should be overriden
-// from bootstrap directly ;)
-.btn {
-  font-weight: 500;
-}
-

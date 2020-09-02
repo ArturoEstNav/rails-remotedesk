@@ -1,8 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <%= link_to root_path, class: "navbar-brand" do %>
     <span class="logo_thick text-success">[</span>
-    <span class="logo_thin">remote </span>
-    <span class="logo_thick">desk</span>
+    <span class="logo_thin" style="color: #3A403A;"> remote </span>
+    <span class="logo_thick" style="color: #3A403A;">scanner</span>
     <span class="logo_thick text-success">]</span>
     <% end %>
 
@@ -11,16 +11,23 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto d-flex align-items-center">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Find Job Offers", root_path, class: "nav-link" %>
+        <li class="nav-item">
+          <%= link_to "Dashboard", user_path(current_user), class: "btn btn-info custom-btn-info"%>
         </li>
         <li class="nav-item">
-          <%= link_to "Dashboard", user_path(current_user), class: "nav-link" %>
+          <%= link_to "Find a Job", root_path, class: "btn btn-info custom-btn-info" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Post a Job", new_offer_path, class: "btn btn-info custom-btn-info" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters_opt/p-silicon-valley-martin-starr.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% else %>
+          <%= image_tag "/images/remote-scanner-avatar.jpeg", class: "avatar dropdown-toggle m-1", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", edit_user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -28,7 +35,13 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
+          <%= link_to "About Us", about_path, class: "btn btn-info custom-btn-info" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Post a Job", new_offer_path, class: "btn btn-info custom-btn-info" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "btn btn-info custom-btn-info" %>
         </li>
       <% end %>
     </ul>

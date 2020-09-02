@@ -4,19 +4,23 @@ $custom-md: 881px;
 $custom-sm: 530px;
 
 .custom-container-page{
-  margin-top: 96px;
+  margin: 96px 0;
 }
 
 .custom-container-section {
   margin-bottom: 56px;
 }
 
+.custom-container-offer {
+  display: block;
+  margin: 44px 0;
+}
+
 .custom-offers-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px 16px;
-  background-color: #fff;
-  color: black;
+  color: $black;
 
   @media screen and (max-width: $big-mobile) {
     grid-template-columns: 1fr;
@@ -32,6 +36,6 @@ $custom-sm: 530px;
 }
 
 .custom-container-about {
-  flex-basis: 60%;
+  flex-basis: 400px;
   text-align: right;
 }
