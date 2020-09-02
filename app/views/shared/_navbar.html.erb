@@ -14,15 +14,15 @@
     <ul class="navbar-nav mr-auto d-flex align-items-center">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Dashboard", user_path(current_user), class: "btn btn-info custom-btn-info"%>
+          <%= link_to "My jobs", user_path(current_user), class: "btn btn-info custom-btn-nav"%>
         </li>
         <li class="nav-item">
-          <%= link_to "Find a Job", root_path, class: "btn btn-info custom-btn-info" %>
+          <%= link_to "Find a Job", root_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Post a Job", new_offer_path, class: "btn btn-info custom-btn-info" %>
+          <%= link_to "Post a Job", new_offer_path, class: "btn btn-info custom-btn-nav" %>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ml-2">
         <% if current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
@@ -35,13 +35,13 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "About Us", about_path, class: "btn btn-info custom-btn-info" %>
+          <%= link_to "About Us", about_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Post a Job", new_offer_path, class: "btn btn-info custom-btn-info" %>
+          <%= link_to "Post a Job", new_offer_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "btn btn-info custom-btn-info" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-info custom-btn-nav" %>
         </li>
       <% end %>
     </ul>

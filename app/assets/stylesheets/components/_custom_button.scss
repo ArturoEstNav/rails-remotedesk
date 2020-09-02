@@ -4,10 +4,30 @@
 // from bootstrap directly ;)
 .btn {
   font-weight: 500;
-
 }
 
 .custom-btn-info {
+  border: none;
+  // margin-left: 8px;
+  width: 150px;
+
+  &.focus,
+  &:focus {
+    background-color: $green-transparent;
+    border: none;
+  }
+    &:hover {
+    background-color: $green-transparent;
+    border: none;
+  }
+    &.active,
+    &:active {
+    background-color: $green-transparent;
+    border: none;
+  }
+}
+
+.custom-btn-nav {
   border: none;
   margin-left: 8px;
 
@@ -25,7 +45,6 @@
     background-color: $green-transparent;
     border: none;
   }
-
 }
 
 .custom-btn-secondary {
