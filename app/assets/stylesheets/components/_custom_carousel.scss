@@ -1,0 +1,9 @@
+.carousel-control-prev-icon span,
+.carousel-control-next-icon span{
+  color: red;
+}
+
+.carousel-control-prev,
+.carousel-control-next{
+  align-self: flex-start; /* Aligns it at the top */
+}

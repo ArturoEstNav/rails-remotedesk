@@ -1,4 +1,4 @@
-.custom-list-item {
+.custom-list {
   // border: none;
   border-color: $element-gray;
   border-width: 2px;
@@ -6,6 +6,12 @@
 }
 
 
-// list-group
+.list-group {
+  background-color: transparent;
+  border-color: $element-gray;
+}
 
-// list-group-item
+.list-group-item {
+  background-color: transparent;
+  border-color: $element-gray;
+}
