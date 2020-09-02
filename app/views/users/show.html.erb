@@ -81,11 +81,10 @@
                         <p class="card-text"><%= offer.company %></p>
                         <div class="card-buttons d-flex justify-content-between align-items-center">
                           <%= link_to "Check job", offer_path(offer), class: "card-button btn btn-primary" %>
-                          <%= link_to ('<i class="fas fa-trash"></i>').html_safe,
+                          <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe,
                                       match_path(offer.matches.select { |match| match.user == current_user }),
                                       :confirm => 'Are you sure?', :method => :delete %>
                         </div>
-
                       </div>
                     </div>
                   <% end %>
@@ -104,7 +103,7 @@
                           <p class="card-text"><%= offer.company %></p>
                           <div class="card-buttons d-flex justify-content-between align-items-center">
                             <%= link_to "Check job", offer_path(offer), class: "card-button btn btn-primary" %>
-                            <%= link_to ('<i class="fas fa-heart"></i>').html_safe, match_path(offer.matches.select { |match| match.user == current_user }), :confirm => 'Are you sure?', :method => :delete %>
+                            <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, match_path(offer.matches.select { |match| match.user == current_user }), :confirm => 'Are you sure?', :method => :delete %>
                           </div>
                         </div>
                       </div>
@@ -145,7 +144,7 @@
                         <p class="card-text"><%= offer.company %></p>
                         <div class="card-buttons d-flex justify-content-between align-items-center">
                           <%= link_to "Check job", offer_path(offer), class: "card-button btn btn-primary" %>
-                          <%= simple_form_for @match do |f| %>
+                          <%= simple_form_for @match, html: { class: "d-flex align-items-center"}  do |f| %>
                             <%= f.input :offer_id, as: :hidden, input_html: { value: offer.id } %>
                             <button class="btn btn-link btn-xs" type="submit">
                               <i class="far fa-heart"></i>
@@ -170,7 +169,7 @@
                           <p class="card-text"><%= offer.company %></p>
                           <div class="card-buttons d-flex justify-content-between align-items-center">
                             <%= link_to "Check job", offer_path(offer), class: "card-button btn btn-primary" %>
-                            <%= simple_form_for @match do |f| %>
+                            <%= simple_form_for @match, html: { class: "d-flex align-items-center"} do |f| %>
                               <%= f.input :offer_id, as: :hidden, input_html: { value: offer.id } %>
                               <button class="btn btn-link btn-xs" type="submit">
                                   <i class="far fa-heart"></i>
