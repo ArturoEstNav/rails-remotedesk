@@ -15,11 +15,15 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      params[:user][:tags].shift
-      tag_ids = params[:user][:tags]
-      tag_ids.each do |tag_id|
-        unless current_user.tags.include?(Tag.find(tag_id))
-          current_user.tags << Tag.find(tag_id)
+      # current_user.photo = params[:user][:photo]
+      # current_user.save!
+      if params[:user][:tags]
+        params[:user][:tags].shift
+        tag_ids = params[:user][:tags]
+        tag_ids.each do |tag_id|
+          unless current_user.tags.include?(Tag.find(tag_id))
+            current_user.tags << Tag.find(tag_id)
+          end
         end
       end
       redirect_to user_path(current_user)

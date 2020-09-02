@@ -11,12 +11,12 @@
         <% else %>
           <%= image_tag "https://st2.depositphotos.com/4111759/12123/v/950/depositphotos_121232794-stock-illustration-male-default-placeholder-avatar-profile.jpg", class: "avatar-large" %>
         <% end %> <br>
-        <!-- put an edit button that hides the ugly form -->
         <%= simple_form_for(current_user, remote: true) do |f| %>
-          <div class="btn btn-success fileinput-button avatar" id="avatar_container">
-            <%= f.input :photo, as: :file, label: false %>
-            <%= f.button :submit, "Change Profile Pic", class: "btn btn-primary"%>
-          </div>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <span class="btn btn-primary fileinput-button">
+            <span>Update Picture</span>
+            <%= f.input_field :photo, as: :file, label: false, class: "form-control-file is-valid file optional", onchange: "form.submit()" %>
+          </span>
         <% end %>
       </div>
       <div class="card custom-card-skills">
