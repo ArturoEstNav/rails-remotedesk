@@ -260,7 +260,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode_utils (1.4.0)
-    uri (0.10.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.4)
@@ -317,7 +316,6 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
-  uri
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

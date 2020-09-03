@@ -3,7 +3,7 @@
 // just overriding the fonts, NOTHING ELSE should be overriden
 // from bootstrap directly ;)
 .btn {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .custom-btn-info {
@@ -56,7 +56,6 @@
   &:hover {
     color: $black;
     border: none;
-
   }
 
   &:active {

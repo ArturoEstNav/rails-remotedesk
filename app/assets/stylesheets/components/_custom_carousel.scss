@@ -1,3 +1,19 @@
+.carousel-control-prev,
+.carousel-control-next {
+  color: $green;
+  position: inherit;
+}
+
+.fa-caret-left::after,
+.fa-caret-right::after {
+  color: $green;
+}
+
+.fa-caret-left::before,
+.fa-caret-right::before {
+  color: $green;
+}
+
 .custom-carousel-container {
   background-color: transparent;
   transition: 250ms ease-in-out;
@@ -7,4 +23,8 @@
   &:hover {
     box-shadow: 4px 4px 2.5px rgba(60, 69, 65, .1);
   }
+}
+
+.custom-card-content {
+  margin-bottom: 24px;
 }
