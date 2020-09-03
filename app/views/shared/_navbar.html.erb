@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+xf<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <%= link_to root_path, class: "navbar-brand" do %>
     <span class="logo_thick text-success">[</span>
     <span class="logo_thin" style="color: #3A403A;"> remote </span>
@@ -28,7 +28,7 @@
         <% else %>
           <%= image_tag "/images/remote-scanner-avatar.jpeg", class: "avatar dropdown-toggle m-1", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-right custom-element-transparent" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", edit_user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
