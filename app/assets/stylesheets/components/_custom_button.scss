@@ -25,6 +25,11 @@
     background-color: $green-transparent;
     border: none;
   }
+
+  &:not(:disabled):not(.disabled):active {
+    background-color: $green-transparent;
+    border: none;
+  }
 }
 
 .custom-btn-nav {
@@ -45,6 +50,11 @@
     background-color: $green-transparent;
     border: none;
   }
+
+  &:not(:disabled):not(.disabled):active {
+    background-color: $green-transparent;
+    border: none;
+  }
 }
 
 .custom-btn-secondary {
@@ -56,11 +66,23 @@
   &:hover {
     color: $black;
     border: none;
+
+    a {
+      color: $black;
+    }
   }
 
   &:active {
    color: $black;
    border: none;
+  }
+
+  &:not(:disabled):not(.disabled):active {
+    border: none;
+
+    a {
+      color: $black;
+    }
   }
 }
 
@@ -83,6 +105,11 @@
   }
 
   &:focus {
+    background-color: transparent;
+    border: none;
+  }
+
+  &:not(:disabled):not(.disabled):active {
     background-color: transparent;
     border: none;
   }
