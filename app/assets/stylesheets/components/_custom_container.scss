@@ -29,15 +29,23 @@ $custom-sm: 530px;
 }
 
 .custom-container-landing {
-  // height: 80vh;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 56px;
+  justify-content: center;
 }
 
 .custom-container-about {
-  flex-basis: 400px;
-  text-align: right;
+
   height: calc(100vh - 60px);
+  flex-basis: 270px;
+  text-align: center;
+
+  @media screen and (min-width: $big-mobile) {
+    flex-basis: 370px;
+  }
+
+  @media screen and (min-width: $custom-sm) {
+    flex-basis: 750px;
+  }
 }
+
+
