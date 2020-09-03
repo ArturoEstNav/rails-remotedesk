@@ -33,9 +33,11 @@ $custom-sm: 530px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-bottom: 56px;
 }
 
 .custom-container-about {
   flex-basis: 400px;
   text-align: right;
+  height: calc(100vh - 60px);
 }
