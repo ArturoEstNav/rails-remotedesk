@@ -19,12 +19,12 @@
         <% end %>
       </div>
 
-      <div class="card custom-card-skills">
+      <div class="card custom-card-skills mb-3">
         <ul class="list-group custom-list">
           <li class="list-group-item custom-list-item">
             <div class="d-flex justify-content-between align-items-center">
-              <span>Skills</span>
-              <%= link_to "+", edit_user_path(current_user), class: "btn btn-info custom-btn-info" %>
+              <div>Skills</div>
+              <%= link_to "+", edit_user_path(current_user), class: "btn btn-info custom-btn-info custom-btn-sm" %>
             </div>
           </li>
           <li class="list-group-item custom-list-item">
@@ -80,7 +80,7 @@
                 <div class="custom-carousel-cards">
                   <% @saved.first.each do |offer|  %>
                     <div class="card custom-card custom-card-profile">
-                      <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="card-body custom-card-body d-flex flex-column justify-content-between">
                         <div class="custom-card-content">
                           <h4 class="card-title"><%= offer.title %></h4>
                           <p class="card-text"><%= offer.company %></p>
@@ -95,7 +95,6 @@
                 </div>
               </div>
             </div>
-
             <% unless @saved.empty? %>
               <% @saved.last(@saved.size-1).each do |triplet| %>
                 <div class="carousel-item">
@@ -103,7 +102,7 @@
                     <div class="custom-carousel-cards">
                       <% triplet.each do |offer| %>
                         <div class="card custom-card custom-card-profile">
-                          <div class="card-body d-flex flex-column justify-content-between">
+                          <div class="card-body custom-card-body d-flex flex-column justify-content-between">
                             <div class="custom-card-content">
                               <h4 class="card-title"><%= offer.title %></h4>
                               <p class="card-text"><%= offer.company %></p>
@@ -149,7 +148,7 @@
                 <div class="custom-carousel-cards">
                   <% @suggested.first.each do |offer|  %>
                     <div class="card custom-card custom-card-profile">
-                      <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="card-body custom-card-body d-flex flex-column justify-content-between">
                         <div class="custom-card-content">
                           <h4 class="card-title"><%= offer.title %></h4>
                           <p class="card-text"><%= offer.company %></p>
@@ -171,7 +170,7 @@
                   <div class="custom-carousel-cards">
                     <% triplet.each do |offer| %>
                       <div class="card custom-card custom-card-profile">
-                        <div class="card-body d-flex flex-column justify-content-between">
+                        <div class="card-body custom-card-body custom-card-body d-flex flex-column justify-content-between">
                           <div class="custom-card-content">
                             <h4 class="card-title"><%= offer.title %></h4>
                             <p class="card-text"><%= offer.company %></p>
@@ -214,7 +213,7 @@
                 <div class="custom-carousel-cards">
                   <% @posted.first.each do |offer|  %>
                     <div class="card custom-card custom-card-profile">
-                      <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="card-body custom-card-body d-flex flex-column justify-content-between">
                         <div class="custom-card-content">
                           <h4 class="card-title"><%= offer.title %></h4>
                           <p class="card-text"><%= offer.company %></p>
@@ -236,7 +235,7 @@
                   <div class="custom-carousel-cards">
                     <% triplet.each do |offer| %>
                       <div class="card custom-card custom-card-profile">
-                        <div class="card-body d-flex flex-column justify-content-between">
+                        <div class="card-body custom-card-body d-flex flex-column justify-content-between">
                           <div class="custom-card-content">
                             <h4 class="card-title"><%= offer.title %></h4>
                             <p class="card-text"><%= offer.company %></p>

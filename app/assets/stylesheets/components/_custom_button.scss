@@ -3,7 +3,7 @@
 // just overriding the fonts, NOTHING ELSE should be overriden
 // from bootstrap directly ;)
 .btn {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .custom-btn-info {
@@ -29,6 +29,22 @@
 
   &:not(:disabled):not(.disabled):active {
     background-color: $green-transparent;
+    border: none;
+  }
+}
+
+.custom-btn-sm {
+  width: 32px;
+  box-sizing: border-box;
+  text-align: center;
+
+  &:not(:disabled):not(.disabled):hover {
+    background-color: transparent;
+    border: none;
+  }
+
+  &:not(:disabled):not(.disabled):active {
+    background-color: transparent;
     border: none;
   }
 }
@@ -155,4 +171,8 @@
   &:not(:disabled):not(.disabled):active {
     border: none;
   }
+}
+
+.custom-btn-sm {
+  width: 40px;
 }
