@@ -12,7 +12,22 @@
   }
 }
 
+.custom-element-white {
+  background-color: $bone-gray;
 
+  &:active {
+    background-color: $bone-gray;
+
+  }
+
+  &:focus {
+    background-color: $bone-gray;
+  }
+
+  a:hover {
+    background-color: $dutch-white;
+  }
+}
 
 .custom-bar-landing-spacing {
   margin-right: 8px;
