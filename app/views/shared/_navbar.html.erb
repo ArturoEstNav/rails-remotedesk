@@ -28,7 +28,7 @@
         <% else %>
           <%= image_tag "/images/remote-scanner-avatar.jpeg", class: "avatar dropdown-toggle m-1", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
-          <div class="dropdown-menu dropdown-menu-right custom-element-transparent" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-right custom-element-white" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", edit_user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>

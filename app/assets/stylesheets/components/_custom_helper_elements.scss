@@ -1,5 +1,32 @@
+
 .custom-element-transparent {
   background-color: transparent;
+
+  &:active {
+    background-color: transparent;
+
+  }
+
+  &:focus {
+    background-color: transparent;
+  }
+}
+
+.custom-element-white {
+  background-color: $bone-gray;
+
+  &:active {
+    background-color: $bone-gray;
+
+  }
+
+  &:focus {
+    background-color: $bone-gray;
+  }
+
+  a:hover {
+    background-color: $dutch-white;
+  }
 }
 
 .custom-bar-landing-spacing {

@@ -10,6 +10,7 @@
   border: none;
   // margin-left: 8px;
   width: 150px;
+  text-align: center;
 
   &.focus,
   &:focus {
@@ -22,6 +23,11 @@
   }
     &.active,
     &:active {
+    background-color: $green-transparent;
+    border: none;
+  }
+
+  &:not(:disabled):not(.disabled):active {
     background-color: $green-transparent;
     border: none;
   }
@@ -45,6 +51,18 @@
     background-color: $green-transparent;
     border: none;
   }
+
+  &:not(:disabled):not(.disabled):active {
+    background-color: $green-transparent;
+    border: none;
+  }
+}
+
+
+.custom-btn-primary {
+  &:not(:disabled):not(.disabled):active{
+    border: none;
+  }
 }
 
 .custom-btn-secondary {
@@ -56,11 +74,23 @@
   &:hover {
     color: $black;
     border: none;
+
+    a {
+      color: $black;
+    }
   }
 
   &:active {
    color: $black;
    border: none;
+  }
+
+  &:not(:disabled):not(.disabled):active {
+    border: none;
+
+    a {
+      color: $black;
+    }
   }
 }
 
@@ -83,6 +113,11 @@
   }
 
   &:focus {
+    background-color: transparent;
+    border: none;
+  }
+
+  &:not(:disabled):not(.disabled):active {
     background-color: transparent;
     border: none;
   }
@@ -114,4 +149,10 @@
 
 .icon-heart {
   color: $green;
+}
+
+.custom-btn-success {
+  &:not(:disabled):not(.disabled):active {
+    border: none;
+  }
 }

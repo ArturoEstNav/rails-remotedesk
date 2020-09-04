@@ -15,6 +15,7 @@ h4, h5, h6 {
 
 a {
   color: $black;
+  text-align: center;
   &:hover {
     text-decoration: none;
     font-weight: 600;
@@ -26,13 +27,21 @@ a {
   margin-bottom: 0.5em;
   font-size: 24pt;
 
+  @media screen and (min-width: $huge-mobile){
+    font-size: 40pt;
+  }
+
   @media screen and (min-width: $custom-sm){
     font-size: 36pt;
   }
 
-  @media screen and (min-width: $big-mobile){
-    font-size: 56pt;
+  @media screen and (min-width: $custom-md){
+    font-size: 54pt;
   }
+}
+
+.description {
+  margin-bottom: 2em;
 }
 
 .logo_thin {

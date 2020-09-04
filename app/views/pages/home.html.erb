@@ -39,7 +39,8 @@
     <h2>Recently posted jobs</h2>
     <div class="custom-offers-container">
       <% @new_offers.each do |offer| %>
-        <div class="card custom-card" id="card-<%= "#{offer.id}" %>">
+
+        <div class="card custom-card card-landing" id="card-<%= "#{offer.id}" %>">
           <div class="card-body  d-flex flex-column justify-content-between">
             <div>
               <h5 class="card-title"><%= offer.title %></h5>

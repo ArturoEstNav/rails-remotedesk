@@ -11,22 +11,22 @@
           <%= f.input :first_name,
                       required: true,
                       autofocus: true,
-                      input_html: { autocomplete: "first-name" }%>
+                      input_html: { autocomplete: "first-name" }, input_html: {class: "custom-element-transparent"} %>
           <%= f.input :last_name,
                       required: true,
                       autofocus: true,
-                      input_html: { autocomplete: "last-name" }%>
+                      input_html: { autocomplete: "last-name" }, input_html: {class: "custom-element-transparent"} %>
           <%= f.input :email,
                       required: true,
                       autofocus: true,
-                      input_html: { autocomplete: "email" }%>
+                      input_html: { autocomplete: "email" }, input_html: {class: "custom-element-transparent"} %>
           <%= f.input :password,
                       required: true,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
+                      input_html: { autocomplete: "new-password" }, input_html: {class: "custom-element-transparent"}  %>
           <%= f.input :password_confirmation,
                       required: true,
-                      input_html: { autocomplete: "new-password" } %>
+                      input_html: { autocomplete: "new-password" }, input_html: {class: "custom-element-transparent"}  %>
         </div>
 
         <div class="form-actions">

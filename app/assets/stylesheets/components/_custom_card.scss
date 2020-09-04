@@ -9,6 +9,20 @@
   }
 }
 
+.card-landing{
+  gap: 16px;
+  height: auto;
+
+  @media screen and (min-width: $custom-md) {
+    box-sizing: border-box;
+    height: 340px;
+  }
+
+  @media screen and (min-width: $custom-sm) {
+    height: 360px;
+  }
+}
+
 .custom-offer-result {
   display: flex;
   flex-direction: row;
@@ -22,11 +36,9 @@
 
 .custom-card-profile {
   width: 220px;
-
 }
 
 .custom-card-skills {
   border: none;
   background-color: transparent;
-
 }
