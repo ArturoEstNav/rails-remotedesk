@@ -16,14 +16,32 @@
 
 .custom-carousel-container {
   background-color: transparent;
-  transition: 250ms ease-in-out;
-  border-color: $element-gray;
   padding: 24px;
+}
 
-  &:hover {
-    box-shadow: 4px 4px 2.5px rgba(60, 69, 65, .1);
+.custom-carousel-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px 16px;
+  color: $black;
+
+  @media screen and (max-width: $custom-lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media screen and (max-width: $custom-md) {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
+
+$big-mobile: 425px;
+$huge-mobile: 577px;
+$custom-sm: 768px;
+$custom-md: 992px;
+$custom-lg: 1200px;
+$two-cards: 840px;
 
 .custom-card-content {
   margin-bottom: 24px;
