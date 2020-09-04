@@ -14,5 +14,7 @@
     <% end %>
   </div>
 <% else %>
-  <%= link_to ('<i class="far fa-heart"></i>').html_safe, new_user_session_path %>
+  <div class="d-flex align-items-center">
+    <%= link_to "<button class='btn btn-link btn-xs'><i class='far fa-heart icon-unheart'></i></button>".html_safe.html_safe, new_user_session_path %>
+  </div>
 <% end %>

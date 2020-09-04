@@ -50,8 +50,15 @@
     </div>
     <div class="col-9 d-flex flex-column align-items-left">
       <%# Saved_offers/Matches section %>
-      <% unless @saved.empty? %>
+      <% if @saved.empty? %>
+        <div class= "d-flex flex-column justify-content-between align-items-left mb-2" >
+            <h4>Saved jobs</h4><br>
+            <div>
+              <h5>You don have saved jobs! <%= link_to "Go find a job!", root_path, { style: 'color:#54B33D;' } %></h5>
+            </div>
+        </div>
 
+      <% else %>
         <div id="carouselSavedOffersControls" class="custom-container-section carousel slide custom-carousel-container" data-ride="carousel">
           <div class= "d-flex justify-content-between align-items-center mb-2" >
             <h4>Saved jobs</h4>
