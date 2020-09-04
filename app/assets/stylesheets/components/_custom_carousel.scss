@@ -16,7 +16,7 @@
 
 .custom-carousel-container {
   background-color: transparent;
-  padding: 24px;
+  padding: 24px 0;
 }
 
 .custom-carousel-cards {
@@ -36,12 +36,9 @@
   }
 }
 
-$big-mobile: 425px;
-$huge-mobile: 577px;
-$custom-sm: 768px;
-$custom-md: 992px;
-$custom-lg: 1200px;
-$two-cards: 840px;
+.carousel-item {
+  margin: 0;
+}
 
 .custom-card-content {
   margin-bottom: 24px;
