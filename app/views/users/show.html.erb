@@ -19,12 +19,12 @@
         <% end %>
       </div>
 
-      <div class="card custom-card-skills">
+      <div class="card custom-card-skills mb-3">
         <ul class="list-group custom-list">
           <li class="list-group-item custom-list-item">
             <div class="d-flex justify-content-between align-items-center">
-              <span>Skills</span>
-              <%= link_to "+", edit_user_path(current_user), class: "btn btn-info custom-btn-info" %>
+              <div>Skills</div>
+              <%= link_to "+", edit_user_path(current_user), class: "btn btn-info custom-btn-info custom-btn-sm" %>
             </div>
           </li>
           <li class="list-group-item custom-list-item">
@@ -88,7 +88,6 @@
                 </div>
               </div>
             </div>
-
             <% unless @saved.empty? %>
               <% @saved.last(@saved.size-1).each do |triplet| %>
                 <div class="carousel-item">
