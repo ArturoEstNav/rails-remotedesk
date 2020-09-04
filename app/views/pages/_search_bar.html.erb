@@ -1,0 +1,10 @@
+<div id="search-data" class= "form-search search-data" data-skills="<%= @tags.to_json %>">
+  <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
+    <div class="d-flex">
+      <%= text_field_tag :q, nil, autocomplete: :off,
+        class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
+        placeholder: "Search by programming language..." %>
+      <%= submit_tag "Search", class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
