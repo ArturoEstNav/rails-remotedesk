@@ -5,6 +5,10 @@ $custom-lg: 1188px;
 $custom-md: 881px;
 $custom-sm: 530px;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @import "alert";
 @import "avatar";
 @import "navbar";
@@ -20,4 +24,4 @@ $custom-sm: 530px;
 @import "auto-complete";
 @import "carousel_card";
 @import "custom_carousel";
-@import "search-bar";
+@import "search_dashboard";

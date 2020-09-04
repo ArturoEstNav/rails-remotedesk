@@ -6,7 +6,6 @@
       <%= f.input :gender, label: 'Gender', as: :select, collection: ['Female', 'Male', 'Non-binary'] %>
       <%= f.input :residence_country, label: 'Country of residence' %>
       <%= f.input :postal_code, label: 'Zip Code' %>
-      <!-- I need to get it like the others -->
       <%= f.input :tags, label: 'Input skills', collection: @tags, input_html: { multiple: true }%>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>

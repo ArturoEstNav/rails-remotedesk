@@ -1,14 +1,18 @@
 <div class="custom-container-page">
 
-  <% if @params.nil? %>
+  <% if @query.nil? %>
     <%= render partial: "landing" %>
   <% else %>
     <%= render partial: "search_dashboard" %> <br> 
     <%if @offers and not @offers.empty? %>
       <div class="custom-container-section">
-        <h2><%= "#{@params.capitalize} job offers" %></h2>
+        <% if @job_type %>
+          <h2><%= "#{@query.capitalize} #{@job_type.capitalize} jobs" %></h2>
+        <% else %>
+          <h2><%= "#{@query.capitalize} jobs" %></h2>
+        <% end %>
         <% @offers.each do |offer| %>
-          <div class="card custom-card custom-offer-result">
+          <div class="card custom-card custom-offer-result", id="card-<%= "#{offer.id}" %>">
             <div>
               <h3 class="card-title"><%= offer.title %></h3>
               <h5 class="card-text"><%= offer.company.capitalize %></h5>
@@ -16,19 +20,10 @@
                 <%= link_to tag.name.capitalize, "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
               <% end %>
             </div>
-            <div class="offer-buttons d-flex align-items-end justify-content-end">
+            <div class="card-buttons d-flex justify-content-between align-items-center">
                 <div class="d-flex">
-                  <%= link_to "Check job", offer_path(offer), class: "card-button btn btn-warning" %>
-                  <% if user_signed_in? %>
-                    <%= simple_form_for @match, html: { class: "d-flex align-items-center"} do |f| %>
-                      <%= f.input :offer_id, as: :hidden, input_html: { value: offer.id } %>
-                          <button class="btn btn-link btn-xs" type="submit">
-                            <i class="far fa-heart"></i>
-                          </button>
-                    <% end %>
-                  <% else %>
-                    <%= link_to ('<i class="far fa-heart"></i>').html_safe, new_user_session_path, class: "btn btn-info custom-btn-info" %>
-                  <% end %>
+                  <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
+                  <%= render partial: "shared/heart", locals: {offer: offer, query: @query, redirect_url: root_path} %>
                 </div>
             </div>
           </div>
@@ -36,19 +31,19 @@
         <% end %>
       </div>
     <% else %>
-      <h2 style="color:#54B33D;"><strong> <%= "No '#{@params.capitalize}' related jobs. Please search again!" %></strong></h2>
+      <h2 style="color:#54B33D;"><strong> <%= "No '#{@query.capitalize}' related jobs. Please search again!" %></strong></h2>
     <%end%>
   <% end %>
 
   <div class="custom-container-section">
-    <h2>Recently added jobs</h2>
+    <h2>Recently posted jobs</h2>
     <div class="custom-offers-container">
       <% @new_offers.each do |offer| %>
-        <div class="card custom-card">
+        <div class="card custom-card" id="card-<%= "#{offer.id}" %>">
           <div class="card-body  d-flex flex-column justify-content-between">
             <div>
               <h5 class="card-title"><%= offer.title %></h5>
-              <p> <%= offer.company %></p>
+              <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p> 
             </div>
             <div>
               <p class="card-text">
@@ -58,21 +53,11 @@
                    </span>
                 <% end %>
               </p>
-              <div class="d-flex">
-                  <%= link_to "Check job", offer_path(offer), class: "card-button btn btn-warning" %>
-                  <% if user_signed_in? %>
-                    <%= simple_form_for @match, html: { class: "d-flex align-items-center"} do |f| %>
-                      <%= f.input :offer_id, as: :hidden, input_html: { value: offer.id } %>
-                        <button class="btn btn-link btn-xs" type="submit">
-                          <i class="far fa-heart"></i>
-                        </button>
-                    <% end %>
-                  <% else %>
-                  <%= link_to ('<i class="far fa-heart"></i>').html_safe, new_user_session_path, class: "btn btn-info custom-btn-info" %>
-                <% end %>
+              <div class="card-buttons d-flex justify-content-between align-items-center">
+                <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
+                <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: root_path} %>
               </div>
             </div>
-
           </div>
         </div>
 

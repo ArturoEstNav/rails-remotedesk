@@ -13,7 +13,9 @@ class PagesController < ApplicationController
     elsif params[:q].present?
       @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
     end
-    @params = params[:q]
+    @query = params[:q]
+    @job_type = params[:job_type]
+    @location_type = params[:location_type]
     @match = Match.new
   end
 

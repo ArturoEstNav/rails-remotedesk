@@ -1,11 +1,24 @@
-<%= render partial: "search_bar" %>
-    <!--<div class="filter-buttons">
-          <%= radio_button_tag(:job_type, "Full-time") %>
-          <%= label_tag(:job_type, "Full-time") %>
-          <%= radio_button_tag(:job_type, "Part-time") %>
-          <%= label_tag(:job_type, "Part-time") %>
-          <%= radio_button_tag(:location_type, "Remote") %>
-          <%= label_tag(:location_type, "Remote") %>
-          <%= radio_button_tag(:location_type, "Work from home") %>
-          <%= label_tag(:location_type, "Work from home") %>
-        </div> <br> -->
+<div id="search-data" class= "form-search search-data card custom-card custom-search-dashboard" data-skills="<%= @tags.to_json %>">
+  <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
+    <div class="d-flex mb-2">
+      <%= text_field_tag :q, params[:q], autocomplete: :off,
+        class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
+        placeholder: "Search by programming language..." %>
+      <%= submit_tag "Search", class: "btn btn-success" %>
+    </div>
+    <div class="d-flex justify-content-between align-items-center custom-container-search-buttons">
+      <div class="job-type-buttons">
+        <%= radio_button_tag(:job_type, "Full-time") %>
+        <%= label_tag(:job_type, "Full-time") %>
+        <%= radio_button_tag(:job_type, "Part-time") %>
+        <%= label_tag(:job_type, "Part-time") %>
+      </div>
+      <div class="location-type-buttons">
+        <%= radio_button_tag(:location_type, "Remote") %>
+        <%= label_tag(:location_type, "Remote") %>
+        <%= radio_button_tag(:location_type, "Work from home") %>
+        <%= label_tag(:location_type, "Work from home") %>
+      </div>
+    </div>
+  <% end %>
+</div>
