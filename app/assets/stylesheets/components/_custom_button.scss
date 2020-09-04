@@ -139,6 +139,18 @@
   cursor: pointer;
 }
 
+.heart-button:hover .icon-unheart,
+.heart-button .icon-heart {
+    display: none;
+}
+.heart-button:hover .icon-heart {
+    display: inline;
+}
+
+.icon-heart {
+  color: $green;
+}
+
 .custom-btn-success {
   &:not(:disabled):not(.disabled):active {
     border: none;

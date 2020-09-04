@@ -25,14 +25,14 @@ a {
 .custom-text-boldest {
   font-weight: 600;
   margin-bottom: 0.5em;
-  font-size: 34pt;
+  font-size: 24pt;
 
   @media screen and (min-width: $huge-mobile){
     font-size: 40pt;
   }
 
   @media screen and (min-width: $custom-sm){
-    font-size: 48pt;
+    font-size: 36pt;
   }
 
   @media screen and (min-width: $custom-md){

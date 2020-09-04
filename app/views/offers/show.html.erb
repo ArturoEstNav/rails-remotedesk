@@ -1,13 +1,13 @@
 <% content_for :meta_title, "#{@offer.title} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @offer.description %>
-<% #content_for :meta_image, cl_image_path(@offer.photo.path) %>
+<%# <% #content_for :meta_image, cl_image_path(@offer.photo.path) %>
 
 
 <div class="custom-container-page">
     <% if user_signed_in? %>
-      <%= link_to "<< Back to you job matches", user_path(current_user) %>
+      <%= link_to "<< Go to your jobs", user_path(current_user) %>
     <% else %>
-      <%= link_to "<< Back to all jobs", root_path %>
+      <%= link_to "<< Go to all jobs", root_path %>
     <% end %>
     <!--
       <%= link_to "More #{@offer.category} jobs >>", root_path %>
@@ -26,28 +26,14 @@
       </div>
     </div>
       <!-- <div class="sticky-top" id="offer-summary"> -->
-    <div id="offer-summary" class="custom-container-issuer">
-      <h5> This offer was found at </h5>
+    <div id="offer-summary">
+      <h5> This job was found at </h5>
       <h3 class="mt-3"><%= @offer.source.capitalize %></h3>
-      <div class="custom-apply-buttons">
+      <div class="custom-apply-buttons", id="card-<%= "#{@offer.id}"%>" >
+
         <%= link_to "Apply for this job", @offer.listing_url, class: "btn btn-success" %>
         <div>
-          <% if user_signed_in? %>
-            <% if @offer.users.include?(current_user) %>
-              <%= link_to '<i class="fas fa-trash"></i>'.html_safe, match_path(@offer.matches.select { |match| match.user == current_user }), :confirm => 'Are you sure?', :method => :delete %>
-            <% else %>
-            <div class="d-flex align-items-center">
-              <%= simple_form_for @match do |f| %>
-                <%= f.input :offer_id, as: :hidden, input_html: { value: @offer.id } %>
-                <button type="submit" class="btn custom-button-fix" title="Add to favorites">
-                    <i class="far fa-heart"></i>
-                </button>
-              <% end %>
-            <% end %>
-            </div>
-          <% else %>
-            <%= link_to ('<i class="far fa-heart"></i>').html_safe, new_user_session_path %>
-          <% end %>
+          <%= render partial: "shared/heart", locals: {offer: @offer, query: '', redirect_url: offer_path(@offer)} %>
         </div>
       </div>
     </div>
@@ -65,7 +51,7 @@
         <li class="nav-item" role="presentation">
           <a class="nav-link" id="specifications-tab"
             data-toggle="tab" href="#specifications" role="tab"
-            aria-controls="specifications" aria-selected="false">Specifications</a>
+            aria-controls="specifications" aria-selected="false">Summary</a>
         </li>
       </ul>
             <div class="tab-content custom-container-offer" id="myTabContent">
@@ -76,7 +62,7 @@
               </div>
               <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
                 <div class="custom-container-offer">
-                    <h2>Job specifications</h2>
+                    <h2>Job Summary</h2>
                     <ul>
                       <li class="custom_table_row ct1">
                         <div class="custom_key">Company:</div>
@@ -84,19 +70,19 @@
                       </li>
                       <li class="custom_table_row">
                         <div class="custom_key">Salary:</div>
-                        <div class="custom_value"><%= @offer.salary.empty? ? "Not specified" : @offer.salary %></div>
+                        <div class="custom_value"><%= @offer.salary.blank? ? "Not specified" : @offer.salary %></div>
                       </li>
                       <li class="custom_table_row ct1">
                         <div class="custom_key">Category:</div>
-                        <div class="custom_value"><%= @offer.category.empty? ? "Not specified" : @offer.category %></div>
+                        <div class="custom_value"><%= @offer.category.blank? ? "Not specified" : @offer.category %></div>
                       </li>
                       <li class="custom_table_row">
                         <div class="custom_key">Job type:</div>
-                        <div class="custom_value"><%= @offer.job_type.empty? ? "Not specified" : @offer.job_type.capitalize.gsub(/[^a-zA-Z]/," ") %></div>
+                        <div class="custom_value"><%= @offer.job_type.blank? ? "Not specified" : @offer.job_type.capitalize.gsub(/[^a-zA-Z]/," ") %></div>
                       </li>
                       <li class="custom_table_row ct1">
                         <div class="custom_key">Location:</div>
-                        <div class="custom_value"><%= @offer.location.empty? ? "Not specified" : @offer.location %></div>
+                        <div class="custom_value"><%= @offer.location.blank? ? "Not specified" : @offer.location %></div>
                       </li>
                       <li class="custom_table_row">
                         <div class="custom_key">Posting site:</div>

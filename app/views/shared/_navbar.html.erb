@@ -1,4 +1,4 @@
-xf<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <%= link_to root_path, class: "navbar-brand" do %>
     <span class="logo_thick text-success">[</span>
     <span class="logo_thin" style="color: #3A403A;"> remote </span>
@@ -17,12 +17,12 @@ xf<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
           <%= link_to "My jobs", user_path(current_user), class: "btn btn-info custom-btn-nav"%>
         </li>
         <li class="nav-item">
-          <%= link_to "Find a Job", root_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Find a job", root_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Post a Job", new_offer_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Post a job", new_offer_path, class: "btn btn-info custom-btn-nav" %>
         </li>
-        <li class="nav-item dropdown ml-2">
+        <li class="nav-item dropdown ml-3">
         <% if current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
@@ -35,10 +35,10 @@ xf<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "About Us", about_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "About us", about_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Post a Job", new_offer_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Post a job", new_offer_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "btn btn-info custom-btn-nav" %>

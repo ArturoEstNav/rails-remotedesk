@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <div class="d-flex align-items-center">
+    <% if offer.users.include?(current_user) %>
+      <%= link_to "<button class='btn btn-link btn-xs'><i class='fas fa-heart icon-heart'></i></button>".html_safe,
+                  match_path(offer.matches.select { |match| match.user == current_user }, q: query, redirect_url: redirect_url),
+                  method: :delete %>
+    <% else %>
+      <%= link_to matches_path(offer_id: offer.id, q: query, redirect_url: redirect_url), method: :post do %>
+        <button class="btn btn-link btn-xs heart-button" type="submit">
+          <i class="far fa-heart icon-unheart"></i>
+          <i class="fas fa-heart icon-heart"></i>
+        </button> 
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <%= link_to ('<i class="far fa-heart"></i>').html_safe, new_user_session_path %>
+<% end %>

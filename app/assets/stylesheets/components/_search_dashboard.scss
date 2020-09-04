@@ -1,0 +1,12 @@
+.custom-search-dashboard {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 78px;
+  padding: 24px;
+  background-color: $bone-gray;
+  z-index: 2;
+}
+
+.custom-container-search-buttons {
+  width: 40%;
+}

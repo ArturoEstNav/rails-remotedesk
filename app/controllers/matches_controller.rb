@@ -1,23 +1,22 @@
 class MatchesController < ApplicationController
   def create
-    @match = Match.new(match_params)
+    @match = Match.new(offer_id: params[:offer_id])
     @match.user = current_user
-    if @match.save
-      redirect_to user_path(current_user)
+    @match.save
+    if !params[:q].empty?
+      redirect_to "#{params[:redirect_url]}?q=#{params[:q]}&commit=Search#card-#{params[:offer_id]}"
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to "#{params[:redirect_url]}#card-#{params[:offer_id]}"
     end
   end
 
   def destroy
     @match = Match.find(params[:id])
     @match.destroy
-    redirect_back(fallback_location: root_path)
-  end
-
-  private
-
-  def match_params
-    params.require(:match).permit(:offer_id)
+    if !params[:q].empty?
+      redirect_to "#{params[:redirect_url]}?q=#{params[:q]}&commit=Search#card-#{@match.offer.id}"
+    else
+      redirect_to "#{params[:redirect_url]}#card-#{@match.offer.id}"
+    end
   end
 end
