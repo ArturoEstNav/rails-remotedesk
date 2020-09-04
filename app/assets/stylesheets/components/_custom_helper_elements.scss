@@ -1,6 +1,18 @@
+
 .custom-element-transparent {
   background-color: transparent;
+
+  &:active {
+    background-color: transparent;
+
+  }
+
+  &:focus {
+    background-color: transparent;
+  }
 }
+
+
 
 .custom-bar-landing-spacing {
   margin-right: 8px;
