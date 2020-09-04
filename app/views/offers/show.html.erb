@@ -12,12 +12,12 @@
     <!--
       <%= link_to "More #{@offer.category} jobs >>", root_path %>
      -->
-  <div class="custom-container-offer d-flex justify-content-between">
-    <div>
+  <div class="custom-container-preview">
+    <div class="custom-offer-data">
       <h3><%= @offer.title %></h3>
       <p><strong><%= "POSTED #{@offer.posting_date.strftime('%^b %d, %Y')}" %></strong></p>
       <h5><%= "#{@offer.company} | #{@offer.location}" %></h5>
-      <div class="d-flex justify-content-left">
+      <div class="custom-container-tags">
         <% @offer.tags.each do |tag| %>
           <div>
             <%= link_to tag.name, "/?q=#{tag.name}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
@@ -26,10 +26,10 @@
       </div>
     </div>
       <!-- <div class="sticky-top" id="offer-summary"> -->
-    <div id="offer-summary">
+    <div id="offer-summary" class="custom-container-issuer">
       <h5> This offer was found at </h5>
-      <h3 class="mt-4"><%= @offer.source.capitalize %></h3>
-      <div class="d-flex justify-content-between align-items-center">
+      <h3 class="mt-3"><%= @offer.source.capitalize %></h3>
+      <div class="custom-apply-buttons">
         <%= link_to "Apply for this job", @offer.listing_url, class: "btn btn-success" %>
         <div>
           <% if user_signed_in? %>
