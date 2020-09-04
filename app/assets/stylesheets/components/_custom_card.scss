@@ -35,8 +35,17 @@
 }
 
 .custom-card-profile {
+  display: inline-block;
   width: 220px;
+  height: 320px;
+  margin-right: 16px;
 }
+
+
+.custom-card-body {
+  height: 100%;
+}
+
 
 .custom-card-skills {
   border: none;

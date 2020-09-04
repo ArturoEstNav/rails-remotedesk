@@ -4,14 +4,14 @@
 
 
 <div class="custom-container-page">
-    <% if user_signed_in? %>
-      <div class="d-flex justify-content-between">
-        <%= link_to "<< Go to your jobs", user_path(current_user) %>
+    <!-- <% if user_signed_in? %>
         <%= link_to "<< Back to all jobs", root_path %>
-      </div>
+       <div class="d-flex justify-content-between">
+        <%= link_to "<< Go to your jobs", user_path(current_user) %>
+       </div>
     <% else %>
       <%= link_to "<< Go to all jobs", root_path %>
-    <% end %>
+    <% end %> -->
     <!--
       <%= link_to "More #{@offer.category} jobs >>", root_path %>
      -->

@@ -1,4 +1,4 @@
-<div id="search-data" class= "form-search search-data card custom-card custom-search-dashboard" data-skills="<%= @tags.to_json %>">
+<div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>">
   <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
     <div class="d-flex mb-2">
       <%= text_field_tag :q, params[:q], autocomplete: :off,
