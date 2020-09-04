@@ -1,7 +1,10 @@
-$big-mobile: 769px;
-$custom-lg: 1188px;
-$custom-md: 881px;
-$custom-sm: 530px;
+
+$big-mobile: 425px;
+$huge-mobile: 500px;
+$custom-sm: 768px;
+$custom-md: 992px;
+$custom-lg: 1200px;
+$two-cards: 840px;
 
 .custom-container-page{
   margin: 96px 0;
@@ -22,7 +25,12 @@ $custom-sm: 530px;
   gap: 16px 16px;
   color: $black;
 
-  @media screen and (max-width: $big-mobile) {
+  @media screen and (max-width: $custom-md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media screen and (max-width: $custom-sm) {
     grid-template-columns: 1fr;
     gap: 16px;
   }
@@ -32,11 +40,10 @@ $custom-sm: 530px;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: calc(80vh - 60px);
 }
 
 .custom-container-about {
-
-  height: calc(100vh - 60px);
   flex-basis: 270px;
   text-align: center;
 
@@ -45,6 +52,10 @@ $custom-sm: 530px;
   }
 
   @media screen and (min-width: $custom-sm) {
+    flex-basis: 560px;
+  }
+
+  @media screen and (min-width: $custom-md) {
     flex-basis: 750px;
   }
 }

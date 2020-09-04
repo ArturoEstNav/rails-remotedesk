@@ -1,5 +1,4 @@
-// $small-conta: 575px;
-$big-mobile: 576px;
+$big-mobile: 425px;
 $custom-sm: 768px;
 $custom-md: 992px;
 $custom-lg: 1200px;
@@ -13,6 +12,10 @@ $custom-lg: 1200px;
   background: $bone-gray;
   padding: 16px 64px;
 
+  @media screen and (max-width: $big-mobile) {
+    padding: 16px 24px;
+  }
+
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -22,22 +25,4 @@ $custom-lg: 1200px;
 .navbar-lewagon .navbar-brand img {
   // width: 40px;
 }
-// .custom-navbar-size {
-//     border: 1px solid #000;
-//     @media screen and (min-width: $big-mobile) {
-//       width: 540px;
-//     }
-
-//     @media screen and (min-width: $custom-sm) {
-//      width: 720px;
-//     }
-
-//     @media screen and (min-width: $custom-md) {
-//       width: 960px;
-//     }
-
-//     @media screen and (min-width: $custom-lg) {
-//       width: 1140;
-//     }
-// }
 

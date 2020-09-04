@@ -27,13 +27,21 @@ a {
   margin-bottom: 0.5em;
   font-size: 34pt;
 
+  @media screen and (min-width: $huge-mobile){
+    font-size: 40pt;
+  }
+
   @media screen and (min-width: $custom-sm){
     font-size: 48pt;
   }
 
-  @media screen and (min-width: $big-mobile){
-    font-size: 68pt;
+  @media screen and (min-width: $custom-md){
+    font-size: 54pt;
   }
+}
+
+.description {
+  margin-bottom: 2em;
 }
 
 .logo_thin {
