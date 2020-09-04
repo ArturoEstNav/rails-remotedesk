@@ -2,12 +2,12 @@
   <h2>Edit your information</h2>
     <%= simple_form_for current_user do |f| %>
       <%= f.input :first_name, label: 'First name', class: "custom-element-transparent" %>
-      <%= f.input :last_name, label: 'Last name', class: "custom-element-transparent"  %>
-      <%= f.input :gender, label: 'Gender', as: :select, collection: ['Female', 'Male', 'Non-binary'], class: "custom-element-transparent"  %>
-      <%= f.input :residence_country, label: 'Country of residence' %>
-      <%= f.input :postal_code, label: 'Zip Code' %>
+      <%= f.input :last_name, label: 'Last name', input_html: {class: "custom-element-transparent"} %>
+      <%= f.input :gender, label: 'Gender', as: :select, collection: ['Female', 'Male', 'Non-binary'], input_html: {class: "custom-element-transparent"} %>
+      <%= f.input :residence_country, label: 'Country of residence', input_html: {class: "custom-element-transparent"}  %>
+      <%= f.input :postal_code, label: 'Zip Code', input_html: {class: "custom-element-transparent"}  %>
       <!-- I need to get it like the others -->
-      <%= f.input :tags, label: 'Input skills', collection: @tags, input_html: { multiple: true }%>
+      <%= f.input :tags, label: 'Input skills', collection: @tags, input_html: { multiple: true } %>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
 </div>

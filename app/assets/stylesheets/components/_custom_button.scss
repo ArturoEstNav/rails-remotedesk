@@ -57,6 +57,13 @@
   }
 }
 
+
+.custom-btn-primary {
+  &:not(:disabled):not(.disabled):active{
+    border: none;
+  }
+}
+
 .custom-btn-secondary {
   border: none;
   margin: 4px 8px 4px 0px;
@@ -131,3 +138,8 @@
   cursor: pointer;
 }
 
+.custom-btn-success {
+  &:not(:disabled):not(.disabled):active {
+    border: none;
+  }
+}

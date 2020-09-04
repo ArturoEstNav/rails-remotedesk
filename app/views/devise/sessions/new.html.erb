@@ -8,12 +8,10 @@
           <%= f.input :email,
                       required: false,
                       autofocus: true,
-                      input_html: { autocomplete: "email" },
-                      class: "custom-element-transparent" %>
+                      input_html: { autocomplete: "email" }, input_html: {class: "custom-element-transparent"} %>
           <%= f.input :password,
                       required: false,
-                      input_html: { autocomplete: "current-password" },
-                      class: "custom-element-transparent"  %>
+                      input_html: { autocomplete: "current-password" }, input_html: {class: "custom-element-transparent"} %>
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
 
