@@ -23,7 +23,14 @@ class OffersController < ApplicationController
       if params[:offer][:tags].class == Array
         params[:offer][:tags].shift
       end
-      tag_ids = params[:offer][:tags]
+      tag_ids = Array.new
+      if params[:offer][:tags].class == Array
+        params[:offer][:tags].each do |tag_name|
+          tag_ids << tag_name
+        end
+      else
+        tag_ids << params[:offer][:tags]
+      end
       tag_ids.each do |tag_id|
         unless @offer.tags.include?(Tag.find(tag_id))
           @offer.tags << Tag.find(tag_id)
