@@ -20,7 +20,9 @@ class OffersController < ApplicationController
     @offer.source = current_user.id.to_s
     @offer.posting_date = DateTime.now()
     if @offer.save
-      params[:offer][:tags].shift
+      if params[:offer][:tags].class == Array
+        params[:offer][:tags].shift
+      end
       tag_ids = params[:offer][:tags]
       tag_ids.each do |tag_id|
         unless @offer.tags.include?(Tag.find(tag_id))
