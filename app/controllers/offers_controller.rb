@@ -73,6 +73,7 @@ class OffersController < ApplicationController
   def offer_params
     params.require(:offer).permit(:company, :title, :description, :position,
                                   :salary, :category, :job_type, :location,
-                                  :posting_date, :source, :location_type)
+                                  :posting_date, :source, :location_type,
+                                  :listing_url)
   end
 end

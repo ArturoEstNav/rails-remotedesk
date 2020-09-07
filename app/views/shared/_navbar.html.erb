@@ -26,7 +26,7 @@
         <% if current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
-          <%= image_tag "/images/remote-scanner-avatar.jpeg", class: "avatar dropdown-toggle m-1", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= image_tag "https://st2.depositphotos.com/4111759/12123/v/950/depositphotos_121232794-stock-illustration-male-default-placeholder-avatar-profile.jpg", class: "avatar dropdown-toggle m-1", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
           <div class="dropdown-menu dropdown-menu-right custom-element-white" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", edit_user_path(current_user), class: "dropdown-item" %>
@@ -38,7 +38,7 @@
           <%= link_to "About us", about_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Post a job", new_offer_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Post a job", new_user_session_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "btn btn-info custom-btn-nav" %>
