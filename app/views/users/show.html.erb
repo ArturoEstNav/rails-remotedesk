@@ -117,7 +117,7 @@
                               <% if offer.active %>
                                 <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
                               <% else %>
-                                <button class="btn btn-primary" disabled="">
+                                <button class="btn btn-primary" disabled="disabled">
                                   Expired
                                 </button>
                               <% end %>
@@ -159,6 +159,7 @@
               <div class="col-md-12" style="float:left">
                 <div class="custom-carousel-cards">
                   <% @suggested.first.each do |offer|  %>
+                    <% next unless offer.active %>
                     <div class="card custom-card custom-card-profile">
                       <div class="card-body custom-card-body d-flex flex-column justify-content-between">
                         <div class="custom-card-content">
@@ -181,6 +182,7 @@
                 <div class="col-md-12" style="float:left">
                   <div class="custom-carousel-cards">
                     <% triplet.each do |offer| %>
+                      <% next unless offer.active %>
                       <div class="card custom-card custom-card-profile">
                         <div class="card-body custom-card-body custom-card-body d-flex flex-column justify-content-between">
                           <div class="custom-card-content">
