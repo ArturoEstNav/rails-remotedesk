@@ -39,8 +39,13 @@
       <% end %>
 
       <div class="custom-apply-buttons", id="card-<%= "#{@offer.id}"%>" >
-
-        <%= link_to "Apply for this job", @offer.listing_url, class: "btn btn-success" %>
+        <% if @offer.active%>
+          <%= link_to "Apply for this job", @offer.listing_url, class: "btn btn-success" %>
+        <% else %>
+          <button class="btn btn-primary" disabled="disabled">
+            Expired
+          </button>
+        <% end %>
         <div>
           <%= render partial: "shared/heart", locals: {offer: @offer, query: '', redirect_url: offer_path(@offer)} %>
         </div>
