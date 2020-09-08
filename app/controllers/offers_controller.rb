@@ -20,8 +20,17 @@ class OffersController < ApplicationController
     @offer.source = current_user.id.to_s
     @offer.posting_date = DateTime.now()
     if @offer.save
-      params[:offer][:tags].shift
-      tag_ids = params[:offer][:tags]
+      if params[:offer][:tags].class == Array
+        params[:offer][:tags].shift
+      end
+      tag_ids = Array.new
+      if params[:offer][:tags].class == Array
+        params[:offer][:tags].each do |tag_name|
+          tag_ids << tag_name
+        end
+      else
+        tag_ids << params[:offer][:tags]
+      end
       tag_ids.each do |tag_id|
         unless @offer.tags.include?(Tag.find(tag_id))
           @offer.tags << Tag.find(tag_id)
@@ -33,12 +42,23 @@ class OffersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @tags = Tag.all
+  end
 
   def update
     if @offer.update(offer_params)
-      params[:offer][:tags].shift
-      tag_ids = params[:offer][:tags]
+      if params[:offer][:tags].class == Array
+        params[:offer][:tags].shift
+      end
+      tag_ids = Array.new
+      if params[:offer][:tags].class == Array
+        params[:offer][:tags].each do |tag_name|
+          tag_ids << tag_name
+        end
+      else
+        tag_ids << params[:offer][:tags]
+      end
       tag_ids.each do |tag_id|
         unless @offer.tags.include?(Tag.find(tag_id))
           @offer.tags << Tag.find(tag_id)
@@ -59,11 +79,18 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
   end
 
+  def deactivate_offer
+    @offer = Offer.find(params[:id])
+    @offer.active = false
+    @offer.save
+  end
+
   private
 
   def offer_params
     params.require(:offer).permit(:company, :title, :description, :position,
                                   :salary, :category, :job_type, :location,
-                                  :posting_date, :source, :location_type)
+                                  :posting_date, :source, :location_type,
+                                  :listing_url, :active)
   end
 end

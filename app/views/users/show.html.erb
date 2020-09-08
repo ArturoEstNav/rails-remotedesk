@@ -86,7 +86,13 @@
                           <p class="card-text"><%= offer.company %></p>
                         </div>
                         <div class="card-buttons d-flex justify-content-between align-items-center">
-                          <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
+                          <% if offer.active %>
+                            <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
+                          <% else %>
+                            <button class="btn btn-primary" disabled="">
+                              Offer ended
+                            </button>
+                          <% end %>
                           <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: user_path(current_user)} %>
                         </div>
                       </div>
@@ -108,7 +114,13 @@
                               <p class="card-text"><%= offer.company %></p>
                             </div>
                             <div class="card-buttons d-flex justify-content-between align-items-center">
-                              <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
+                              <% if offer.active %>
+                                <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
+                              <% else %>
+                                <button class="btn btn-primary" disabled="disabled">
+                                  Expired
+                                </button>
+                              <% end %>
                               <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: user_path(current_user)} %>
                             </div>
                           </div>
@@ -147,6 +159,7 @@
               <div class="col-md-12" style="float:left">
                 <div class="custom-carousel-cards">
                   <% @suggested.first.each do |offer|  %>
+                    <% next unless offer.active %>
                     <div class="card custom-card custom-card-profile">
                       <div class="card-body custom-card-body d-flex flex-column justify-content-between">
                         <div class="custom-card-content">
@@ -169,6 +182,7 @@
                 <div class="col-md-12" style="float:left">
                   <div class="custom-carousel-cards">
                     <% triplet.each do |offer| %>
+                      <% next unless offer.active %>
                       <div class="card custom-card custom-card-profile">
                         <div class="card-body custom-card-body custom-card-body d-flex flex-column justify-content-between">
                           <div class="custom-card-content">
@@ -192,7 +206,7 @@
 
       <%# Posted offers section %>
       <% unless @posted.empty? %>
-        <div id="carouselPostedOffersControls" class="custom-container-section carousel slide card custom-carousel-container" data-ride="carousel">
+        <div id="carouselPostedOffersControls" class="custom-container-section carousel slide" data-ride="carousel">
           <div class= "d-flex justify-content-between align-items-center mb-2" >
           <h4>Posted jobs</h4>
             <div class= "d-flex justify-content-between align-items-center">
@@ -220,7 +234,7 @@
                         </div>
                         <div class="card-buttons d-flex justify-content-between align-items-center">
                           <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
-                          <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, match_path(offer), :confirm => 'Are you sure?', :method => :delete %>
+                          <%= link_to ('<i class="fas fa-pencil-alt"></i>').html_safe, edit_offer_path(offer) %>
                         </div>
                       </div>
                     </div>
@@ -242,7 +256,7 @@
                           </div>
                           <div class="card-buttons d-flex justify-content-between align-items-center">
                             <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
-                            <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, offer_path(offer), :confirm => 'Are you sure?', :method => :delete %>
+                            <%= link_to ('<i class="fas fa-pencil-alt"></i>').html_safe, edit_offer_path(offer) %>
                           </div>
                         </div>
                       </div>

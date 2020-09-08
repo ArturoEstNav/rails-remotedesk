@@ -3,7 +3,7 @@
   <% if @query.nil? %>
     <%= render partial: "landing" %>
   <% else %>
-    <%= render partial: "search_dashboard" %> <br> 
+    <%= render partial: "search_dashboard" %> <br>
     <%if @offers and not @offers.empty? %>
       <div class="custom-container-section">
         <% if @job_type %>
@@ -12,6 +12,7 @@
           <h2><%= "#{@query.capitalize} jobs" %></h2>
         <% end %>
         <% @offers.each do |offer| %>
+          <% next unless offer.active %>
           <div class="card custom-card custom-offer-result", id="card-<%= "#{offer.id}" %>">
             <div>
               <h3 class="card-title"><%= offer.title %></h3>
@@ -39,12 +40,12 @@
     <h2>Recently posted jobs</h2>
     <div class="custom-offers-container">
       <% @new_offers.each do |offer| %>
-
+        <% next unless offer.active %>
         <div class="card custom-card card-landing" id="card-<%= "#{offer.id}" %>">
           <div class="card-body  d-flex flex-column justify-content-between">
             <div>
               <h5 class="card-title"><%= offer.title %></h5>
-              <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p> 
+              <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p>
             </div>
             <div>
               <p class="card-text">

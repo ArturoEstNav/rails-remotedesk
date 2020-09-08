@@ -5,13 +5,14 @@
     <%= simple_form_for @offer do |f| %>
       <%= f.input :company, label: 'Company Name', input_html: {class: "custom-element-transparent"}  %>
       <%= f.input :title, label: 'Posting Title', input_html: {class: "custom-element-transparent"}   %>
-      <%= f.input :description, label: 'Job Offer Description', input_html: {class: "custom-element-transparent"}   %>
+      <%= f.input :description, label: 'Job Offer Description', input_html: {class: "custom-element-transparent"} %>
+      <%= f.input :listing_url, label: 'Your offer URL', input_html: {class: "custom-element-transparent"} %>
       <%= f.input :salary, label: 'Salary (exact or range)', input_html: {class: "custom-element-transparent"}   %>
       <%= f.input :category, label: 'Job Category', input_html: {class: "custom-element-transparent"}   %>
       <%= f.input :job_type, label: 'Job Type', as: :radio_buttons, collection: ['Full-time', 'Part-time'], input_html: {class: "custom-element-transparent"}  %>
       <%= f.input :location, label: 'Required Location', input_html: {class: "custom-element-transparent"}  %>
       <%= f.input :location_type, label: 'Remote Type', as: :radio_buttons, collection: [['Remote',true], ['Work from home',false]], input_html: {class: "custom-element-transparent"}  %>
-      <%= f.input :tags, label: 'Skills Wanted', collection: @tags, input_html: { multiple: true }, input_html: {class: "custom-element-transparent"} %>
+      <%= f.input :tags, label: 'Skills Wanted', collection: @tags, input_html: { multiple: true } %>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
   </div>
