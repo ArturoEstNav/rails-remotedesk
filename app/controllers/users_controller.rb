@@ -3,6 +3,8 @@ class UsersController < ApplicationController
     saved_enum = current_user.offers.each_slice(3)
     @saved = saved_enum.to_a
 
+    @saved_individuals = current_user.offers
+
     @suggested = fetch_suggested_offers
 
     posted_offers = Offer.where(source: current_user.id.to_s).each_slice(3)

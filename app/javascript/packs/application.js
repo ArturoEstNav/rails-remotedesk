@@ -34,4 +34,3 @@ document.addEventListener('turbolinks:load', () => {
   autocompleteSearch();
   initSelect2();
 });
-
