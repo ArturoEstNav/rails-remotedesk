@@ -1,30 +1,23 @@
-$('#carouselExample').on('slide.bs.carousel', function (e) {
+import Glide from '@glidejs/glide'
 
-    /*
+// new Glide('.glide').mount()
 
-    CC 2.0 License Iatek LLC 2018
-    Attribution required
+let select = document.querySelector('.glide'),
+    cardNumber = 1;
 
-    */
+if (window.innerWidth > 992) {
+    cardNumber = 3;
+} else if (window.innerWidth > 600) {
+    cardNumber = 2;
+}
 
-    var $e = $(e.relatedTarget);
+// Create one per carousel: saved jobs, suggestions, created jobs
 
-    var idx = $e.index();
-    console.log("IDX :  " + idx);
+let glide = new Glide('.glide', {
+  type: 'carousel',
+  perView: cardNumber
 
-    var itemsPerSlide = 8;
-    var totalItems = $('.carousel-item').length;
-
-    if (idx >= totalItems-(itemsPerSlide-1)) {
-        var it = itemsPerSlide - (totalItems - idx);
-        for (var i=0; i<it; i++) {
-            // append slides to end
-            if (e.direction=="left") {
-                $('.carousel-item').eq(i).appendTo('.carousel-inner');
-            }
-            else {
-                $('.carousel-item').eq(0).appendTo('.carousel-inner');
-            }
-        }
-    }
 });
+
+
+glide.mount()
