@@ -26,11 +26,12 @@
 // custom carousel
 
 .custom-carousel {
-  border: 5px solid #333;
+  // border: 5px solid #333;
   overflow: hidden;
 }
 
 .custom-carousel-header {
+  padding: 0 16px;
   display: flex;
   justify-content: space-between;
 
@@ -48,21 +49,22 @@
 }
 
 .custom-carousel-track {
-  background-color: lightgreen;
   height: 300px;
   width: 100%;
   position: relative;
-  padding: 16px;
+  padding: 0;
   transition: transform 250ms ease-in;
 
   @media screen and (min-width: $custom-sm) {
-    border: 5px solid red;
+    // border: 5px solid red;
     height: 300px;
+    padding: 0px;
   }
 
   @media screen and (min-width: $custom-md) {
-    border: 1px solid blue;
+    // border: 1px solid blue;
     height: 300px;
+    padding: 0px;
   }
   .custom-carousel-slide {
     position: absolute;
@@ -72,20 +74,22 @@
     border-radius: 4px;
     box-sizing: border-box;
     padding: 16px;
-    margin: 0 12px;
-    height: 100%;
+    margin: 0;
+    height: 94%;
     width: 100%;
     top: 0;
-    left: -12px;
+    left: 0;
 
     @media screen and (min-width: $custom-sm) {
-      width: 50%;
+      width: 49%;
       top: 0;
       left: 0;
+      margin: 0 12px;
     }
 
     @media screen and (min-width: $custom-md) {
       width: 33%;
+      margin: 16px;
     }
 
     &:hover {
