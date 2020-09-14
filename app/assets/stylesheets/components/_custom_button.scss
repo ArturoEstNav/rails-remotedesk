@@ -178,3 +178,9 @@
 .custom-btn-sm {
   width: 40px;
 }
+
+.custom-link{
+  &:hover {
+    color: $green;
+  }
+}
