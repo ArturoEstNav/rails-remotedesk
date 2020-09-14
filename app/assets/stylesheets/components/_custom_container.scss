@@ -15,10 +15,6 @@ $two-cards: 840px;
 
 .custom-container-offer {
   margin: 44px 16px;
-
-  // @media screen and (min-width: $huge-mobile) {
-  //   margin: 44px 0;
-  // }
 }
 
 .custom-container-preview {
@@ -124,4 +120,24 @@ $two-cards: 840px;
   }
 }
 
+.custom-container-user {
+  width: 100%;
 
+  @media screen and (min-width: $custom-sm) {
+    display: flex;
+
+    .information {
+      // border: 1px solid green;
+      flex-basis: 33%;
+      padding-right: 24px;
+      @media screen and (min-width: $custom-md) {
+        flex-basis: 25%;
+      }
+    }
+
+    .jobs {
+      // border: 1px solid red;
+      flex-grow: 1;
+    }
+  }
+}

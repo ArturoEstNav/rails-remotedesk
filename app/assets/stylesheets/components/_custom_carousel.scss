@@ -14,42 +14,90 @@
   color: $green;
 }
 
-.custom-carousel-container {
-  display: inline-block;
-  background-color: transparent;
-  padding: 24px 40px 24px 0;
-}
-
-.custom-profile-container {
-  background-color: transparent;
-  padding: 24px 0;
-}
-
-// .custom-carousel-cards {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr;
-//   gap: 16px 16px;
-//   color: $black;
-
-//   @media screen and (max-width: $custom-lg) {
-//     grid-template-columns: 1fr 1fr;
-//     gap: 16px;
-//   }
-
-//   @media screen and (max-width: $custom-md) {
-//     grid-template-columns: 1fr;
-//     gap: 16px;
-//   }
-// }
-
-.carousel-item {
-  margin: 0;
-}
-
 .custom-card-content {
-  margin-bottom: 24px;
+  overflow: auto;
+
 }
 
 #new_match a {
   padding: 0;
 }
+
+// custom carousel
+
+.custom-carousel {
+  // border: 5px solid #333;
+  overflow: hidden;
+}
+
+.custom-carousel-header {
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+
+  .custom-controls {
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20pt;
+
+    div:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.custom-carousel-track {
+  height: 300px;
+  width: 100%;
+  position: relative;
+  padding: 0;
+  transition: transform 250ms ease-in;
+
+  @media screen and (min-width: $custom-sm) {
+    // border: 5px solid red;
+    height: 300px;
+    padding: 0px;
+  }
+
+  @media screen and (min-width: $custom-md) {
+    // border: 1px solid blue;
+    height: 300px;
+    padding: 0px;
+  }
+  .custom-carousel-slide {
+    position: absolute;
+    background-color: $bone-gray;
+    transition: 250ms ease-in-out;
+    border: 1px solid $element-gray;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 16px;
+    margin: 0;
+    height: 94%;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    @media screen and (min-width: $custom-sm) {
+      width: 49%;
+      top: 0;
+      left: 0;
+      margin: 0 12px;
+    }
+
+    @media screen and (min-width: $custom-md) {
+      width: 33%;
+      margin: 16px;
+    }
+
+    &:hover {
+      box-shadow: 4px 4px 4px rgba(60, 69, 65, .25);
+    }
+
+
+  }
+}
+
+
