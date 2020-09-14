@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 
     @suggested = fetch_suggested_offers
 
-    posted_offers = Offer.where(source: current_user.id.to_s).each_slice(3)
-    @posted = posted_offers.to_a
+    posted_offers = Offer.where(source: current_user.id.to_s)
+    @posted = posted_offers
 
     @match = Match.new
   end
@@ -43,8 +43,8 @@ class UsersController < ApplicationController
     end
     suggested_offers.flatten!
     suggested_offers = suggested_offers.reject { |offer| current_user.offers.include?(offer) }
-    suggested_enum = suggested_offers.sample(12).each_slice(3)
-    suggested_enum.to_a
+    # suggested_enum = suggested_offers.sample(12).each_slice(3)
+    # suggested_enum.to_a
   end
 
   private

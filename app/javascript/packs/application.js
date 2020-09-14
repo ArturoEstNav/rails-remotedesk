@@ -38,3 +38,16 @@ document.addEventListener('turbolinks:load', () => {
   $('[data-toggle="tooltip"]').tooltip()
   $('[data-toggle="popover"]').popover()
 });
+
+
+//create a custom container
+
+// verify how wide the thing is so it determines
+// how the thing will be showing
+
+// activate controls if we need to activate mobility
+// depending on width
+
+//make carousel move
+
+//reload if page resizes

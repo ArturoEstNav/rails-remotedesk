@@ -161,10 +161,11 @@
 }
 .heart-button:hover .icon-heart {
     display: inline;
+    opacity: 0.4;
 }
 
 .icon-heart {
-  color: $green-transparent;
+  color: $green;
 }
 
 .custom-btn-success {

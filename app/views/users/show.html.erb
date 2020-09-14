@@ -1,152 +1,135 @@
 <div class="container custom-container-page">
-  <div class="row">
-    <div class="col-sm-3 custom-profile-container"> <!--left col-->
-      <div class="d-flex justify-content-center">
-        <h3><%= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></h3>
-      </div>
-      <div class="d-flex flex-column align-items-center justify-content-center custom-container-section">
-        <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar-large" %>
-        <% else %>
-          <%= image_tag "https://st2.depositphotos.com/4111759/12123/v/950/depositphotos_121232794-stock-illustration-male-default-placeholder-avatar-profile.jpg", class: "avatar-large" %>
-        <% end %>
-        <%= simple_form_for(current_user, remote: true) do |f| %>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <span class="btn btn-warning fileinput-button">
-            <span>Update Picture</span>
-            <%= f.input_field :photo, as: :file, label: false, class: "form-control-file is-valid file optional", onchange: "form.submit()" %>
-          </span>
-        <% end %>
-      </div>
 
-      <div class="card custom-card-skills mb-3">
-        <ul class="list-group custom-list">
-          <li class="list-group-item custom-list-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>Skills</div>
-              <%= link_to "+", edit_user_path(current_user), class: "btn btn-info custom-btn-info custom-btn-sm" %>
-            </div>
-          </li>
-          <li class="list-group-item custom-list-item">
-          <% if current_user.tags.empty? %>
-            <%= link_to "Add Skills to your Profile", edit_user_path(current_user) %>
-          <% else %>
-            <% current_user.tags.each do |tag| %>
-              <div>
-                <%= link_to tag.name, "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search", class: "btn btn-secondary custom-btn-secondary" %>
-              </div>
+  <div class="custom-profile-container">
+    <div class="information">
+      <div class="">
+        <div class="custom-container-section">
+          <div class="d-flex justify-content-center">
+            <h3><%= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></h3>
+          </div>
+          <div class="d-flex flex-column align-items-center justify-content-center">
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar-large" %>
+            <% else %>
+              <%= image_tag "https://st2.depositphotos.com/4111759/12123/v/950/depositphotos_121232794-stock-illustration-male-default-placeholder-avatar-profile.jpg", class: "avatar-large" %>
             <% end %>
-          <% end %>
+            <%= simple_form_for(current_user, remote: true) do |f| %>
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <span class="fileinput-button">
+                <a href="#"><i class="fas fa-pencil-alt"></i> Update Picture</a>
+                <%= f.input_field :photo, as: :file, label: false, class: "form-control-file is-valid file optional", onchange: "form.submit()" %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+        <div class="card custom-card-skills">
+          <ul class="list-group custom-list">
+            <li class="list-group-item custom-list-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>Skills</div>
+                <%= link_to "+", edit_user_path(current_user), class: "btn btn-info custom-btn-info custom-btn-sm" %>
+              </div>
+            </li>
+            <li class="list-group-item custom-list-item">
+            <% if current_user.tags.empty? %>
+              <%= link_to "Add Skills to your Profile", edit_user_path(current_user) %>
+            <% else %>
+              <% current_user.tags.each do |tag| %>
+                <div>
+                  <%= link_to tag.name, "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search", class: "btn btn-secondary custom-btn-secondary" %>
+                </div>
+              <% end %>
+            <% end %>
+            </li>
+          </ul>
+        </div>
+        <!-- USER ACTIVITY -->
+        <!-- <ul class="list-group custom-list">
+          <li class="list-group-item custom-list-item">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+          <li class="list-group-item custom-list-item d-flex justify-content-between">
+            <span class="pull-left">Saved Job Offers</span>
+            <%= current_user.offers.count %>
           </li>
-        </ul>
+        </ul> -->
       </div>
-      <ul class="list-group custom-list">
-        <li class="list-group-item custom-list-item">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-        <li class="list-group-item custom-list-item d-flex justify-content-between">
-          <span class="pull-left">Saved Job Offers</span>
-          <%= current_user.offers.count %>
-        </li>
-      </ul><br>
     </div>
-
-
-
-
-
-
-
-
-      <% if @saved.empty? %>
-        <div class= "d-flex flex-column justify-content-between align-items-left mb-2" >
-            <h4>Saved jobs</h4><br>
-            <div>
-              <h5>You don have saved jobs! <%= link_to "Go find a job!", root_path, { style: 'color:#54B33D;' } %></h5>
-            </div>
-        </div>
-      <% else %>
-      <!-- controls start here -->
-        <div id="carouselSavedOffersControls" class="custom-container-section carousel slide" data-ride="carousel">
-          <div class= "d-flex justify-content-between align-items-center mb-2" >
-            <h4>Saved jobs</h4>
-            <div class= "d-flex justify-content-between align-items-center mb-4">
-              <a class="carousel-control-prev" href="#carouselSavedOffersControls" role="button" data-slide="prev">
-                <i class="fas fa-caret-left fa-2x mr-3"></i>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselSavedOffersControls" role="button" data-slide="next">
-                <i class="fas fa-caret-right fa-2x"></i>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
+    <div class="jobs">
+      <div class="custom-carousel" id="saved">
+        <div class="custom-carousel-header">
+          <h3>Saved offers</h3>
+          <div class="custom-controls">
+            <div class="custom-carousel-button"><i class="fas fa-caret-left"></i></div>
+            <div class="custom-carousel-button"><i class="fas fa-caret-right"></i></div>
           </div>
-
-        <!-- first half -->
-           <div class="carousel-inner row w-100 mxauto" role="listbox">
-            <div class="carousel-item col-md-3 active">
-                  <div class="">
-                    <h4 class=""><%= @saved.first.title %></h4>
-                    <p class=""><%= @saved.first.company %></p>
-                  </div>
-                  <div class="">
-                    <% if @saved.first.active %>
-                      <%= link_to "View job", offer_path(@saved.first), class: "card-button btn btn-warning" %>
-                    <% else %>
-                      <button class="btn btn-primary" disabled="">
-                        Offer ended
-                      </button>
-                    <% end %>
-
-                  </div>
-            </div>
-            <% @saved.each do |offer| %>
-              <div class="carousel-item col-md-3 active">
-                  <div class="">
-                    <h4 class=""><%= offer.title %></h4>
-                    <p class=""><%= offer.company %></p>
-                  </div>
-                  <div class="">
-                    <% if offer.active %>
-                      <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
-                    <% else %>
-                      <button class="btn btn-primary" disabled="">
-                        Offer ended
-                      </button>
-                    <% end %>
-
-                  </div>
-
-
-              </div>
+        </div>
+        <div class="custom-carousel-track">
+          <ul>
+            <% @suggested.first(8).each do |offer| %>
+              <li class="custom-carousel-slide">
+                <%= offer.title %>
+              </li>
             <% end %>
+          </ul>
         </div>
-      <!-- ends experimental -->
-        <% end %>
-       </div>
+      </div>
+    </div>
+  </div>
 
-      <%# Suggested offers section %>
-      <% unless @suggested.empty? %>
 
-        <div id="carouselSuggestedOffersControls" class="custom-container-section carousel slide custom-carousel-container" data-ride="carousel">
-          <div class= "d-flex justify-content-between align-items-center mb-2" >
-            <h4>Suggested jobs</h4>
-            <div class= "d-flex justify-content-between align-items-center mb-4">
-              <a class="carousel-control-prev" href="#carouselSuggestedOffersControls" role="button" data-slide="prev">
-                <i class="fas fa-caret-left fa-2x mr-3"></i>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselSuggestedOffersControls" role="button" data-slide="next">
-                <i class="fas fa-caret-right fa-2x"></i>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
+
+    <!-- STARTS BLOCK OF CAROUSELS -->
+  <div>
+    <% if @saved.empty? %>
+        <div class= "d-flex flex-column justify-content-between align-items-left mb-2" >
+          <h4>Saved jobs</h4>
+          <div>
+            <h5>You don have saved jobs! <%= link_to "Go find a job!", root_path, { style: 'color:#54B33D;' } %></h5>
           </div>
-
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="col-md-12" style="float:left">
-                <div class="custom-carousel-cards">
-                  <% @suggested.first.each do |offer|  %>
-                    <% next unless offer.active %>
+        </div>
+    <% else %>
+      <h3>Your saved jobs</h3>
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                <% @saved.each do |offer| %>
+                  <li>
+                  <div class="card custom-card custom-card-profile">
+                    <div class="card-body custom-card-body d-flex flex-column justify-content-between">
+                      <div class="custom-card-content">
+                        <h4 class="card-title"><%= offer.title %></h4>
+                        <p class="card-text"><%= offer.company %></p>
+                      </div>
+                      <div class="card-buttons d-flex justify-content-between align-items-center">
+                        <% if offer.active %>
+                          <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
+                        <% else %>
+                          <button class="btn btn-primary" disabled="">
+                            Offer ended
+                          </button>
+                        <% end %>
+                        <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: user_path(current_user)} %>
+                      </div>
+                    </div>
+                  </div>
+                  </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-caret-left"></i></button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-caret-right"></i></button>
+        </div>
+      </div>
+    <% end %>
+    <%# Suggested offers section %>
+    <% unless @suggested.empty? %>
+      <h3>Suggested for you</h3>
+      <div class="suggested">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                <% @suggested.each do |offer| %>
+                  <% next unless offer.active %>
+                  <li>
                     <div class="card custom-card custom-card-profile">
                       <div class="card-body custom-card-body d-flex flex-column justify-content-between">
                         <div class="custom-card-content">
@@ -159,157 +142,48 @@
                         </div>
                       </div>
                     </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-
-            <% @suggested.last(@suggested.size-1).each do |triplet| %>
-              <div class="carousel-item">
-                <div class="col-md-12" style="float:left">
-                  <div class="custom-carousel-cards">
-                    <% triplet.each do |offer| %>
-                      <% next unless offer.active %>
-                      <div class="card custom-card custom-card-profile">
-                        <div class="card-body custom-card-body custom-card-body d-flex flex-column justify-content-between">
-                          <div class="custom-card-content">
-                            <h4 class="card-title"><%= offer.title %></h4>
-                            <p class="card-text"><%= offer.company %></p>
-                          </div>
-                          <div class="card-buttons d-flex justify-content-between align-items-center">
-                            <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
-                            <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: user_path(current_user)} %>
-                          </div>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+                  </li>
+                <% end %>
+              </ul>
           </div>
+        <div class="suggested__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-caret-left"></i></button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-caret-right"></i></button>
         </div>
-      <% end %>
-
-      <%# Posted offers section %>
-      <% unless @posted.empty? %>
-        <div id="carouselPostedOffersControls" class="custom-container-section carousel slide" data-ride="carousel">
-          <div class= "d-flex justify-content-between align-items-center mb-2" >
-          <h4>Posted jobs</h4>
-            <div class= "d-flex justify-content-between align-items-center">
-              <a class="carousel-control-prev" href="#carouselPostedOffersControls" role="button" data-slide="prev">
-                <i class="fas fa-caret-left fa-2x mr-3"></i>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselPostedOffersControls" role="button" data-slide="next">
-                <i class="fas fa-caret-right fa-2x"></i>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="carousel-inner">
-
-            <div class="carousel-item active">
-
-              <div class="col-md-12">
-                <div class="custom-carousel-cards">
-                  <% @posted.first.each do |offer|  %>
-                    <div class="card custom-card custom-card-profile">
-                      <div class="card-body custom-card-body d-flex flex-column justify-content-between">
-                        <div class="custom-card-content">
-                          <h4 class="card-title"><%= offer.title %></h4>
-                          <p class="card-text"><%= offer.company %></p>
-                        </div>
-                        <div class="card-buttons d-flex justify-content-between align-items-center">
-                          <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
-                          <%= link_to ('<i class="fas fa-pencil-alt"></i>').html_safe, edit_offer_path(offer) %>
-                        </div>
-                      </div>
+      </div>
+    <% end %>
+    <%# Posted offers section %>
+    <% unless @posted.empty? %>
+    <h3>Posted jobs</h3>
+    <div class="posted">
+      <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-caret-left"></i></button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-caret-right"></i></button>
+      </div>
+      <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <% @posted.each do |offer| %>
+              <% next unless offer.active %>
+              <li>
+                <div class="card custom-card custom-card-profile">
+                  <div class="card-body custom-card-body d-flex flex-column justify-content-between">
+                    <div class="custom-card-content">
+                      <h4 class="card-title"><%= offer.title %></h4>
+                      <p class="card-text"><%= offer.company %></p>
                     </div>
-                  <% end %>
-                </div>
-              </div>
-
-            </div>
-
-            <% @posted.last(@posted.size-1).each do |triplet| %>
-              <div class="carousel-item">
-
-                <div class="col-md-12" style="float:left">
-                  <div class="custom-carousel-cards">
-                    <% triplet.each do |offer| %>
-                      <div class="card custom-card custom-card-profile">
-                        <div class="card-body custom-card-body d-flex flex-column justify-content-between">
-                          <div class="custom-card-content">
-                            <h4 class="card-title"><%= offer.title %></h4>
-                            <p class="card-text"><%= offer.company %></p>
-                          </div>
-                          <div class="card-buttons d-flex justify-content-between align-items-center">
-                            <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
-                            <%= link_to ('<i class="fas fa-pencil-alt"></i>').html_safe, edit_offer_path(offer) %>
-                          </div>
-                        </div>
-                      </div>
-                    <% end %>
+                    <div class="card-buttons d-flex justify-content-between align-items-center">
+                      <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
+                      <%= link_to ('<i class="fas fa-pencil-alt"></i>').html_safe, edit_offer_path(offer) %>
+                    </div>
                   </div>
                 </div>
-
-              </div>
-            <% end %>
-
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<!--
-Working a carousel -->
-<div style="width: 750px;">
-
-<div class="glide">
-    <div class="glide__track p-5" data-glide-el="track">
-        <ul class="glide__slides">
-            <% @saved.each do |offer| %>
-
-
-
-              <li class="card custom-card-profile">
-                <%= offer.title %>
               </li>
-
-
-
             <% end %>
-        </ul>
+          </ul>
+      </div>
     </div>
-    <div class="glide__arrows" data-glide-el="controls">
-        <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-caret-left"></i></button>
-        <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-caret-right"></i></button>
-    </div>
-</div>
+    <% end %>
+  </div>
 </div>
 
 <%= javascript_pack_tag 'user_profile', 'data-turbolinks-track': 'reload' %>
-
-
-<!-- <div class="card custom-card custom-card-profile">
-  <div class="card-body custom-card-body d-flex flex-column justify-content-between">
-    <div class="custom-card-content">
-      <h4 class="card-title"><%= offer.title %></h4>
-      <p class="card-text"><%= offer.company %></p>
-    </div>
-    <div class="card-buttons d-flex justify-content-between align-items-center">
-      <% if offer.active %>
-        <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
-      <% else %>
-        <button class="btn btn-primary" disabled="">
-          Offer ended
-        </button>
-      <% end %>
-      <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: user_path(current_user)} %>
-    </div>
-  </div>
-</div> -->
