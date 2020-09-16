@@ -81,8 +81,8 @@ puts 'Create new users'
 
 puts 'Create API offers'
 
-# new_api_offer = ApiOffer.new
-# new_api_offer.create_remotive_offers
+new_api_offer = ApiOffer.new
+new_api_offer.create_remotive_offers
 
 puts 'Create offers scraped from Indeed'
 

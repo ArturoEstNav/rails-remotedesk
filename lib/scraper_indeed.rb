@@ -11,32 +11,29 @@ class ScraperIndeed
   end
 
   def indeed_offers_scrape
-    # tags = Tag.all.map { |t| t.name }
-    # # This list eliminates all search results that might lead to non-programmer jobs
-    # non_technology_tags = ["security", "okta", "online payments", "infrastructure", "database", "marketing", "QA", "data science",
-    #                         "cybersecurity", "testing", "product analysis", "games", "customer support", "databases", "video", "zendesk",
-    #                         "autonomous driving", "motion control algorithms", "catalyst", "data visualization", "web tech", "B2B", "consul",
-    #                         "adobe suite", "hardware", "education", "gaming", "support", "Secret clearance", "consulting", "Site Reliability",
-    #                         "Support Engineering", "information security", "CISSP", "machine learning",  "AWS", "product development", "management",
-    #                         "B2B/SaaS", "engineering management", "test automation", "Selenium WebDriver", "software development", "leadership",
-    #                         "WebRTC", "SRE", "android", "AWS Inspector", "microservices", "saas", "startup", "fintech", "cloud", "amazon",
-    #                         "development", "software", "business intelligence", "design", "salesforce", "go", "remote", "ecommerce", "apollo",
-    #                         "Engineering", "seo", "web applications", "data", "operations", "open source", "webinars"]
+    tags = Tag.all.map { |t| t.name }
+    # This list eliminates all search results that might lead to non-programmer jobs
+    non_technology_tags = ["security", "okta", "online payments", "infrastructure", "database", "marketing", "QA", "data science",
+                            "cybersecurity", "testing", "product analysis", "games", "customer support", "databases", "video", "zendesk",
+                            "autonomous driving", "motion control algorithms", "catalyst", "data visualization", "web tech", "B2B", "consul",
+                            "adobe suite", "hardware", "education", "gaming", "support", "Secret clearance", "consulting", "Site Reliability",
+                            "Support Engineering", "information security", "CISSP", "machine learning",  "AWS", "product development", "management",
+                            "B2B/SaaS", "engineering management", "test automation", "Selenium WebDriver", "software development", "leadership",
+                            "WebRTC", "SRE", "android", "AWS Inspector", "microservices", "saas", "startup", "fintech", "cloud", "amazon",
+                            "development", "software", "business intelligence", "design", "salesforce", "go", "remote", "ecommerce", "apollo",
+                            "Engineering", "seo", "web applications", "data", "operations", "open source", "webinars"]
 
-    # non_technology_tags.each do |tag|
-    #   tags.delete(tag)
-    # end
+    non_technology_tags.each do |tag|
+      tags.delete(tag)
+    end
 
-    # tags.each do |tag|
-    #   tag.gsub!(/\W/, '+') if tag.match?(/\W/)
-    # end
+    tags.each do |tag|
+      tag.gsub!(/\W/, '+') if tag.match?(/\W/)
+    end
 
-    # tags.each do |tag|
-    #   pull_offers(tag, @indeed_offers)
-    # end
-
-    pull_offers('ruby', @indeed_offers)
-
+    tags.each do |tag|
+      pull_offers(tag, @indeed_offers)
+    end
   end
 
   # Pulls all the offers given a keyword
