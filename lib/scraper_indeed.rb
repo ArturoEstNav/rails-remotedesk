@@ -2,6 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'json'
 
+
 class ScraperIndeed
   attr_reader :indeed_offers
 
@@ -147,11 +148,12 @@ class ScraperIndeed
   # Gets the posting date from each offer description
   def collect_posting_date(doc, offer_object)
     puts "Mining posting date"
-    head = doc.search("head")
-    js = head.at('script[type="application/ld+json"]').text
-    # TODO captured data is returning nil -> not capturing the right script file
-    meta = JSON[js]['datePosted']
-    offer_object[:posting_date] = meta.to_datetime
+    meta = doc.at('script:contains("localeData")')
+    # extract CDATA
+    meta = meta.children[0].content
+    date = meta.match(/\\nPOT-Creation-Date:([^\\]+)/)[1]
+    date[0] = ''
+    offer_object[:posting_date] = date.to_datetime
   end
 
   # Gets the salary from each offer

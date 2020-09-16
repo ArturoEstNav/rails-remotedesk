@@ -5,23 +5,23 @@ OfferTag.destroy_all
 Tag.destroy_all
 Match.destroy_all
 Offer.destroy_all
-User.destroy_all
+# User.destroy_all
 
 #Tag.create(name: "python")
 puts 'Create new users'
-5.times do
-  new_user = User.new(
-    email: Faker::Internet.email,
-    password: '123456'
-  )
-  new_user.first_name = Faker::Name.first_name
-  new_user.last_name = Faker::Name.last_name
-  new_user.gender = Faker::Gender.type
-  new_user.residence_country = Faker::Address.country
-  new_user.postal_code = Faker::Address.zip_code
-  new_user.save
-  puts "Created user #{new_user.id}"
-end
+# 5.times do
+#   new_user = User.new(
+#     email: Faker::Internet.email,
+#     password: '123456'
+#   )
+#   new_user.first_name = Faker::Name.first_name
+#   new_user.last_name = Faker::Name.last_name
+#   new_user.gender = Faker::Gender.type
+#   new_user.residence_country = Faker::Address.country
+#   new_user.postal_code = Faker::Address.zip_code
+#   new_user.save
+#   puts "Created user #{new_user.id}"
+# end
 
 
 
@@ -84,10 +84,10 @@ puts 'Create API offers'
 new_api_offer = ApiOffer.new
 new_api_offer.create_remotive_offers
 
-# puts 'Create offers scraped from Indeed'
+puts 'Create offers scraped from Indeed'
 
-# indeed_offers = ScraperIndeed.new
-# indeed_offers.indeed_offers_scrape
+indeed_offers = ScraperIndeed.new
+indeed_offers.indeed_offers_scrape
 
 puts 'Create new matches'
 User.all.each do |user|
