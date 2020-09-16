@@ -22,6 +22,15 @@ a {
   }
 }
 
+.custom-nav-fix {
+  color: $black;
+  font-weight: initial;
+  &:hover {
+    color: $black;
+    font-weight: initial;
+  }
+}
+
 .custom-text-boldest {
   font-weight: 600;
   margin-bottom: 0.5em;

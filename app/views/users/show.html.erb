@@ -2,7 +2,7 @@
   <div class="custom-container-user">
     <div class="custom-container-section information">
       <div class="custom-container-section">
-        <div class="">
+        <div class="custom-container-profile">
           <h3><%= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></h3>
           <% if current_user.photo.attached? %>
             <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar-large" %>
