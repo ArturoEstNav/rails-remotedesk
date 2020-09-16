@@ -1,10 +1,10 @@
 # Users
 puts 'Cleaning database'
-# UserTag.destroy_all
-# OfferTag.destroy_all
-# Tag.destroy_all
-# Match.destroy_all
-# Offer.destroy_all
+UserTag.destroy_all
+OfferTag.destroy_all
+Tag.destroy_all
+Match.destroy_all
+Offer.destroy_all
 # User.destroy_all
 
 #Tag.create(name: "python")
@@ -81,8 +81,8 @@ puts 'Create new users'
 
 puts 'Create API offers'
 
-# new_api_offer = ApiOffer.new
-# new_api_offer.create_remotive_offers
+new_api_offer = ApiOffer.new
+new_api_offer.create_remotive_offers
 
 puts 'Create offers scraped from Indeed'
 
