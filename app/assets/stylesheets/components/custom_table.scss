@@ -9,11 +9,15 @@ ul {
   background-color: transparent;
 
   .custom_key{
-    flex-basis: 20%;
+    flex-basis: 40%;
+
+    @media screen and (min-width: $custom-md) {
+      flex-basis: 20%;
+    }
   }
 
-  .custom_value{
-    flex-basis: 80%;
+  .custom_value {
+    flex-grow: 1;
   }
 }
 

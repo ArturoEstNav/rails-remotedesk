@@ -17,20 +17,15 @@ $two-cards: 840px;
   margin: 44px 16px;
 }
 
-.custom-container-preview {
-  display: block;
-
-  @media screen and (min-width: $custom-sm) {
-    margin: 44px 0;
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
 .custom-container-tags {
   display: flex;
   justify-content: left;
+  flex-wrap: wrap;
 
+}
+
+.custom-container-welcome {
+  height: 90vh;
 }
 
 .custom-container-issuer {
@@ -49,34 +44,62 @@ $two-cards: 840px;
   }
 }
 
-.custom-offer-data {
-  margin-top: 24px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-basis: 70%;
+.custom-container-preview {
+  // border: 1px solid red;
+  display: block;
+  margin: 44px 0;
+  height: auto;
 
   @media screen and (min-width: $custom-sm) {
-    display: block;
+    display: flex;
+    // border: 1px solid red;
+    margin: 44px 0;
+    align-items: end;
+    height: 200px;
+
+  }
+}
+
+.custom-offer-data {
+  // border: 1px solid blue;
+  margin-bottom: 32px;
+  height: 100%;
+  // text-align: center;
+
+  @media screen and (min-width: $custom-sm) {
+    margin: 0;
+    flex-basis: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: $custom-md) {
+    flex-basis: 70%;
+  }
+}
+
+.custom-container-summary {
+  // border: 1px solid green;
+  @media screen and (min-width: $custom-sm) {
+    // display: block;
     margin: 0;
     text-align: left;
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
 .custom-apply-buttons {
   display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-
-
-  @media screen and (min-width: $custom-sm) {
-    flex-direction: row;
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-  }
+  flex-direction: row;
+  margin: 0 32px 6px 0;
+  display: flex;
+  justify-content: space-between;
+  align-content: start;
 }
 
 .custom-offers-container {
@@ -138,6 +161,16 @@ $two-cards: 840px;
     .jobs {
       // border: 1px solid red;
       flex-grow: 1;
+    }
+  }
+
+  .custom-container-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media screen and (min-width: $custom-sm) {
+      display: block;
     }
   }
 }

@@ -4,22 +4,25 @@
 
 
 <div class="custom-container-page">
-    <!-- <% if user_signed_in? %>
-        <%= link_to "<< Back to all jobs", root_path %>
-       <div class="d-flex justify-content-between">
-        <%= link_to "<< Go to your jobs", user_path(current_user) %>
-       </div>
-    <% else %>
-      <%= link_to "<< Go to all jobs", root_path %>
-    <% end %> -->
-    <!--
-      <%= link_to "More #{@offer.category} jobs >>", root_path %>
-     -->
+  <!-- Redirect links -->
+  <!-- <% if user_signed_in? %>
+      <%= link_to "<< Back to all jobs", root_path %>
+     <div class="d-flex justify-content-between">
+      <%= link_to "<< Go to your jobs", user_path(current_user) %>
+     </div>
+  <% else %>
+    <%= link_to "<< Go to all jobs", root_path %>
+  <% end %> -->
+  <!--
+    <%= link_to "More #{@offer.category} jobs >>", root_path %>
+   -->
+  <h3><%= @offer.title %></h3>
   <div class="custom-container-preview">
     <div class="custom-offer-data">
-      <h3><%= @offer.title %></h3>
-      <p><strong><%= "POSTED #{@offer.posting_date.strftime('%^b %d, %Y')}" %></strong></p>
-      <h5><%= "#{@offer.company} | #{@offer.location}" %></h5>
+      <div>
+        <p><strong><%= "POSTED #{@offer.posting_date.strftime('%^b %d, %Y')}" %></strong></p>
+        <h5><%= "#{@offer.company} | #{@offer.location}" %></h5>
+      </div>
       <div class="custom-container-tags">
         <% @offer.tags.each do |tag| %>
           <div>
@@ -29,15 +32,17 @@
       </div>
     </div>
       <!-- <div class="sticky-top" id="offer-summary"> -->
-    <div id="offer-summary">
-      <% if @offer.source.match?(/^\d+$/) %>
-        <h5> This job was posted here </h5>
-        <p> Please press the button below to apply </p>
-      <% else %>
-        <h5> This job was found at </h5>
-        <h3 class="mt-3"><%= @offer.source.capitalize %></h3>
-      <% end %>
-
+    <div class="custom-container-summary" id="offer-summary">
+      <div>
+        <% if @offer.source.match?(/^\d+$/) %>
+          <h5> This job was posted here </h5>
+          <p> Please press the button below to apply </p>
+        <% else %>
+          <h5> This job was found at </h5>
+          <h3 class="mt-3"><%= @offer.source.capitalize %></h3>
+        <% end %>
+      </div>
+      <!-- Apply section -->
       <div class="custom-apply-buttons", id="card-<%= "#{@offer.id}"%>" >
         <% if @offer.active%>
           <%= link_to "Apply for this job", @offer.listing_url, class: "btn btn-success" %>
@@ -49,65 +54,63 @@
         <div>
           <%= render partial: "shared/heart", locals: {offer: @offer, query: '', redirect_url: offer_path(@offer)} %>
         </div>
+      </div>
     </div>
-
-
-
   </div>
-  </div>
-       <!-- This is where the description starts -->
-  <div id="offer-frame">
-    <div>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="description-tab"
-              data-toggle="tab" href="#description" role="tab"
-              aria-controls="description" aria-selected="true">
-              Description</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="specifications-tab"
-            data-toggle="tab" href="#specifications" role="tab"
-            aria-controls="specifications" aria-selected="false">Summary</a>
-        </li>
-      </ul>
-            <div class="tab-content custom-container-offer" id="myTabContent">
-              <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                <div class="custom-container-offer">
-                  <%= raw(@offer.description) %>
-                </div>
-              </div>
-              <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
-                <div class="custom-container-offer">
-                    <h2>Job Summary</h2>
-                    <ul>
-                      <li class="custom_table_row ct1">
-                        <div class="custom_key">Company:</div>
-                        <div class="custom_value"><%= @offer.company.capitalize %></div>
-                      </li>
-                      <li class="custom_table_row">
-                        <div class="custom_key">Salary:</div>
-                        <div class="custom_value"><%= @offer.salary.blank? ? "Not specified" : @offer.salary %></div>
-                      </li>
-                      <li class="custom_table_row ct1">
-                        <div class="custom_key">Category:</div>
-                        <div class="custom_value"><%= @offer.category.blank? ? "Not specified" : @offer.category %></div>
-                      </li>
-                      <li class="custom_table_row">
-                        <div class="custom_key">Job type:</div>
-                        <div class="custom_value"><%= @offer.job_type.blank? ? "Not specified" : @offer.job_type.capitalize.gsub(/[^a-zA-Z]/," ") %></div>
-                      </li>
-                      <li class="custom_table_row ct1">
-                        <div class="custom_key">Location:</div>
-                        <div class="custom_value"><%= @offer.location.blank? ? "Not specified" : @offer.location %></div>
-                      </li>
-                      <li class="custom_table_row">
-                        <div class="custom_key">Posting date:</div>
-                        <div class="custom_value"><%= @offer.posting_date.strftime("Posted on %m/%d/%Y") %></div>
-                      </li>
-                    </ul>
-                  </div>
-              </div>
+</div>
+  <!-- This is where the description starts -->
+<div id="offer-frame">
+  <div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link custom-nav-fix active" id="description-tab"
+            data-toggle="tab" href="#description" role="tab"
+            aria-controls="description" aria-selected="true">
+            Description</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link custom-nav-fix" id="specifications-tab"
+          data-toggle="tab" href="#specifications" role="tab"
+          aria-controls="specifications" aria-selected="false">Summary</a>
+      </li>
+    </ul>
+      <div class="tab-content custom-container-offer" id="myTabContent">
+        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+          <div class="custom-container-offer">
+            <%= raw(@offer.description) %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
+          <div class="custom-container-offer">
+            <h2>Job Summary</h2>
+            <ul>
+              <li class="custom_table_row ct1">
+                <div class="custom_key">Company:</div>
+                <div class="custom_value"><%= @offer.company.capitalize %></div>
+              </li>
+              <li class="custom_table_row">
+                <div class="custom_key">Salary:</div>
+                <div class="custom_value"><%= @offer.salary.blank? ? "Not specified" : @offer.salary %></div>
+              </li>
+              <li class="custom_table_row ct1">
+                <div class="custom_key">Category:</div>
+                <div class="custom_value"><%= @offer.category.blank? ? "Not specified" : @offer.category %></div>
+              </li>
+              <li class="custom_table_row">
+                <div class="custom_key">Job type:</div>
+                <div class="custom_value"><%= @offer.job_type.blank? ? "Not specified" : @offer.job_type.capitalize.gsub(/[^a-zA-Z]/," ") %></div>
+              </li>
+              <li class="custom_table_row ct1">
+                <div class="custom_key">Location:</div>
+                <div class="custom_value"><%= @offer.location.blank? ? "Not specified" : @offer.location %></div>
+              </li>
+              <li class="custom_table_row">
+                <div class="custom_key">Posting date:</div>
+                <div class="custom_value"><%= @offer.posting_date.strftime("Posted on %m/%d/%Y") %></div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
