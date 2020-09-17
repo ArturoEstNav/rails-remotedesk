@@ -84,12 +84,12 @@ class ScraperIndeed
           job_type: "",
           tags: [],
           location: job_card.search('.location').text,
-          listing_url: "ver-empleo?jk=#{job_card['data-jk']}",
+          listing_url: "https://www.indeed.com.mx/ver-empleo?jk=#{job_card['data-jk']}",
           candidate_required_location: "Mexico",
           source: 'indeed'
         }
         collect_salary(job_card, new_offer_hash)
-        scrape_individual_offer(new_offer_hash, new_offer_hash[:listing_url])
+        scrape_individual_offer(new_offer_hash, "ver-empleo?jk=#{job_card['data-jk']}")
         # Save each job with complete information into a list of all the offers from indeed
 
         puts 'create a new offer test'
