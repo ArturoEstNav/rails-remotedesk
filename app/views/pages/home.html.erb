@@ -50,31 +50,29 @@
       <h2 style="color:#54B33D;"><strong> <%= "No '#{@query.capitalize}' related jobs. Please search again!" %></strong></h2>
     <%end%>
   <% end %>
-
+  <!-- Recent posts starts here -->
   <div class="custom-container-section">
     <h2>Recently posted jobs</h2>
     <div class="custom-offers-container">
       <% @new_offers.each do |offer| %>
         <% next unless offer.active %>
-        <div class="card custom-card card-landing" id="card-<%= "#{offer.id}" %>">
-          <div class="card-body  d-flex flex-column justify-content-between">
-            <div>
-              <h5 class="card-title"><%= offer.title %></h5>
-              <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p>
-            </div>
-            <div>
-              <p class="card-text">
+        <div class="card-clickable" id="card-<%= "#{offer.id}" %>">
+          <%= link_to offer_path(offer), class: "link-element" do%>
+
+            <h5 class="card-title"><%= offer.title %></h5>
+            <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p>
+            <p class="card-text">
                 <% offer.tags.first(5).each do |tag|%>
                   <span class="btn btn-secondary custom-btn-secondary">
                   <%= link_to "#{tag.name.capitalize}", "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search" %>
                    </span>
                 <% end %>
               </p>
-              <div class="card-buttons d-flex justify-content-between align-items-center">
-                <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
-                <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: root_path} %>
-              </div>
-            </div>
+
+          <% end %>
+          <div class="d-flex justify-content-center">
+            <!-- <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %> -->
+            <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: root_path} %>
           </div>
         </div>
 
