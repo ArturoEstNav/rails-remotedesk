@@ -82,3 +82,27 @@
   background-color: transparent;
 }
 
+.card-clickable {
+  background-color: transparent;
+  transition: 250ms ease-in-out;
+  border: 2px solid $element-gray;
+  padding: 16px;
+
+  &:hover {
+    box-shadow: 4px 4px 4px rgba(60, 69, 65, .25);
+  }
+
+  .link-element {
+    display: inline-block;
+    width: 100%;
+    font-weight: initial;
+
+    &:hover {
+      font-weight: initial;
+    }
+
+    &:active {
+      font-weight: initial;
+    }
+  }
+}

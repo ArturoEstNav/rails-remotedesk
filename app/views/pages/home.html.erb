@@ -1,5 +1,18 @@
 <div class="custom-container-page">
-
+  <!-- experiment -->
+  <div style="height: 500px; border: 1px solid red; padding: ;" >
+    <div class="card-clickable">
+      <%= link_to new_user_registration_path, class: "link-element" do%>
+        <h3 class="card-title">Panama</h3>
+        <h5 class="card-text">EVH</h5>
+        <p>this is the only option</p>
+      <% end %>
+      <div class="d-flex justify-content-center">
+        <%= link_to "cool", new_user_registration_path %>
+      </div>
+    </div>
+  </div>
+  <!-- experiment -->
   <% if @query.nil? %>
     <div class="custom-container-welcome">
       <%= render partial: "landing" %>
