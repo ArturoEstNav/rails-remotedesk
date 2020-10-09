@@ -1,18 +1,4 @@
 <div class="custom-container-page">
-  <!-- experiment -->
-  <div style="height: 500px; border: 1px solid red; padding: ;" >
-    <div class="card-clickable">
-      <%= link_to new_user_registration_path, class: "link-element" do%>
-        <h3 class="card-title">Panama</h3>
-        <h5 class="card-text">EVH</h5>
-        <p>this is the only option</p>
-      <% end %>
-      <div class="d-flex justify-content-center">
-        <%= link_to "cool", new_user_registration_path %>
-      </div>
-    </div>
-  </div>
-  <!-- experiment -->
   <% if @query.nil? %>
     <div class="custom-container-welcome">
       <%= render partial: "landing" %>
@@ -57,21 +43,23 @@
       <% @new_offers.each do |offer| %>
         <% next unless offer.active %>
         <div class="card-clickable" id="card-<%= "#{offer.id}" %>">
-          <%= link_to offer_path(offer), class: "link-element" do%>
+          <div>
+            <%= link_to offer_path(offer), class: "link-element" do%>
 
-            <h5 class="card-title"><%= offer.title %></h5>
-            <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p>
+              <h4 class="card-title"><%= offer.title %></h4>
+              <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p>
+
+            <% end %>
             <p class="card-text">
-                <% offer.tags.first(5).each do |tag|%>
-                  <span class="btn btn-secondary custom-btn-secondary">
+              <% offer.tags.first(5).each do |tag|%>
+                <div class="btn btn-secondary custom-btn-secondary">
                   <%= link_to "#{tag.name.capitalize}", "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search" %>
-                   </span>
-                <% end %>
-              </p>
-
-          <% end %>
-          <div class="d-flex justify-content-center">
-            <!-- <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %> -->
+                </div>
+              <% end %>
+            </p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <%= link_to "View job", offer_path(offer), class: "card-button btn btn-warning" %>
             <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: root_path} %>
           </div>
         </div>

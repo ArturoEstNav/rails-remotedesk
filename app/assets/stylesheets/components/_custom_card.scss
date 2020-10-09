@@ -87,6 +87,9 @@
   transition: 250ms ease-in-out;
   border: 2px solid $element-gray;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
     box-shadow: 4px 4px 4px rgba(60, 69, 65, .25);
@@ -96,7 +99,7 @@
     display: inline-block;
     width: 100%;
     font-weight: initial;
-
+    text-align: left;
     &:hover {
       font-weight: initial;
     }
