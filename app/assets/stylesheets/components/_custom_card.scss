@@ -95,6 +95,7 @@
     box-shadow: 4px 4px 4px rgba(60, 69, 65, .25);
   }
 
+}
   .link-element {
     display: inline-block;
     width: 100%;
@@ -108,4 +109,8 @@
       font-weight: initial;
     }
   }
-}
+
+  .clickable-links {
+    display: flex;
+    justify-content: space-between;
+  }
