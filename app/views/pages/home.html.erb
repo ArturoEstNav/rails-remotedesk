@@ -17,10 +17,10 @@
           <div class="card custom-card custom-offer-result", id="card-<%= "#{offer.id}" %>">
             <div class="custom-result-summary">
               <%= link_to offer_path(offer), class: "link-element" do %>
-              <div>
-                <h3 class="card-title"><%= offer.title %></h3>
-                <h5 class="card-text"><%= offer.company.capitalize %></h5>
-              </div>
+                <div class="pb-4">
+                  <h3 class="card-title"><%= offer.title %></h3>
+                  <h5 class="card-text"><%= offer.company.capitalize %></h5>
+                </div>
               <% end %>
               <% offer.tags.each do |tag| %>
                 <%= link_to tag.name.capitalize, "/?q=#{URI.encode_www_form_component(tag.name)}&commit=Search", class: "card-button btn btn-secondary custom-btn-secondary" %>
