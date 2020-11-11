@@ -2,7 +2,6 @@ require 'open-uri'
 require 'nokogiri'
 require 'json'
 
-
 class ScraperIndeed
   attr_reader :indeed_offers
 
