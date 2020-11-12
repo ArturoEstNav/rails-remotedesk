@@ -106,7 +106,7 @@ class ScraperIndeed
 
   # Get posting details from individual pages
   def scrape_individual_offer(offer_object, url)
-    puts "Pulling details from posting #{url}"
+    puts "Pulling details from posting #{offer_object.title}, #{url}"
     domain = 'https://www.indeed.com.mx/'
     html_content = open(domain + url).read
     doc = Nokogiri::HTML(html_content)
@@ -120,7 +120,7 @@ class ScraperIndeed
 
   # Gets the tags from each offer description
   def collect_tags_indeed(text_to_scan, offer_object)
-    puts "Mining tags from description"
+    puts "Mining tags from description of offer #{offer_object.title}"
     tags = Tag.all.map(&:name)
     tags.each do |tag|
       offer_object[:tags] << tag if text_to_scan.include?(tag)
@@ -130,7 +130,7 @@ class ScraperIndeed
   # Gets the job type from each offer description
   def collect_job_type(text_to_scan, offer_object)
     text_to_scan = text_to_scan.gsub('-', ' ')
-    puts "Mining tags from description"
+    puts "Mining tags from description of offer #{offer_object.title}"
     if text_to_scan.include? 'full time'
       offer_object[:job_type] = 'Full-time'
     elsif text_to_scan.include? 'tiempo completo'
@@ -146,7 +146,7 @@ class ScraperIndeed
 
   # Gets the posting date from each offer description
   def collect_posting_date(doc, offer_object)
-    puts "Mining posting date"
+    puts "Mining posting date for #{offer_object.title}"
     meta = doc.at('script:contains("localeData")')
     # extract CDATA
     meta = meta.children[0].content
@@ -157,7 +157,7 @@ class ScraperIndeed
 
   # Gets the salary from each offer
   def collect_salary(text_to_scan, offer_object)
-    puts "Mining salary from each card"
+    puts "Mining salary from #{offer_object.title}"
     raw_salary = text_to_scan.search('.salaryText').text
     if raw_salary.empty?
       offer_object[:salary] = ''
