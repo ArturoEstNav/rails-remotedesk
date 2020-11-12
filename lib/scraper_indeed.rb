@@ -72,7 +72,7 @@ class ScraperIndeed
       # If offer already exists none will be created
       unless Offer.where(external_id: job_card['data-jk']).present?
 
-        puts "Getting information from offer #{job_card['data-jk']}"
+        puts "Getting information from offer #{job_card['data-jk']}, #{job_card.search('h2').text}"
         new_offer_hash = {
           external_id: job_card['data-jk'],
           company: job_card.search('.company').text,
@@ -157,7 +157,7 @@ class ScraperIndeed
 
   # Gets the salary from each offer
   def collect_salary(text_to_scan, offer_object)
-    puts "Mining salary from #{offer_object.title}"
+    puts "Mining salary"
     raw_salary = text_to_scan.search('.salaryText').text
     if raw_salary.empty?
       offer_object[:salary] = ''
