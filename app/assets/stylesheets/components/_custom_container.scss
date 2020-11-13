@@ -150,7 +150,6 @@ $two-cards: 840px;
     display: flex;
 
     .information {
-      // border: 1px solid green;
       flex-basis: 33%;
       padding-right: 24px;
       @media screen and (min-width: $custom-md) {
@@ -159,7 +158,6 @@ $two-cards: 840px;
     }
 
     .jobs {
-      // border: 1px solid red;
       flex-grow: 1;
     }
   }
@@ -173,4 +171,17 @@ $two-cards: 840px;
       display: block;
     }
   }
+}
+
+// Temporary whilst working sorting features
+
+.custom-container-search-buttons {
+  width: 250px !important;
+}
+
+.job-type-buttons {
+  padding: 0 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
