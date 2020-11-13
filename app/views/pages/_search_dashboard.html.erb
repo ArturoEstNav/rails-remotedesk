@@ -8,17 +8,21 @@
     </div>
     <div class="d-flex justify-content-between align-items-center custom-container-search-buttons">
       <div class="job-type-buttons">
-        <%= radio_button_tag(:job_type, "Full-time") %>
-        <%= label_tag(:job_type, "Full-time") %>
-        <%= radio_button_tag(:job_type, "Part-time") %>
-        <%= label_tag(:job_type, "Part-time") %>
+        <div>
+          <%= radio_button_tag(:job_type, "Full-time") %>
+          <%= label_tag(:job_type, "Full-time") %>
+        </div>
+        <div>
+          <%= radio_button_tag(:job_type, "Part-time") %>
+          <%= label_tag(:job_type, "Part-time") %>
+        </div>
       </div>
-      <div class="location-type-buttons">
+      <!-- <div class="location-type-buttons">
         <%= radio_button_tag(:location_type, "Remote") %>
         <%= label_tag(:location_type, "Remote") %>
         <%= radio_button_tag(:location_type, "Work from home") %>
         <%= label_tag(:location_type, "Work from home") %>
-      </div>
+      </div> -->
     </div>
   <% end %>
 </div>
