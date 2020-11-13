@@ -150,7 +150,6 @@ class ScraperIndeed
     meta = doc.at('script:contains("localeData")')
     # extract CDATA
     meta = meta.children[0].content
-    # date = meta.match(/\\nPOT-Creation-Date:([^\\]+)/)[1]
     date = meta.match(/Creation-Date:([^\\]+)/)[1]
     date[0] = ''
     offer_object[:posting_date] = date.to_datetime
