@@ -6,7 +6,7 @@
         placeholder: "Search by programming language..." %>
       <%= submit_tag "Search", class: "btn btn-success" %>
     </div>
-    <div class="d-flex justify-content-between align-items-center custom-container-search-buttons">
+    <div class="custom-container-search-buttons">
       <div class="job-type-buttons">
         <div>
           <%= radio_button_tag(:job_type, "Full-time") %>
@@ -17,12 +17,12 @@
           <%= label_tag(:job_type, "Part-time") %>
         </div>
       </div>
-      <!-- <div class="location-type-buttons">
+      <div class="location-type-buttons">
         <%= radio_button_tag(:location_type, "Remote") %>
         <%= label_tag(:location_type, "Remote") %>
         <%= radio_button_tag(:location_type, "Work from home") %>
         <%= label_tag(:location_type, "Work from home") %>
-      </div> -->
+      </div>
     </div>
   <% end %>
 </div>
