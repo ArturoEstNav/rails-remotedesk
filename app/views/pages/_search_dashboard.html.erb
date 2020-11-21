@@ -23,6 +23,10 @@
         <%= radio_button_tag(:location_type, "Work from home") %>
         <%= label_tag(:location_type, "Work from home") %>
       </div>
+      <div>
+        <%= label_tag(:colors) %>
+        <%= select_tag "colors", raw("<option>Newest first</option><option>Oldest first</option>")%>
+      </div>
     </div>
   <% end %>
 </div>
