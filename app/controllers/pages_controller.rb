@@ -21,3 +21,11 @@ class PagesController < ApplicationController
 
   def about; end
 end
+
+# for each search made through dashboard default newest sort will be shown
+#unless params[:sort] is oldest ASC order will be placed
+
+# SELECT billing_date,
+# FROM collection
+# ORDER BY billing_date ASC;
+

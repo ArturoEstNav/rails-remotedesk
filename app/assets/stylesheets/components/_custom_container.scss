@@ -172,25 +172,3 @@ $two-cards: 840px;
     }
   }
 }
-
-.custom-search-dashboard {
-  padding: 32px 64px 16px 34px;
-  width: 100%;
-}
-
-// Temporary fix whilst working sorting features
-
-.custom-container-search-buttons {
-  // width: 250px !important;
-  width: 100% !important ;
-  border: 1px solid red;
-
-}
-
-.job-type-buttons {
-  padding: 0 24px;
-  // width: 100%;
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid green;
-}
