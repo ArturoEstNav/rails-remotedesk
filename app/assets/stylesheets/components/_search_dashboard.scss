@@ -5,8 +5,23 @@
   padding: 24px;
   background-color: $bone-gray;
   z-index: 2;
+  padding: 32px 64px 16px 34px;
+  width: 100%;
 }
 
 .custom-container-search-buttons {
   width: 40%;
+}
+
+
+// Temporary fix whilst working sorting features
+
+.custom-container-search-buttons {
+  width: 100% !important ;
+  border: 1px solid red;
+
+}
+
+.job-type-buttons {
+  border: 1px solid green;
 }
