@@ -5,13 +5,44 @@ class PagesController < ApplicationController
     @tags = Tag.pluck(:name).sort
     @new_offers = Offer.last(6)
     if params[:q].present? && params[:job_type].present? && params[:location_type].present?
-      @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ? AND location_type = ?", params[:q], params[:job_type], params[:location_type])
+      # Current working code
+        # @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ? AND location_type = ?", params[:q], params[:job_type], params[:location_type])
+      # Current working code
+      if params[:sort].value == "1"
+        @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ? AND location_type = ?", params[:q], params[:job_type], params[:location_type]).order( posting_date: :desc)
+      else
+        @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ? AND location_type = ?", params[:q], params[:job_type], params[:location_type]).order( posting_date: :asc)
+      end
+
     elsif params[:q].present? && params[:location_type].present?
-      @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:location_type])
+      # Current working code
+        # @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:location_type])
+      # Current working code
+      if params[:sort].value == "1"
+        @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:location_type]).order( posting_date: :desc)
+      else
+        @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:location_type]).order( posting_date: :asc)
+      end
+
     elsif params[:q].present? && params[:job_type].present?
-      @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:job_type])
+      # Current working code
+        # @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:job_type])
+      # Current working code
+      if params[:sort].value == "1"
+        @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:job_type]).order( posting_date: :desc)
+      else
+        @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:job_type]).order( posting_date: :asc)
+      end
+
     elsif params[:q].present?
-      @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
+      # Current working code
+        # @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
+      # Current working code
+      if params[:sort].value == "1"
+        @offers = Offer.joins(:tags).where('tags.name = ?', params[:q]).order( posting_date: :desc)
+      else
+        @offers = Offer.joins(:tags).where('tags.name = ?', params[:q]).order( posting_date: :asc)
+      end
     end
     @query = params[:q]
     @job_type = params[:job_type]
@@ -22,10 +53,5 @@ class PagesController < ApplicationController
   def about; end
 end
 
-# for each search made through dashboard default newest sort will be shown
-#unless params[:sort] is oldest ASC order will be placed
-
-# SELECT billing_date,
-# FROM collection
-# ORDER BY billing_date ASC;
-
+# .order( posting_date: :desc)
+# .order( posting_date: :asc)

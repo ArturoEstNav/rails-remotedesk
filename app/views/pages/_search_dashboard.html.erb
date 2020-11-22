@@ -17,20 +17,22 @@
           <%= label_tag(:job_type, "Part-time") %>
         </div>
       </div>
-      <div class="location-type-buttons" style="border: 1px solid teal">
+     <!--  <div class="location-type-buttons" style="border: 1px solid teal">
         <%= radio_button_tag(:location_type, "Remote") %>
         <%= label_tag(:location_type, "Remote") %>
         <%= radio_button_tag(:location_type, "Work from home") %>
         <%= label_tag(:location_type, "Work from home") %>
-      </div>
-      <div style="border: 1px solid coral">
+      </div> -->
+      <div style="border: 3px solid coral">
         <%= label_tag(:sort) %>
-        <%= select_tag "Sort_by", raw("<option>Newest first</option><option>Oldest first</option>")%>
+        <%= select_tag "sort", raw('
+          <option value="1" selected="selected">Newest first</option><option value="0" >Oldest first</option>
+        ')%>
       </div>
-      <div style="border: 1px solid teal">
+      <!-- <div style="border: 1px solid teal">
         <label for="specified_salary">Only offers with specified salary</label>
         <input id="specified_salary" name="specified_salary" type="checkbox" value="0" />
-      </div>
+      </div> -->
     </div>
   <% end %>
 </div>
