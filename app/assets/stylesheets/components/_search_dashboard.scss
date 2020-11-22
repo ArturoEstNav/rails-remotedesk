@@ -17,15 +17,27 @@
 // Temporary fix whilst working sorting features
 
 .custom-container-search-buttons {
-  // width: 100% !important ;
+  width: 100%;
   border: 3px solid red;
 
 }
 
-.job-type-buttons {
-  border: 3px solid green;
+.dashboard-options {
+  margin-left: 16px;
 }
 
-.location-type-buttons {
+.dashboard-element{
+  border: 2px solid blue;
 
+}
+
+.dashboard-heading{
+  height: 32px;
+  margin: 0 0 0 16px;
+  padding: 0;
+}
+
+.job-type-buttons{
+  border: 2px solid green;
+  display: flex;
 }
