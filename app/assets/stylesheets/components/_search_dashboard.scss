@@ -13,17 +13,10 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  // border: 3px solid red;
-
 }
 
 .dashboard-options {
   margin-left: 16px;
-}
-
-.dashboard-element{
-  // border: 2px solid blue;
-
 }
 
 .dashboard-heading{
@@ -33,7 +26,6 @@
 }
 
 .job-type-buttons{
-  // border: 2px solid green;
   display: block;
   @media screen and (min-width: $huge-mobile) {
     display: flex;
