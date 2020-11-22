@@ -10,15 +10,10 @@
 }
 
 .custom-container-search-buttons {
-  width: 40%;
-}
-
-
-// Temporary fix whilst working sorting features
-
-.custom-container-search-buttons {
   width: 100%;
-  border: 3px solid red;
+  display: flex;
+  justify-content: space-between;
+  // border: 3px solid red;
 
 }
 
@@ -27,7 +22,7 @@
 }
 
 .dashboard-element{
-  border: 2px solid blue;
+  // border: 2px solid blue;
 
 }
 
@@ -38,6 +33,9 @@
 }
 
 .job-type-buttons{
-  border: 2px solid green;
-  display: flex;
+  // border: 2px solid green;
+  display: block;
+  @media screen and (min-width: $huge-mobile) {
+    display: flex;
+  }
 }
