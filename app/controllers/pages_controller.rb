@@ -8,7 +8,7 @@ class PagesController < ApplicationController
       # Current working code
         # @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ? AND location_type = ?", params[:q], params[:job_type], params[:location_type])
       # Current working code
-      if params[:sort].value == "1"
+      if params[:sort] == "1"
         @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ? AND location_type = ?", params[:q], params[:job_type], params[:location_type]).order( posting_date: :desc)
       else
         @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ? AND location_type = ?", params[:q], params[:job_type], params[:location_type]).order( posting_date: :asc)
@@ -18,7 +18,7 @@ class PagesController < ApplicationController
       # Current working code
         # @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:location_type])
       # Current working code
-      if params[:sort].value == "1"
+      if params[:sort] == "1"
         @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:location_type]).order( posting_date: :desc)
       else
         @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:location_type]).order( posting_date: :asc)
@@ -28,7 +28,7 @@ class PagesController < ApplicationController
       # Current working code
         # @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:job_type])
       # Current working code
-      if params[:sort].value == "1"
+      if params[:sort] == "1"
         @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:job_type]).order( posting_date: :desc)
       else
         @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:job_type]).order( posting_date: :asc)
@@ -36,13 +36,8 @@ class PagesController < ApplicationController
 
     elsif params[:q].present?
       # Current working code
-        # @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
+        @offers = Offer.joins(:tags).where('tags.name = ?', params[:q])
       # Current working code
-      if params[:sort].value == "1"
-        @offers = Offer.joins(:tags).where('tags.name = ?', params[:q]).order( posting_date: :desc)
-      else
-        @offers = Offer.joins(:tags).where('tags.name = ?', params[:q]).order( posting_date: :asc)
-      end
     end
     @query = params[:q]
     @job_type = params[:job_type]
