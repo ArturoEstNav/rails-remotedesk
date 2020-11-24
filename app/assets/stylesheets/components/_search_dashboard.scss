@@ -1,12 +1,12 @@
 .custom-search-dashboard {
-  position: -webkit-sticky;
   position: sticky;
   top: 78px;
-  padding: 24px;
+  padding: 24px 24px 0 24px;
   background-color: $bone-gray;
   z-index: 2;
   padding: 32px 64px 16px 34px;
   width: 100%;
+  border: 1px solid red;
 }
 
 .custom-container-search-buttons {
@@ -29,5 +29,23 @@
   display: block;
   @media screen and (min-width: $huge-mobile) {
     display: flex;
+  }
+}
+
+.dashboard-toggle {
+  width: 100%;
+  padding: 0 24px;
+  border: 3px solid coral;
+  text-align: center;
+
+  i {
+    color: $green;
+    transition: 250ms ease-in-out;
+
+  }
+
+  i:hover{
+    cursor: pointer;
+    opacity: .5;
   }
 }
