@@ -1,6 +1,6 @@
 <div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>">
-  <%= form_tag root_path, html: {class: "search-bar hidable-dashboard"}, method: :get do %>
-    <div class="dashboard-search-bar hidable-dashboard">
+  <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
+    <div class="dashboard-search-bar hidable-dashboard" style="display: none;">
       <%= text_field_tag :q, params[:q], autocomplete: :off,
         class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
         placeholder: "Search by programming language..." %>
@@ -8,7 +8,7 @@
     </div>
     <!-- Hidden field to differeniate dashboard  searches-->
     <%= hidden_field_tag 'dashboard', 'true' %>
-    <div class="custom-container-search-buttons hidable-dashboard">
+    <div class="custom-container-search-buttons hidable-dashboard" style="display: none;">
       <div class="dashboard-element">
         <p class="dashboard-heading">
           Full or partial time
@@ -46,7 +46,7 @@
   <div class="dashboard-toggle">
     <p>
       <i class="fas fa-search"></i>
-      <span class="hidable-dashboard">&nbsp;HIDE</span>
+      <span class="hidable-dashboard" style="display: none;">&nbsp;HIDE</span>
     </p>
   </div>
 </div>

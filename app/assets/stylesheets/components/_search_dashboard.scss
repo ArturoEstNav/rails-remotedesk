@@ -42,6 +42,7 @@
 
   &:hover{
     cursor: pointer;
+    opacity: .5;
   }
 
   p {
@@ -66,15 +67,11 @@
   }
 
   span:hover{
-    cursor: pointer;
+    opacity: .5;
   }
 }
 
 .dashboard-search-bar{
   display: flex;
   margin-bottom: 1rem;
-}
-
-.hidable-dashboard{
-  // display: none;
 }
