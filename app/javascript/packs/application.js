@@ -51,3 +51,5 @@ document.addEventListener('turbolinks:load', () => {
 //make carousel move
 
 //reload if page resizes
+
+import "controllers"
