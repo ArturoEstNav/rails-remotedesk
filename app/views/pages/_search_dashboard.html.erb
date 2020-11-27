@@ -1,4 +1,4 @@
-<div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>">
+<div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>" data-controller="dashboard">
   <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
     <div class="dashboard-search-bar hidable-dashboard" style="display: none;">
       <%= text_field_tag :q, params[:q], autocomplete: :off,
@@ -43,10 +43,10 @@
       </div>
     </div>
   <% end %>
-  <div class="dashboard-toggle">
+  <div class="dashboard-toggle" data-action="click->dashboard#toggle">
     <p>
       <i class="fas fa-search"></i>
-      <span class="hidable-dashboard" style="display: none;">&nbsp;HIDE</span>
+      <span class="hidable-dashboard" data-target="display" style="display: none;">&nbsp;HIDE</span>
     </p>
   </div>
 </div>
