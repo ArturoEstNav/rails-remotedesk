@@ -49,10 +49,8 @@
         <div class="card-clickable" id="card-<%= "#{offer.id}" %>">
           <div>
             <%= link_to offer_path(offer), class: "link-element" do%>
-
               <h4 class="card-title"><%= offer.title %></h4>
               <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p>
-
             <% end %>
             <p class="card-text">
               <% offer.tags.first(5).each do |tag|%>
@@ -67,10 +65,7 @@
             <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: root_path} %>
           </div>
         </div>
-
       <% end %>
     </div>
   </div>
 </div>
-
-<%= javascript_pack_tag 'toggle_button', 'data-turbolinks-track': 'reload' %>

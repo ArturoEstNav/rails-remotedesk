@@ -16,6 +16,4 @@ static targets = [ "inline", "block" ]
       })
     }
   }
-
-  // Works and can be used for conditionals
 }
