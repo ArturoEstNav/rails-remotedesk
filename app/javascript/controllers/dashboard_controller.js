@@ -1,23 +1,21 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-static targets = [ "sign" ]
+static targets = [ "inline", "block" ]
 
-  connect() {
-    console.log(this.signTarget.display);
+  toggle() {
+    if(this.inlineTarget.style.display == "none") {
+      this.inlineTarget.style.display = "inline-block";
+      this.blockTargets.forEach((element) => {
+        element.style.display = "block"
+      })
+    } else {
+      this.inlineTarget.style.display = "none";
+      this.blockTargets.forEach((element) => {
+        element.style.display = "none"
+      })
+    }
   }
 
-
-//  "options", "bar"
-
-// export default class extends Controller {
-//   static targets = [ "name" ]
-
-//   greet() {
-//     console.log(`Hello, ${this.name}!`)
-//   }
-
-//   get name() {
-//     return this.nameTarget.value
-//   }
-// }
+  // Works and can be used for conditionals
+}

@@ -1,7 +1,7 @@
 <div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>" data-controller="dashboard">
   <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
   <!-- Main search board: block -->
-    <div data-target="dashboard.bar" style="display: block;">
+    <div data-target="dashboard.block" style="display: none;">
       <div class="dashboard-search-bar">
         <%= text_field_tag :q, params[:q], autocomplete: :off,
           class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
@@ -12,7 +12,7 @@
     <!-- Hidden field to differeniate dashboard searches-->
     <%= hidden_field_tag 'dashboard', 'true' %>
     <!-- Options : block -->
-    <div data-target="dashboard.options" style="display: block;">
+    <div data-target="dashboard.block" style="display: none;">
       <div class="custom-container-search-buttons">
         <div class="dashboard-element">
           <p class="dashboard-heading">
@@ -53,7 +53,7 @@
     <p>
   <!-- label : inline-block -->
       <i class="fas fa-search"></i>
-      <span data-target="dashboard.sign" style="display: inline-block;">&nbsp;HIDE</span>
+      <span data-target="dashboard.inline" style="display: none;">&nbsp;HIDE</span>
     </p>
   </div>
 </div>
