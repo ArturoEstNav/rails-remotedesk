@@ -1,21 +1,14 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
+static targets = [ "sign" ]
 
-
-  toggle() {
-    if(hidableElements[0].style.display === "none"){
-        hidableElements.forEach((element) => {
-          element.style.display === "block"
-
-    else{
-      hidableElements.forEach((element) => {
-        element.style.display === "none"
-      })
-    }
+  connect() {
+    console.log(this.signTarget.display);
   }
-}
 
+
+//  "options", "bar"
 
 // export default class extends Controller {
 //   static targets = [ "name" ]

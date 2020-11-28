@@ -55,19 +55,11 @@
     transition: 250ms ease-in-out;
   }
 
-  i:hover{
-    opacity: .5;
-  }
-
   span{
     color: $green;
     transition: 250ms ease-in-out;
     font-weight: 600;
     font-size: 11pt;
-  }
-
-  span:hover{
-    opacity: .5;
   }
 }
 
