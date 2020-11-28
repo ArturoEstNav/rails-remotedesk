@@ -1,52 +1,59 @@
 <div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>" data-controller="dashboard">
   <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
-    <div class="dashboard-search-bar hidable-dashboard" style="display: none;">
-      <%= text_field_tag :q, params[:q], autocomplete: :off,
-        class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
-        placeholder: "Search by programming language..." %>
-      <%= submit_tag "Search", class: "btn btn-success" %>
+  <!-- Main search board: block -->
+    <div style="display: block;">
+      <div class="dashboard-search-bar hidable-dashboard">
+        <%= text_field_tag :q, params[:q], autocomplete: :off,
+          class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
+          placeholder: "Search by programming language..." %>
+        <%= submit_tag "Search", class: "btn btn-success" %>
+      </div>
     </div>
-    <!-- Hidden field to differeniate dashboard  searches-->
+    <!-- Hidden field to differeniate dashboard searches-->
     <%= hidden_field_tag 'dashboard', 'true' %>
-    <div class="custom-container-search-buttons hidable-dashboard" style="display: none;">
-      <div class="dashboard-element">
-        <p class="dashboard-heading">
-          Full or partial time
-        </p>
-        <div class="job-type-buttons">
-          <div class="dashboard-options">
-            <%= radio_button_tag(:job_type, "Full-time") %>
-            <%= label_tag(:job_type, "Full-time") %>
-          </div>
-          <div class="dashboard-options">
-            <%= radio_button_tag(:job_type, "Part-time") %>
-            <%= label_tag(:job_type, "Part-time") %>
+    <!-- Options : block -->
+    <div style="display: block;">
+      <div class="custom-container-search-buttons hidable-dashboard">
+        <div class="dashboard-element">
+          <p class="dashboard-heading">
+            Full or partial time
+          </p>
+          <div class="job-type-buttons">
+            <div class="dashboard-options">
+              <%= radio_button_tag(:job_type, "Full-time") %>
+              <%= label_tag(:job_type, "Full-time") %>
+            </div>
+            <div class="dashboard-options">
+              <%= radio_button_tag(:job_type, "Part-time") %>
+              <%= label_tag(:job_type, "Part-time") %>
+            </div>
           </div>
         </div>
-      </div>
-     <!--  <div class="location-type-buttons" style="border: 1px solid teal">
-        <%= radio_button_tag(:location_type, "Remote") %>
-        <%= label_tag(:location_type, "Remote") %>
-        <%= radio_button_tag(:location_type, "Work from home") %>
-        <%= label_tag(:location_type, "Work from home") %>
-      </div> -->
-      <div class="dashboard-element">
-        <p class="dashboard-heading">
-          Sort results by
-        </p>
-        <div class="dashboard-options">
-          <!-- <%= label_tag(:sort) %> -->
-          <%= select_tag "sort", raw('
-            <option value="1" selected="selected">Newest first</option><option value="0" >Oldest first</option>
-          ')%>
+       <!--  <div class="location-type-buttons" style="border: 1px solid teal">
+          <%= radio_button_tag(:location_type, "Remote") %>
+          <%= label_tag(:location_type, "Remote") %>
+          <%= radio_button_tag(:location_type, "Work from home") %>
+          <%= label_tag(:location_type, "Work from home") %>
+        </div> -->
+        <div class="dashboard-element">
+          <p class="dashboard-heading">
+            Sort results by
+          </p>
+          <div class="dashboard-options">
+            <!-- <%= label_tag(:sort) %> -->
+            <%= select_tag "sort", raw('
+              <option value="1" selected="selected">Newest first</option><option value="0" >Oldest first</option>
+            ')%>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
   <div class="dashboard-toggle" data-action="click->dashboard#toggle">
     <p>
+  <!-- label : inline-block -->
       <i class="fas fa-search"></i>
-      <span class="hidable-dashboard" data-target="display" style="display: none;">&nbsp;HIDE</span>
+      <span class="hidable-dashboard" data-target="display" style="display: inline-block;">&nbsp;HIDE</span>
     </p>
   </div>
 </div>

@@ -4,16 +4,15 @@ export default class extends Controller {
 
 
   toggle() {
-     if(hidableElements[0].style.display === "none"){
-    hidableElements.forEach((element) => {
-      element.style.display === "block"
-    })
-  }
-  else{
-    hidableElements.forEach((element) => {
-      element.style.display === "none"
-    })
-  }
+    if(hidableElements[0].style.display === "none"){
+        hidableElements.forEach((element) => {
+          element.style.display === "block"
+
+    else{
+      hidableElements.forEach((element) => {
+        element.style.display === "none"
+      })
+    }
   }
 }
 
