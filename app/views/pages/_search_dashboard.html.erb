@@ -1,4 +1,6 @@
 <div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>" data-controller="dashboard">
+<!-- Original form tag starts here-->
+
   <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
     <div data-target="dashboard.block" style="display: none;">
       <div class="dashboard-search-bar">
@@ -47,6 +49,57 @@
       </div>
     </div>
   <% end %>
+
+<!-- Original form tag ends here-->
+<!-- Simple form starts here-->
+
+  <!-- html: {class: "search-bar"}, method: :get -->
+  <h1 style="font-weight: bold;">TESTIS</h1>
+  <%= simple_form_for :search, url: root_path, method: "GET",
+    html: { class: 'search-bar' } do |f| %>
+    <div data-target="dashboard.block" style="display: block;">
+      <div class="dashboard-search-bar">
+        <%= text_field_tag :q, params[:q], autocomplete: :off,
+          class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
+          placeholder: "Search by programming language..." %>
+        <%= f.submit "Search", class: "btn btn-success" %>
+      </div>
+    </div>
+    <%= f.hidden_field :dashboard, :value => "true"%>
+    <div data-target="dashboard.block" style="display: block;">
+      <div class="custom-container-search-buttons">
+        <div class="dashboard-element">
+          <p class="dashboard-heading">
+            Full or partial time
+          </p>
+          <div class="job-type-buttons">
+            <div class="dashboard-options">
+
+              <%= radio_button_tag(:job_type, "Full-time") %>
+              <%= label_tag(:job_type, "Full-time") %>
+            </div>
+            <div class="dashboard-options">
+              <%= radio_button_tag(:job_type, "Part-time") %>
+              <%= label_tag(:job_type, "Part-time") %>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-element">
+          <p class="dashboard-heading">
+            Sort results by
+          </p>
+          <div class="dashboard-options">
+            <!-- <%= label_tag(:sort) %> -->
+            <%= select_tag "sort", raw('
+              <option value="1" selected="selected">Newest first</option><option value="0" >Oldest first</option>
+            ')%>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<!-- Simple form ends here-->
+
   <div class="dashboard-toggle" data-action="click->dashboard#toggle">
     <p>
       <i class="fas fa-search"></i>
