@@ -1,5 +1,7 @@
 import { Controller } from "stimulus"
 
+import Rails from "@rails/ujs"
+
 export default class extends Controller {
 static targets = [ "inline", "block" ]
 
@@ -15,5 +17,13 @@ static targets = [ "inline", "block" ]
         element.style.display = "none"
       })
     }
+  }
+
+  makeRequest() {
+    Rails.ajax({
+      type: "post",
+      url: this.data.get('url'),
+      data: new FormData(this.element)
+    })
   }
 }

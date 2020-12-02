@@ -1,18 +1,20 @@
 <div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>" data-controller="dashboard">
-<!-- Original form tag starts here-->
-
-  <%= form_tag root_path, html: {class: "search-bar"}, method: :get do %>
+  <!-- url: root_path, method: "GET", html: { class: 'search-bar' } -->
+  <%= simple_form_for :search, url: root_path, method: "GET", remote: true,
+    class: 'search-bar' do |f| %>
     <div data-target="dashboard.block" style="display: none;">
       <div class="dashboard-search-bar">
         <%= text_field_tag :q, params[:q], autocomplete: :off,
           class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
           placeholder: "Search by programming language..." %>
-        <%= submit_tag "Search", class: "btn btn-success" %>
+        <!-- <%= f.submit "Search", class: "btn btn-success" %> -->
+        <!--  data-disable-with="Search" -->
+        <input type="submit" name="commit" value="Search"
+        class="btn btn-success", data-action="click->dashboard#makeRequest" >
       </div>
     </div>
-    <!-- Hidden field to differeniate dashboard searches-->
-    <%= hidden_field_tag 'dashboard', 'true' %>
-    <div data-target="dashboard.block" style="display: none;">
+    <%= f.hidden_field :dashboard, :value => "true"%>
+    <div data-target="dashboard.block" style="display: none; ">
       <div class="custom-container-search-buttons">
         <div class="dashboard-element">
           <p class="dashboard-heading">
@@ -20,6 +22,7 @@
           </p>
           <div class="job-type-buttons">
             <div class="dashboard-options">
+
               <%= radio_button_tag(:job_type, "Full-time") %>
               <%= label_tag(:job_type, "Full-time") %>
             </div>
@@ -29,61 +32,12 @@
             </div>
           </div>
         </div>
-       <!--  <div class="location-type-buttons" style="border: 1px solid teal">
+        <!--  <div class="location-type-buttons" style="border: 1px solid teal">
           <%= radio_button_tag(:location_type, "Remote") %>
           <%= label_tag(:location_type, "Remote") %>
           <%= radio_button_tag(:location_type, "Work from home") %>
           <%= label_tag(:location_type, "Work from home") %>
         </div> -->
-        <div class="dashboard-element">
-          <p class="dashboard-heading">
-            Sort results by
-          </p>
-          <div class="dashboard-options">
-            <!-- <%= label_tag(:sort) %> -->
-            <%= select_tag "sort", raw('
-              <option value="1" selected="selected">Newest first</option><option value="0" >Oldest first</option>
-            ')%>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-<!-- Original form tag ends here-->
-<!-- Simple form starts here-->
-
-  <!-- html: {class: "search-bar"}, method: :get -->
-  <h1 style="font-weight: bold;">TESTIS</h1>
-  <%= simple_form_for :search, url: root_path, method: "GET",
-    html: { class: 'search-bar' } do |f| %>
-    <div data-target="dashboard.block" style="display: block;">
-      <div class="dashboard-search-bar">
-        <%= text_field_tag :q, params[:q], autocomplete: :off,
-          class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
-          placeholder: "Search by programming language..." %>
-        <%= f.submit "Search", class: "btn btn-success" %>
-      </div>
-    </div>
-    <%= f.hidden_field :dashboard, :value => "true"%>
-    <div data-target="dashboard.block" style="display: block;">
-      <div class="custom-container-search-buttons">
-        <div class="dashboard-element">
-          <p class="dashboard-heading">
-            Full or partial time
-          </p>
-          <div class="job-type-buttons">
-            <div class="dashboard-options">
-
-              <%= radio_button_tag(:job_type, "Full-time") %>
-              <%= label_tag(:job_type, "Full-time") %>
-            </div>
-            <div class="dashboard-options">
-              <%= radio_button_tag(:job_type, "Part-time") %>
-              <%= label_tag(:job_type, "Part-time") %>
-            </div>
-          </div>
-        </div>
         <div class="dashboard-element">
           <p class="dashboard-heading">
             Sort results by
