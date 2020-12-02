@@ -15,8 +15,11 @@
 
       <!-- New button -->
 
-      <div style="font-weight: bold; margin: 0 24px" class="btn btn-info custom-btn-nav">
-        DAY
+      <div data-controller="nightmode" >
+        <div style="font-weight: bold; margin: 0 24px" class="btn btn-info custom-btn-nav"
+        data-target="nightmode.toggle", data-action="click->nightmode#adjustBackground">
+          DAY
+        </div>
       </div>
 
       <!-- New button -->
