@@ -1,4 +1,3 @@
-
 // Font is inherited from the body so I don't feel too bad
 // just overriding the fonts, NOTHING ELSE should be overriden
 // from bootstrap directly ;)
@@ -8,8 +7,7 @@
 
 .custom-btn-info {
   border: none;
-  // margin-left: 8px;
-  // width: 150px;
+
   text-align: center;
 
   &.focus,
@@ -52,6 +50,7 @@
 .custom-btn-nav {
   border: none;
   margin-left: 8px;
+  cursor: pointer;
 
   &.focus,
   &:focus {

@@ -12,6 +12,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center">
+
+      <!-- New button -->
+
+      <div style="font-weight: bold; margin: 0 24px" class="btn btn-info custom-btn-nav">
+        DAY
+      </div>
+
+      <!-- New button -->
+
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to "My jobs", user_path(current_user), class: "btn btn-info custom-btn-nav"%>

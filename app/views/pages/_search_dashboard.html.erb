@@ -1,6 +1,5 @@
 <div id="search-data" class= "form-search search-data  custom-search-dashboard" data-skills="<%= @tags.to_json %>" data-controller="dashboard">
-  <!-- url: root_path, method: "GET", html: { class: 'search-bar' } -->
-  <%= simple_form_for :search, url: root_path, method: "GET", remote: true,
+  <%= simple_form_for :search, url: root_path, method: "GET",
     class: 'search-bar' do |f| %>
     <div data-target="dashboard.block" style="display: none;">
       <div class="dashboard-search-bar">
