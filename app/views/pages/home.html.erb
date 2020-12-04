@@ -50,7 +50,9 @@
           <div>
             <%= link_to offer_path(offer), class: "link-element" do%>
               <h4 class="card-title"><%= offer.title %></h4>
-              <p><%= offer.company %> | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %></p>
+              <p><%= offer.company %>
+               <!-- | <%= "Posted: #{offer.posting_date.strftime('%b %d, %Y')}" %> -->
+             </p>
             <% end %>
             <p class="card-text">
               <% offer.tags.first(5).each do |tag|%>
