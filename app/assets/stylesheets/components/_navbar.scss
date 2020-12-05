@@ -1,10 +1,8 @@
-$big-mobile: 425px;
-$custom-sm: 768px;
-$custom-md: 992px;
-$custom-lg: 1200px;
+
+// navbar-expand-sm navbar-light navbar-lewagon fixed-top
 
 .navbar-fixed{
- display: fixed;
+ // display: fixed;
 }
 
 .navbar-lewagon {
@@ -26,6 +24,3 @@ $custom-lg: 1200px;
   // width: 40px;
 }
 
-.outer-bar{
-  background-color: #coral;
-}
