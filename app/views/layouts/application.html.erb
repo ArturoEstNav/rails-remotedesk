@@ -33,11 +33,11 @@
   <body>
     <div data-controller="nightmode" >
       <div class="container">
-        <div class="outer-bar d-flex">
-          <div>
+        <div class="outer-bar">
+          <!-- <div class="reg-bar"> -->
             <%= render 'shared/navbar' %>
-          </div>
-          <div style="font-weight: bold; margin: 0 24px" class="btn btn-info custom-btn-nav" data-target="nightmode.toggle", data-action="click->nightmode#adjustBackground">
+          <!-- </div> -->
+          <div class="btn btn-info custom-btn-nav toggle-btn" data-target="nightmode.toggle", data-action="click->nightmode#adjustBackground">
             DAY
           </div>
         </div>
