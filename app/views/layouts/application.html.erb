@@ -30,9 +30,9 @@
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
-  <body>
-    <div data-controller="nightmode" class="crash jobber">
-      <div class="container" data-target="nightmode.page">
+  <body data-controller="nightmode" data-target="nightmode.page">
+    <!-- <div class="crash jobber"> -->
+      <div class="container" >
         <div class="outer-bar">
           <!-- <div class="reg-bar"> -->
             <%= render 'shared/navbar' %>
@@ -44,6 +44,6 @@
         <%= render 'shared/flashes' %>
         <%= yield %>
       </div>
-    </div>
+    <!-- </div> -->
   </body>
 </html>
