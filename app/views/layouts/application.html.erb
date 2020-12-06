@@ -31,13 +31,13 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
   <body>
-    <div data-controller="nightmode" >
-      <div class="container">
+    <div data-controller="nightmode" class="crash jobber">
+      <div class="container" data-target="nightmode.page">
         <div class="outer-bar">
           <!-- <div class="reg-bar"> -->
             <%= render 'shared/navbar' %>
           <!-- </div> -->
-          <div class="btn btn-info custom-btn-nav toggle-btn" data-target="nightmode.toggle", data-action="click->nightmode#adjustBackground">
+          <div class="btn btn-info custom-btn-nav toggle-btn", data-action="click->nightmode#adjustBackground">
             DAY
           </div>
         </div>
