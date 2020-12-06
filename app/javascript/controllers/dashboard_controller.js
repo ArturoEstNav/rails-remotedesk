@@ -16,4 +16,5 @@ static targets = [ "inline", "block" ]
       })
     }
   }
+
 }
