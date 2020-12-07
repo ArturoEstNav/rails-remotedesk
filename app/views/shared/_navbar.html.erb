@@ -18,12 +18,12 @@
       </div>
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "My jobs", user_path(current_user), class: "btn btn-info custom-btn-nav"%>
+          <%= link_to "Saved", user_path(current_user), class: "btn btn-info custom-btn-nav"%>
         </li>
-          <%= link_to "Find a job", root_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Find", root_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Post a job", new_offer_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Advertize", new_offer_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item dropdown ml-3">
         <% if current_user.photo.attached? %>
@@ -38,10 +38,10 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "About us", about_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "About", about_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Post a job", new_user_session_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Advertize", new_user_session_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "btn btn-info custom-btn-nav" %>
