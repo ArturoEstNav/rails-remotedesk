@@ -1,9 +1,9 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <span class="logo_thick text-success">[</span>
-    <span class="logo_thin" style="color: #3A403A;"> remote </span>
-    <span class="logo_thick" style="color: #3A403A;">scanner</span>
-    <span class="logo_thick text-success">]</span>
+    <span class="logo_brackets">[</span>
+    <span class="logo_thin"> remote </span>
+    <span class="logo_thick">scanner</span>
+    <span class="logo_brackets">]</span>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,6 +12,10 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center">
+      <!-- Stimulus controller and target are located in application erb file -->
+      <div class="btn btn-info custom-btn-nav toggle-btn", data-action="click->nightmode#adjustBackground">
+        DAY
+      </div>
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to "My jobs", user_path(current_user), class: "btn btn-info custom-btn-nav"%>

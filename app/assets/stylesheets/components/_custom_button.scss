@@ -184,3 +184,15 @@
     color: $green;
   }
 }
+
+.heart-button {
+  color: $bone-gray;
+
+  &:hover {
+   text-decoration: none;
+  }
+}
+
+.fileinput-button {
+  cursor: pointer;
+}

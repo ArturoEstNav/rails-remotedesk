@@ -1,8 +1,5 @@
-
-// navbar-expand-sm navbar-light navbar-lewagon fixed-top
-
 .navbar-fixed{
- // display: fixed;
+ display: fixed;
 }
 
 .navbar-lewagon {
@@ -13,14 +10,8 @@
   @media screen and (max-width: $big-mobile) {
     padding: 16px 24px;
   }
-
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
-
-.navbar-lewagon .navbar-brand img {
-  // width: 40px;
-}
-
