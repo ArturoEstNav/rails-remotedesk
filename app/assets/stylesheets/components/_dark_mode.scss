@@ -210,9 +210,32 @@
         background-color: $green;
       }
     }
-    // selected options still need work
+  }
 
+  .form-control, .autocomplete-suggestions {
+    background-color: $black;
+    color: $bone-gray;
+  }
+
+  .autocomplete-suggestions {
+    .autocomplete-suggestion {
+      color: $bone-gray;
+    }
+  }
+  // View offer
+  .custom-container-offer{
+    .ct1 {
+      color: $black;
+    }
+  }
+
+  #myTab {
+    li {
+      &:hover {
+        a {
+          color: $green;
+        }
+      }
+    }
   }
 }
-
-

@@ -8,7 +8,6 @@ export default class extends Controller {
       this.element.classList.add("dark-mode");
       this.toggleTarget.innerHTML = '<i class="fas fa-sun"></i>';
     }
-
   }
 
   adjustBackground(){
@@ -21,8 +20,6 @@ export default class extends Controller {
       this.element.classList.add("dark-mode");
       localStorage.setItem('nightMode', 'true');
       this.toggleTarget.innerHTML = '<i class="fas fa-sun"></i>';
-
     }
   }
-
 }
