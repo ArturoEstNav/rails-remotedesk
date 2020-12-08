@@ -150,4 +150,65 @@
       background-color: $black;
     }
   }
+
+  .form-group {
+    input {
+      color: $bone-gray;
+      background-color: transparent;
+
+      &:active {
+        color: $bone-gray;
+        background-color: transparent;
+      }
+
+      &:focus {
+        color: $bone-gray;
+        background-color: transparent;
+      }
+
+      &:not(:disabled):not(.disabled):active {
+        color: $bone-gray;
+        background-color: transparent;
+      }
+    }
+
+    select {
+      color: $bone-gray;
+      background-color: transparent;
+    }
+
+    .select2-selection {
+
+      color: $bone-gray;
+      background-color: transparent;
+      .select2-selection__choice {
+        background-color: $green-transparent;
+        color: $black;
+        font-weight: bold;
+      }
+    }
+
+
+  }
+
+  #select2-user_tags-results {
+    background-color: $black;
+    color: $bone-gray;
+
+    li{
+      .highlighted {
+        background-color: $green;
+      }
+    }
+
+    .select2-results__option{
+      &:hover, &:focus, &:active {
+        background-color: $green;
+      }
+    }
+    // selected options still need work
+
+  }
 }
+
+
