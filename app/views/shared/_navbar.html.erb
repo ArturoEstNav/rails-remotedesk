@@ -13,8 +13,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center">
       <!-- Stimulus controller and target are located in application erb file -->
-      <div class="btn btn-info custom-btn-nav toggle-btn", data-action="click->nightmode#adjustBackground">
-        DAY
+      <div class="btn btn-info custom-btn-nav toggle-btn", data-target="nightmode.toggle", data-action="click->nightmode#adjustBackground">
+        <i class="fas fa-moon"></i>
       </div>
       <% if user_signed_in? %>
         <li class="nav-item">
