@@ -18,12 +18,4 @@ static targets = [ "inline", "block" ]
       })
     }
   }
-
-  makeRequest() {
-    Rails.ajax({
-      type: "post",
-      url: this.data.get('url'),
-      data: new FormData(this.element)
-    })
-  }
 }

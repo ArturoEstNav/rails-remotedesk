@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <%= favicon_link_tag%>
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
@@ -30,20 +29,12 @@
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
-  <body>
-    <div data-controller="nightmode" >
-      <div class="container">
-        <div class="outer-bar d-flex">
-          <!-- <div> -->
-            <%= render 'shared/navbar' %>
-         <!--  </div>
-          <div style="font-weight: bold; margin: 0 24px" class="btn btn-info custom-btn-nav" data-target="nightmode.toggle", data-action="click->nightmode#adjustBackground">
-            DAY
-          </div> -->
-        </div>
+  <body data-controller="nightmode" data-target="nightmode.page">
+      <div class="container" >
+        <!-- Stimulus action button is located in this render -->
+        <%= render 'shared/navbar' %>
         <%= render 'shared/flashes' %>
         <%= yield %>
       </div>
-    </div>
   </body>
 </html>

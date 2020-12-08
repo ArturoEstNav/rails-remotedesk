@@ -29,7 +29,7 @@
             <div class="custom-result-buttons">
               <div>
                 <%= render partial: "shared/heart", locals: {offer: offer, query: @query, redirect_url: root_path} %>
-                <%= link_to "View", offer_path(offer), class: "card-button btn btn-warning mt-3" %>
+                <%= link_to "Details", offer_path(offer), class: "card-button btn btn-warning mt-3" %>
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
             </p>
           </div>
           <div class="d-flex justify-content-between">
-            <%= link_to "View", offer_path(offer), class: "card-button btn btn-warning" %>
+            <%= link_to "Details", offer_path(offer), class: "card-button btn btn-warning" %>
             <%= render partial: "shared/heart", locals: {offer: offer, query: '', redirect_url: root_path} %>
           </div>
         </div>

@@ -1,9 +1,9 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <span class="logo_thick text-success">[</span>
-    <span class="logo_thin" style="color: #3A403A;"> remote </span>
-    <span class="logo_thick" style="color: #3A403A;">scanner</span>
-    <span class="logo_thick text-success">]</span>
+    <span class="logo_brackets">[</span>
+    <span class="logo_thin"> remote </span>
+    <span class="logo_thick">scanner</span>
+    <span class="logo_brackets">]</span>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,25 +12,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center">
-
-<!--
-      <div data-controller="nightmode" >
-        <div style="font-weight: bold; margin: 0 24px" class="btn btn-info custom-btn-nav"
-        data-target="nightmode.toggle", data-action="click->nightmode#adjustBackground">
-          DAY
-        </div>
+      <!-- Stimulus controller and target are located in application erb file -->
+      <div class="btn btn-info custom-btn-nav toggle-btn", data-target="nightmode.toggle", data-action="click->nightmode#adjustBackground">
+        <i class="fas fa-moon"></i>
       </div>
- -->
-
-
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "My jobs", user_path(current_user), class: "btn btn-info custom-btn-nav"%>
+          <%= link_to "Saved", user_path(current_user), class: "btn btn-info custom-btn-nav"%>
         </li>
-          <%= link_to "Find a job", root_path, class: "btn btn-info custom-btn-nav" %>
-        </li> -->
+          <%= link_to "Find", root_path, class: "btn btn-info custom-btn-nav" %>
+        </li>
         <li class="nav-item">
-          <%= link_to "Offer", new_offer_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Advertize", new_offer_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item dropdown ml-3">
         <% if current_user.photo.attached? %>
@@ -48,7 +41,7 @@
           <%= link_to "About", about_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Post", new_user_session_path, class: "btn btn-info custom-btn-nav" %>
+          <%= link_to "Advertize", new_user_session_path, class: "btn btn-info custom-btn-nav" %>
         </li>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "btn btn-info custom-btn-nav" %>

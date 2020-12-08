@@ -1,7 +1,6 @@
 body {
   color: $black;
   font-weight: 400;
-
 }
 
 h1, h2, h3 {
@@ -53,14 +52,21 @@ a {
   margin-bottom: 2em;
 }
 
+// logo colors
+
 .logo_thin {
   font-size: 18pt;
   font-weight: 300;
-  color: $blue;
+  color: $black;
 }
 
 .logo_thick {
   font-size: 18pt;
   font-weight: 500;
-  color: $blue;
+  color: $black;
+}
+
+
+.logo_brackets {
+  color: $green;
 }

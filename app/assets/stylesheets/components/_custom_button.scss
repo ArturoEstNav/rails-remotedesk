@@ -1,6 +1,7 @@
 // Font is inherited from the body so I don't feel too bad
 // just overriding the fonts, NOTHING ELSE should be overriden
 // from bootstrap directly ;)
+
 .btn {
   font-weight: 400;
 }
@@ -182,4 +183,20 @@
   &:hover {
     color: $green;
   }
+}
+
+.heart-button {
+  color: $bone-gray;
+
+  &:hover {
+   text-decoration: none;
+  }
+}
+
+.fileinput-button {
+  cursor: pointer;
+}
+
+.login-btn {
+  margin-right: 16px;
 }

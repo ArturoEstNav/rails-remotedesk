@@ -1,0 +1,241 @@
+.dark-mode {
+  // Backgrounds
+  background-color: $black;
+  // Navbar
+  .navbar-lewagon, .dashboard-toggle, .custom-search-dashboard {
+    background-color: $black;
+  }
+
+  .custom-element-white  {
+    background-color: $black;
+  }
+
+  // Text
+  color: $bone-gray;
+
+  .logo_thick, .logo_thin {
+    color: $bone-gray;
+  }
+
+  a {
+    color: $bone-gray;
+  }
+
+  .custom-btn-info {
+    color: initial;
+  }
+
+  // Buttons
+  .custom-btn-info {
+    &.focus,
+    &:focus {
+      background-color: $green-transparent;
+    }
+
+    &:hover {
+      background-color: $green-transparent;
+    }
+
+    &.active, &:active {
+      background-color: $green-transparent;
+    }
+
+    &:not(:disabled):not(.disabled):active {
+      background-color: $green-transparent;
+    }
+  }
+
+  .custom-btn-sm {
+
+    &:not(:disabled):not(.disabled):hover {
+      background-color: transparent;
+    }
+
+    &:not(:disabled):not(.disabled):active {
+      background-color: transparent;
+    }
+  }
+
+  .custom-btn-sm {
+    background-color: $black;
+    color: $green-transparent;
+    &:hover {
+      color: $green;
+    }
+  }
+
+  .custom-btn-nav, .btn-warning{
+    color: $bone-gray;
+    background-color: $black;
+
+    &.focus, &:focus {
+      background-color: $green-transparent;
+      color: $black;
+    }
+      &:hover {
+      background-color: $green-transparent;
+      color: $black;
+    }
+      &.active, &:active {
+      background-color: $green-transparent;
+      color: $black;
+    }
+
+    &:not(:disabled):not(.disabled):active {
+      background-color: $green-transparent;
+      color: $black;
+    }
+  }
+
+  .custom-btn-secondary {
+    color: $black;
+    a {
+        color: $black;
+      }
+
+    &:hover {
+      color: $black;
+
+      a {
+        color: $black;
+      }
+    }
+
+    &:active {
+     color: $black;
+    }
+
+    &:not(:disabled):not(.disabled):active {
+      a {
+        color: $black;
+      }
+    }
+  }
+
+  .custom-button-fix {
+    background-color: transparent;
+
+    &:active {
+      background-color: transparent;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:not(:disabled):not(.disabled):active {
+      background-color: transparent;
+    }
+  }
+
+  .icon-heart {
+    color: $green;
+  }
+
+  .heart-button {
+    color: $bone-gray;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .custom-link{
+    &:hover {
+      color: $green;
+    }
+  }
+  // Font is inherited from the body so I don't feel too bad
+    // just overriding the fonts, NOTHING ELSE should be overriden
+    // from bootstrap directly ;)
+  .custom-carousel {
+
+    .custom-carousel-slide {
+      background-color: $black;
+    }
+  }
+
+  .form-group {
+    input {
+      color: $bone-gray;
+      background-color: transparent;
+
+      &:active {
+        color: $bone-gray;
+        background-color: transparent;
+      }
+
+      &:focus {
+        color: $bone-gray;
+        background-color: transparent;
+      }
+
+      &:not(:disabled):not(.disabled):active {
+        color: $bone-gray;
+        background-color: transparent;
+      }
+    }
+
+    select {
+      color: $bone-gray;
+      background-color: transparent;
+    }
+
+    .select2-selection {
+
+      color: $bone-gray;
+      background-color: transparent;
+      .select2-selection__choice {
+        background-color: $green-transparent;
+        color: $black;
+        font-weight: bold;
+      }
+    }
+
+
+  }
+
+  #select2-user_tags-results {
+    background-color: $black;
+    color: $bone-gray;
+
+    li{
+      .highlighted {
+        background-color: $green;
+      }
+    }
+
+    .select2-results__option{
+      &:hover, &:focus, &:active {
+        background-color: $green;
+      }
+    }
+  }
+
+  .form-control, .autocomplete-suggestions {
+    background-color: $black;
+    color: $bone-gray;
+  }
+
+  .autocomplete-suggestions {
+    .autocomplete-suggestion {
+      color: $bone-gray;
+    }
+  }
+  // View offer
+  .custom-container-offer{
+    .ct1 {
+      color: $black;
+    }
+  }
+
+  #myTab {
+    li {
+      &:hover {
+        a {
+          color: $green;
+        }
+      }
+    }
+  }
+}
