@@ -69,4 +69,7 @@ a {
 
 .logo_brackets {
   color: $green;
+  &:hover {
+    font-weight: normal;
+  }
 }
