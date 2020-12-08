@@ -5,16 +5,15 @@
         <div class="custom-container-profile">
           <h3><%= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></h3>
           <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar-large" %>
+            <div class="d-flex justify-content-center align-items-center">
+              <%= cl_image_tag current_user.photo.key, alt: "Profile Pic", class: "avatar-large" %>
+            </div>
           <% else %>
             <%= image_tag "https://st2.depositphotos.com/4111759/12123/v/950/depositphotos_121232794-stock-illustration-male-default-placeholder-avatar-profile.jpg", class: "avatar-large" %>
           <% end %>
-          <%= simple_form_for(current_user, remote: true) do |f| %>
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <span class="fileinput-button">
-              <a href="#" class="custom-link"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Update Picture</a>
-              <%= f.input_field :photo, as: :file, label: false, class: "form-control-file is-valid file optional", onchange: "form.submit()" %>
-            </span>
+          <!-- <br> -->
+          <%= link_to destroy_user_session_path, class: "logout-btn", method: :delete  do%>
+            <i class="fas fa-door-open"></i> Log out
           <% end %>
         </div>
       </div>

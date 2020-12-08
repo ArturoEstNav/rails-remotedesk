@@ -6,8 +6,9 @@
       <%= f.input :gender, label: 'Gender', as: :select, collection: ['Female', 'Male', 'Non-binary'], input_html: {class: "custom-element-transparent"} %>
       <%= f.input :residence_country, label: 'Country of residence', input_html: {class: "custom-element-transparent"}  %>
       <%= f.input :postal_code, label: 'Zip Code', input_html: {class: "custom-element-transparent"}  %>
-      <!-- I need to get it like the others -->
       <%= f.input :tags, label: 'Input skills', collection: @tags, input_html: { multiple: true } %>
+      <p>Profile picture</p>
+      <%= f.input_field :photo, as: :file, label: 'Profile picture', class: "form-control-file is-valid file optional", onchange: "form.submit()" %><br>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
 </div>
