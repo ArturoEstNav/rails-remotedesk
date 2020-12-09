@@ -145,9 +145,8 @@
       color: $green;
     }
   }
-  // Font is inherited from the body so I don't feel too bad
-    // just overriding the fonts, NOTHING ELSE should be overriden
-    // from bootstrap directly ;)
+
+  // Carousel
   .custom-carousel {
 
     .custom-carousel-slide {
@@ -155,6 +154,7 @@
     }
   }
 
+  //  Forms and select2
   .form-group {
     input {
       color: $bone-gray;
@@ -191,11 +191,9 @@
         font-weight: bold;
       }
     }
-
-
   }
 
-  #select2-user_tags-results {
+  #select2-user_tags-results, #select2-offer_tags-results {
     background-color: $black;
     color: $bone-gray;
 
