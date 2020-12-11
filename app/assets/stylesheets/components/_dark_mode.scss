@@ -137,7 +137,12 @@
 
     &:hover {
       text-decoration: none;
+      color: $green;
     }
+  }
+
+  .btn-xs{
+    color: $bone-gray;
   }
 
   .custom-link{

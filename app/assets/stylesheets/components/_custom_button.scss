@@ -207,3 +207,18 @@
    color: $green-transparent;
   }
 }
+
+.btn-xs{
+  &:hover {
+    i {
+      color: $green;
+    }
+  }
+
+  &:active {
+   color: $green;
+    i {
+      color: $green;
+    }
+  }
+}
