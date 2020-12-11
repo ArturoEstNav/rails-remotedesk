@@ -6,8 +6,6 @@
         <%= text_field_tag :q, params[:q], autocomplete: :off,
           class: "form-control search-input custom-element-transparent custom-bar-landing-spacing",
           placeholder: "Search by programming language..." %>
-        <!-- <%= f.submit "Search", class: "btn btn-success" %> -->
-        <!--  data-disable-with="Search" -->
         <input type="submit" name="commit" value="Search"
         class="btn btn-success", data-action="click->dashboard#makeRequest" >
       </div>
@@ -31,27 +29,19 @@
             </div>
           </div>
         </div>
-        <!--  <div class="location-type-buttons" style="border: 1px solid teal">
-          <%= radio_button_tag(:location_type, "Remote") %>
-          <%= label_tag(:location_type, "Remote") %>
-          <%= radio_button_tag(:location_type, "Work from home") %>
-          <%= label_tag(:location_type, "Work from home") %>
-        </div> -->
         <div class="dashboard-element">
           <p class="dashboard-heading">
             Sort results by
           </p>
           <div class="dashboard-options">
-            <%= select_tag "sort", raw('
-              <option value="1" selected="selected">Newest first</option><option value="0" >Oldest first</option>
+            <%= select_tag "newest_first", raw('
+              <option value="true" selected="selected">Newest first</option><option value="false" >Oldest first</option>
             ')%>
           </div>
         </div>
       </div>
     </div>
   <% end %>
-<!-- Simple form ends here-->
-
   <div class="dashboard-toggle" data-action="click->dashboard#toggle">
     <p>
       <i class="fas fa-search"></i>
