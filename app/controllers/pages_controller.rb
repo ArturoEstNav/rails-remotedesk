@@ -26,7 +26,7 @@ class PagesController < ApplicationController
         @offers = Offer.joins(:tags).where("tags.name = ? AND job_type = ?", params[:q], params[:job_type]).order( posting_date: :asc)
       end
     # If no options are selected
-    elsif params[:q].present? && params[:dashboard].present?
+    elsif params[:q].present? && params[:search].present?
       if params[:sort] == "1"
         @offers = Offer.joins(:tags).where('tags.name = ?', params[:q]).order( posting_date: :desc)
       else

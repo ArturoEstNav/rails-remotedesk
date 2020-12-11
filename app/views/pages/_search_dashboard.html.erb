@@ -12,7 +12,7 @@
         class="btn btn-success", data-action="click->dashboard#makeRequest" >
       </div>
     </div>
-    <%= f.hidden_field :dashboard, :value => "true"%>
+    <%= f.hidden_field :dashboard, value: "present"%>
     <div data-target="dashboard.block" style="display: none; ">
       <div class="custom-container-search-buttons">
         <div class="dashboard-element">
@@ -42,7 +42,6 @@
             Sort results by
           </p>
           <div class="dashboard-options">
-            <!-- <%= label_tag(:sort) %> -->
             <%= select_tag "sort", raw('
               <option value="1" selected="selected">Newest first</option><option value="0" >Oldest first</option>
             ')%>

@@ -6,7 +6,7 @@
   <% else %>
     <%= render partial: "search_dashboard" %> <br>
     <%if @offers and not @offers.empty? %>
-      <div class="custom-container-section">
+        <div class="custom-container-section">
         <% if @job_type %>
           <h2><%= "#{@query.capitalize} #{@job_type.capitalize} jobs" %></h2>
         <% else %>
