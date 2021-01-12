@@ -1,5 +1,7 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "https://www.remotescanner.work/" }
+  config.action_mailer.default_url_options = { host: 'https://www.remotescanner.work/' }
+  #
+  Rails.application.routes.default_url_options[:host] = 'https://www.remotescanner.work/'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -125,3 +127,5 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 end
+
+# remotescanner.work
